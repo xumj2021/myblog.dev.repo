@@ -29,7 +29,8 @@ git add .
 git commit -m "$msg"
 # git push origin master
 git push https://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@github.com/xumj2021/xumj2021.github.io.git HEAD:master
-
+# The personal access token is automatically suspended every time when publishing, need to generate new personal access
+# then, see more details in https://ginnyfahs.medium.com/github-error-authentication-failed-from-command-line-3a545bfd0ca8
 # Add this repos changes to git and commit/push. First 'cd' out of public
 cd ..
 echo ""
