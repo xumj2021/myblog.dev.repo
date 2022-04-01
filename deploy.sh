@@ -28,7 +28,7 @@ git add .
 # git commit -m "test"
 git commit -m "$msg"
 # git push origin master
-git push https://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@github.com/xumj2021/xumj2021.github.io.git
+git push https://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@github.com/xumj2021/xumj2021.github.io.git HEAD:master
 
 # Add this repos changes to git and commit/push. First 'cd' out of public
 cd ..
@@ -38,7 +38,7 @@ echo "Committing changes to $(pwd)"
 git add .
 git commit -m "$msg"
 # git push origin master
-git push https://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@github.com/xumj2021/myblog.dev.repo.git
+git push https://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@github.com/xumj2021/myblog.dev.repo.git HEAD:master
 
 # git push https://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@github.com/xumj2021/myblog.dev.repo.git
-git push origin master
+# git push origin master
