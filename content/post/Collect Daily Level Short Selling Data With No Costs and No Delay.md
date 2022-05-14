@@ -20,7 +20,7 @@ Given the broad market interests about the timely short-selling data, several se
 
 In this blog, I will summarize the available sources of short sale data at various granularity and introduce how to approach the updated daily-summarized short sale dataset from FINRA.
 
-## Challenges in Approaching Affordable Short Sale Data
+## Challenges in Getting Affordable Short Sale Data
 
 As the disclosure of short-selling data is out of self-regulatory purposes, the disclosure platforms and prices are not uniform for different trading market. 
 
@@ -103,7 +103,7 @@ There are three features in FINRA's website.
 
 With the above summarized features of FINRA's website, I wrote two simple functions.
 
-`getdatelist()` : return the list of all possible calendar dates from 2009-08-01 to 2022-05-13, `datelist`
+`getdatelist()` : return the list of all possible calendar dates from 2009-08-01 to 2022-05-13.
 
 `getfile(tabletype, date)`:
 
