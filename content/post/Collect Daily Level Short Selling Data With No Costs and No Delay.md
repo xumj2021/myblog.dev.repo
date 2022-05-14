@@ -1,7 +1,7 @@
 ---
-title:       "Collect Daily Level Short Selling Data From FINRA With Low Costs and Low Delay"
+title:       "Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay"
 subtitle:    ""
-description: "Affordable and high-quality short selling data collection"
+description: "Affordable and high-quality daily-level short selling data collection"
 date:        2022-05-14
 author:      "Mengjie Xu"
 toc:         true
@@ -18,7 +18,7 @@ Being timely informed about equities' short-selling status is of interests to br
 
 Given the broad market interests about the timely short-selling data, several self-regulatory organizations (SROs) are providing on their websites daily aggregate short selling volume information for individual equity securities. The SROs are also providing website disclosure on a one-month delayed basis of information regarding individual short sale transactions in all exchange-listed equity securities.
 
-In this blog, I will summarize the available sources of short sale data at various granularities and introduce how to approach the updated daily-summarized short sale dataset from FINRA.
+In this blog, I will summarize the available sources of short sale data at various granularity and introduce how to approach the updated daily-summarized short sale dataset from FINRA.
 
 ## Challenges in Approaching Affordable Short Sale Data
 
@@ -28,7 +28,7 @@ For exchanges, NASDAQ sells trade-by-trade short sale information for subscripti
 
 In terms of dark pools and OTC market, FINRA posts on its website a summary for each ticker symbol of the total reported off-exchange trading volume that day and the number of those reported shares that were sold by a short seller by the start of the next trading day. There is no transaction-by-transaction short sale information included in these daily summaries. Two weeks or so after the end of each month, FINRA posts all off-exchange transactions for that month that involve a short seller, and this trade-by-trade short sale dataset, which is similar to the CBOE dataset, is the one that we use.
 
-As a consequence, the challenges in collecting short sale data mainly originate from the by nature non-integrated data sources, some of which may not necessarily be free or at low price. That is why many existed literature seeks for professional data vendors, such as DataExplorers used by Massa et al. (2015, RFS) and S3 Paterners employed by Gargano (2020, WP),  to approach the short sale dataset.
+As a consequence, the challenges in collecting short sale data mainly originate from the by nature non-integrated data sources, some of which may not necessarily be free or at low price. That is why many existed literature seeks for help from professional data vendors, such as DataExplorers used by Massa et al. (2015, RFS) and S3 Paterners employed by Gargano (2020, WP),  to approach the short sale dataset.
 
 For those who want to acquire the affordable integrated short sale data, the following data sources may be at your disposal, depending on your requirement in granularity. 
 
@@ -99,7 +99,7 @@ There are three features in FINRA's website.
 
    
 
-## Parsing the data
+### Parsing the data
 
 With the above summarized features of FINRA's website, I wrote two simple functions.
 
@@ -199,6 +199,10 @@ If the code is executed successfully, one will get 6 text files named by CNMS, F
     padding: 2px;">Figure 5: Output: An Example File</div>
 </center>
 
+
+## Summary
+
+This blog posts introduces the sources from which one can collect short sale dataset with various granularity and shows the data collection procedures with FINRA as the data source. If necessary, one may easily collect trade-by-trade short sale dataset from [CBOE - Transaction Level Dataset][https://www.cboe.com/us/equities/market_statistics/short_sale/] and [FINRA - Transaction Level Dataset][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files] following the spirit of this blogpost.
 
 
 
