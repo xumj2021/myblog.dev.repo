@@ -204,6 +204,19 @@ If the code is executed successfully, one will get 6 text files named by CNMS, F
 
 This blog posts introduces the sources from which one can collect short sale dataset with various granularity and shows the data collection procedures with FINRA as the data source. If necessary, one may easily collect trade-by-trade short sale dataset from [CBOE - Transaction Level Dataset][https://www.cboe.com/us/equities/market_statistics/short_sale/] and [FINRA - Transaction Level Dataset][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files] following the spirit of this blogpost.
 
+Please let me know if you have any questions or suggestions. Just insert the comment below. You don't have to log in!
+
+   <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp6.png" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Log-in Free Comment</div>
+</center>
+
 
 
 ## References
