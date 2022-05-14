@@ -24,7 +24,7 @@ In this blog, I will summarize the available sources of short sale data at vario
 
 As the disclosure of short-selling data is out of self-regulatory purposes, the disclosure platforms and prices are not uniform for different trading market. 
 
-For exchanges, NASDAQ sells trade-by-trade short sale information for subscription fees \$1,250 per firm per month, and similar for NYSE. CBOE, as the 3rd largest exchange group releases shorting data every night on [its website][https://www.cboe.com/us/equities/market_statistics/short_sale/]. 
+For exchanges, NASDAQ sells trade-by-trade short sale information for subscription fees \$1,250 per firm per month, and similar for NYSE. CBOE, as the 3rd largest exchange group releases shorting data every night on [its website](https://www.cboe.com/us/equities/market_statistics/short_sale/). 
 
 In terms of dark pools and OTC market, FINRA posts on its website a summary for each ticker symbol of the total reported off-exchange trading volume that day and the number of those reported shares that were sold by a short seller by the start of the next trading day. There is no transaction-by-transaction short sale information included in these daily summaries. Two weeks or so after the end of each month, FINRA posts all off-exchange transactions for that month that involve a short seller, and this trade-by-trade short sale dataset, which is similar to the CBOE dataset, is the one that we use.
 
@@ -32,30 +32,30 @@ As a consequence, the challenges in collecting short sale data mainly originate 
 
 For those who want to acquire the affordable integrated short sale data, the following data sources may be at your disposal, depending on your requirement in granularity. 
 
-1. [Compustat - Monthly Summary Dataset][https://wrds-www.wharton.upenn.edu/pages/get-data/compustat-capital-iq-standard-poors/compustat/north-america-daily/supplemental-short-interest-file/] 
+1. [Compustat - Monthly Summary Dataset](https://wrds-www.wharton.upenn.edu/pages/get-data/compustat-capital-iq-standard-poors/compustat/north-america-daily/supplemental-short-interest-file/)
    - Requires WRDS subscription
    - Monthly summarized
    - Data points start from 1973-01-15 to the present
    - e.g., Gargano et al. (2017, RFS)
-2. [FINRA - Daily Summary Dataset][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files]
+2. [FINRA - Daily Summary Dataset](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files)
    - Public available
    - Daily updated
    - Exchange daily short summary data available since 2018-08-01
    - Off-exchange daily short summary data available since 2009-08-03
-3. [FINRA - Transaction Level Dataset][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files]
+3. [FINRA - Transaction Level Dataset](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files)
    - Public available
    - Monthly updated
    - Trade-to-trade data
    - Only off-exchange transactions available since 2009-08-03
    - e.g., Hu et al. (2021, WP)
-4. [CBOE - Transaction Level Dataset][https://www.cboe.com/us/equities/market_statistics/short_sale/]
+4. [CBOE - Transaction Level Dataset](https://www.cboe.com/us/equities/market_statistics/short_sale/)
    - Public available
    - Daily Updated
    - Trade-to-trade data traded in CBOE exchange since 2008-01-02
    - e.g., Hu et al. (2021, WP)
 
-5. [Reg SHO dataset][https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/]
-   - Public available in both [FINRA][https://developer.finra.org/docs#query_api-equity] and [WRDS][https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/]
+5. [Reg SHO dataset](https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/)
+   - Public available in both [FINRA](https://developer.finra.org/docs#query_api-equity) and [WRDS](https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/)
    - Transaction level data in stocks traded in NYSE
    - Pilot program data only covering between 2005-01-03 and 2007-06-06
    - e.g., Engelberg et al. (2012, JFE)
@@ -64,7 +64,7 @@ For those who want to acquire the affordable integrated short sale data, the fol
 
 ## Acquire Daily Summarized Short Sale Data From FINRA
 
-For most archival researchers, equity-level daily-summarized short sale data is perfectly enough. That is to say, the public available FINRA dataset might be the most ideal data source with both low costs and acceptable time delay. In this section, I will introduce a light algorithm to parse daily short sale dataset from [FINRA's website][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files].
+For most archival researchers, equity-level daily-summarized short sale data is perfectly enough. That is to say, the public available FINRA dataset might be the most ideal data source with both low costs and acceptable time delay. In this section, I will introduce a light algorithm to parse daily short sale dataset from [FINRA's website](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files).
 
 ### Analyze Website
 
@@ -202,7 +202,7 @@ If the code is executed successfully, one will get 6 text files named by CNMS, F
 
 ## Summary
 
-This blog posts introduces the sources from which one can collect short sale dataset with various granularity and shows the data collection procedures with FINRA as the data source. If necessary, one may easily collect trade-by-trade short sale dataset from [CBOE - Transaction Level Dataset][https://www.cboe.com/us/equities/market_statistics/short_sale/] and [FINRA - Transaction Level Dataset][https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files] following the spirit of this blogpost.
+This blog posts introduces the sources from which one can collect short sale dataset with various granularity and shows the data collection procedures with FINRA as the data source. If necessary, one may easily collect trade-by-trade short sale dataset from [CBOE - Transaction Level Dataset](https://www.cboe.com/us/equities/market_statistics/short_sale/) and [FINRA - Transaction Level Dataset](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files) following the spirit of this blogpost.
 
 Please let me know if you have any questions or suggestions. Just insert the comment below. You don't have to log in!
 
