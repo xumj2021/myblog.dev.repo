@@ -1,7 +1,7 @@
 ---
 title:       "Utilize Google Search as an Integrated Data Source"
 subtitle:    ""
-description: "A standardized approach for unformatted data collecction"
+description: "A standardized approach for unformatted data collection"
 date:        2022-03-31
 author:      "Mengjie Xu"
 toc:      	 true
