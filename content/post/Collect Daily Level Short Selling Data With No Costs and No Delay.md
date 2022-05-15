@@ -14,21 +14,21 @@ categories:  ["Data" ]
 
 Short selling, by definition, occurs when an investor borrows a security and sells it on the open market, planning to buy it back later for less money. Short-sellers bet on, and profit from, a drop in a security's price. 
 
-Being timely informed about equities' short-selling status is of interests to broad market participants. For investors, short-selling is a power signal indicating the existed or sometimes, upcoming market sentiment, both matter a lot when making the trading decisions. For firms, the level of short-selling is a highly relevant indicator for market monitoring.
+Being timely informed about equities' short-selling status is of interests to broad market participants. For investors, short-selling is a power signal indicating the existed or, sometimes, upcoming market sentiment, both matter a lot when making the trading decisions. For firms, the level of short-selling is a highly relevant indicator for market monitoring.
 
 Given the broad market interests about the timely short-selling data, several self-regulatory organizations (SROs) are providing on their websites daily aggregate short selling volume information for individual equity securities. The SROs are also providing website disclosure on a one-month delayed basis of information regarding individual short sale transactions in all exchange-listed equity securities.
 
-In this blog, I will summarize the available sources of short sale data at various granularity and introduce how to approach the updated daily-summarized short sale dataset from FINRA.
+In this blog, I will summarize the available sources of short sale data at various granularity and introduce how to approach the daily-summarized short sale dataset from FINRA (the Financial Industry Regulatory Authority).
 
 ## Challenges in Getting Affordable Short Sale Data
 
-As the disclosure of short-selling data is out of self-regulatory purposes, the disclosure platforms and prices are not uniform for different trading market. 
+As the disclosure of short-selling data is out of self-regulatory purposes, the disclosure platforms and prices of the dataset are not uniform for different trading market. 
 
-For exchanges, NASDAQ sells trade-by-trade short sale information for subscription fees \$1,250 per firm per month, and similar for NYSE. CBOE, as the 3rd largest exchange group releases shorting data every night on [its website](https://www.cboe.com/us/equities/market_statistics/short_sale/). 
+Regarding exchanges, NASDAQ sells real-time trade-by-trade short sale information for subscription fees \$1,250 per firm per month, and similar for NYSE. CBOE, the 3rd largest exchange group in U.S., releases shorting data every night on [its website](https://www.cboe.com/us/equities/market_statistics/short_sale/). 
 
-In terms of dark pools and OTC market, FINRA posts on its website a summary for each ticker symbol of the total reported off-exchange trading volume that day and the number of those reported shares that were sold by a short seller by the start of the next trading day. There is no transaction-by-transaction short sale information included in these daily summaries. Two weeks or so after the end of each month, FINRA posts all off-exchange transactions for that month that involve a short seller, and this trade-by-trade short sale dataset, which is similar to the CBOE dataset, is the one that we use.
+In terms of dark pools and OTC market, FINRA posts on its website a summary for each ticker symbol of the total reported off-exchange trading volume that day and the number of those reported shares that were sold by a short seller by the start of the next trading day. There is no transaction-by-transaction short sale information included in these daily summaries. Two weeks or so after the end of each month, FINRA posts all off-exchange transactions for that month that involve a short seller, and this trade-by-trade short sale dataset.
 
-As a consequence, the challenges in collecting short sale data mainly originate from the by nature non-integrated data sources, some of which may not necessarily be free or at low price. That is why many existed literature seeks for help from professional data vendors, such as DataExplorers used by Massa et al. (2015, RFS) and S3 Paterners employed by Gargano (2020, WP),  to approach the short sale dataset.
+As a result, the challenges in collecting short sale data mainly originate from the by nature non-integrated data sources, some of which may not necessarily be free or at a low price. That is why many existed literature seeks for help from professional data vendors, such as DataExplorers used by Massa et al. (2015, RFS) and S3 Paterners employed by Gargano (2020, WP),  to approach the short sale dataset.
 
 For those who want to acquire the affordable integrated short sale data, the following data sources may be at your disposal, depending on your requirement in granularity. 
 
@@ -64,7 +64,7 @@ For those who want to acquire the affordable integrated short sale data, the fol
 
 ## Acquire Daily Summarized Short Sale Data From FINRA
 
-For most archival researchers, equity-level daily-summarized short sale data is perfectly enough. That is to say, the public available FINRA dataset might be the most ideal data source with both low costs and acceptable time delay. In this section, I will introduce a light algorithm to parse daily short sale dataset from [FINRA's website](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files).
+For most archival researchers, equity-level daily-summarized short sale data is perfectly enough. That is to say, the public available FINRA dataset might be the most ideal data source with complete coverage, low costs and acceptable time delay. In this section, I will introduce a light algorithm to parse daily short sale dataset from [FINRA's website](https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files).
 
 ### Analyze Website
 
@@ -95,7 +95,7 @@ There are three features in FINRA's website.
    | FINRA/NYSE TRF            | FNYX | https://cdn.finra.org/equity/regsho/daily/FNYXshvol20220513.txt |
    | ORF                       | FORF | https://cdn.finra.org/equity/regsho/daily/FORFshvol20220513.txt |
 
-3. Given that FINRA updates data every trading day 2009-08-03, one only needs to iterate all the possible calendar dates thereafter and keep all existed filing-date matches. Of course there are dates where there are no FINRA updates at all. Just ignore them and continue the iteration. 
+3. Given that FINRA updates data every trading day since 2009-08-03, one only needs to iterate all the possible calendar dates thereafter and keep all existed filing-date matches. Of course there are dates where there are no FINRA updates at all. Just ignore them and continue the iteration. 
 
    
 
@@ -107,7 +107,7 @@ With the above summarized features of FINRA's website, I wrote two simple functi
 
 `getfile(tabletype, date)`:
 
-1.  Format the download url for each dataset with parameters `tabletype` and `the parameter`. For example, if one wants to get the short sales submitted to all exchanges (the NMS) on 2022-05-13, the parameter `tabletype` then is CNMS and the parameter date is 20220513. With the parameters, the download url of the dataset mechanically would be https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt
+1.  Format the download url for each dataset with parameters `tabletype` and `date`. For example, if one wants to get the short sales submitted to all exchanges (the NMS) on 2022-05-13, the parameter `tabletype` then is CNMS and the parameter `date` is 20220513. With the parameters, the download url of the dataset mechanically would be https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt
 
 2. Check the existence of the dataset and record the content of the response if exists. If the dataset doesn't exist, the web page you get will show "Access Denied". Note that I write all the data lines into a same filing named by the category name (e.g., CNMS) for all datasets belong to a same category but recorded in different dates. 
 
@@ -133,7 +133,7 @@ With the above summarized features of FINRA's website, I wrote two simple functi
     padding: 2px;">Figure 3: A Denied Page: Non-existed Datafile</div>
 </center>
 
-The last thing is to iterate over all the possible calendar dates from 2009-08-01 and 2022-05-13 for each of the 6 filing categories, which consist of CNMS, FNQC, FNRA, FNSQ, FNYX, and FORF. In such case, all the available short sale datasets in FINRA will be downloaded. One can modify the date range to update the dataset.
+The last thing is to iterate over all the possible calendar dates during 2009-08-01 and 2022-05-13 for each of the 6 filing categories, which consist of CNMS, FNQC, FNRA, FNSQ, FNYX, and FORF. In such case, all the available short sale datasets in FINRA will be downloaded. One can modify the date range to update the dataset.
 
 ```python
 import os, re
@@ -178,7 +178,7 @@ If the code is executed successfully, one will get 6 text files named by CNMS, F
    <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp4.png" width=800 height=450>
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp5.png" width=800 height=150>
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
@@ -191,13 +191,14 @@ If the code is executed successfully, one will get 6 text files named by CNMS, F
    <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp5.png" width=800 height=150>
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp4.png" width=800 height=450>
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
     padding: 2px;">Figure 5: Output: An Example File</div>
 </center>
+
 
 
 ## Summary
