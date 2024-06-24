@@ -141,5 +141,19 @@
       <guid>https://xumj2021.github.io/post/noaa/</guid>
       <description>Motivation The motivation to clean this dataset is from Mukherjee et al. (2021, JFE). In this paper, the authors documented that one can get ahead-of-announcement estimation about the storage hubs for crude oil in the US from satellite images and trade on it. This will decrease the market reaction around the release of official figures because the oil storage information has been partially revealed during the traders&amp;rsquo; arbitrage before announcement due to traders&amp;rsquo; use of satellite images.</description>
     </item>
+    <item>
+      <title></title>
+      <link>https://xumj2021.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/about/</guid>
+      <description>About My name is Mengjie Xu. I obtained my PhD from the Frankfurt School of Finance and Management in April 2024 and will join Duke University as an Assistant Professor of Accounting.&#xA;My research focuses on how information system design shapes strategic interactions among market participants and the associated market outcomes.&#xA;Focusing on discovering welfare-improving information system designs and seeking ways to enhance existing ones when they fall short, I am dedicated to conducting research that has real-world relevance and can be of practical use in improving market dynamics.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://xumj2021.github.io/top/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/top/about/</guid>
+      <description>About My name is Mengjie Xu. I obtained my PhD from the Frankfurt School of Finance and Management in April 2024 and will join Duke University as an Assistant Professor of Accounting.&#xA;My research focuses on how information system design shapes strategic interactions among market participants and the associated market outcomes.&#xA;Focusing on discovering welfare-improving information system designs and seeking ways to enhance existing ones when they fall short, I am dedicated to conducting research that has real-world relevance and can be of practical use in improving market dynamics.</description>
+    </item>
   </channel>
 </rss>

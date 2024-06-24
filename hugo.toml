@@ -47,7 +47,7 @@ paginate = 20 #frontpage pagination
   PygmentsStyle = "monokailight"
  
   # Sidebar settings
-  sidebar_about_description = "PhD from Frankfurt School of Finance and Management. I will join Duke University as an Assistant Professor in Accounting."
+  sidebar_about_description = "My name is Mengjie Xu. I obtained my PhD from the Frankfurt School of Finance and Management in April 2024 and will join Duke University as an Assistant Professor of Accounting."
   sidebar_avatar = "https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/jmavatar.jpg"
   about_me = true
 
@@ -60,7 +60,8 @@ paginate = 20 #frontpage pagination
   omit_categories = false
 
   [[params.addtional_menus]]
-
+  title =  "ABOUT"
+  href =  "/top/about/"
 
   [params.social]
   rss            = true
