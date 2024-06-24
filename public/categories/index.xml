@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/categories/</link>
+    <description>Recent content in Categories on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data</title>
+      <link>https://xumj2021.github.io/categories/data/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/categories/data/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Theory</title>
+      <link>https://xumj2021.github.io/categories/theory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/categories/theory/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Anecdotes</title>
+      <link>https://xumj2021.github.io/categories/anecdotes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/categories/anecdotes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Crawler</title>
+      <link>https://xumj2021.github.io/categories/crawler/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/categories/crawler/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

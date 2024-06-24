@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://assets.bbhub.io/company/sites/51/2022/02/Home.jpg">
+    <meta property="twitter:image" content="https://assets.bbhub.io/company/sites/51/2022/02/Home.jpg" />
+    
+
+    
+    <meta name="title" content="Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay" />
+    <meta property="og:title" content="Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay" />
+    <meta property="twitter:title" content="Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay" />
+    
+
+    
+    <meta name="description" content="Affordable and high-quality daily-level short selling data collection">
+    <meta property="og:description" content="Affordable and high-quality daily-level short selling data collection" />
+    <meta property="twitter:description" content="Affordable and high-quality daily-level short selling data collection" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/collect-daily-level-short-selling-data-with-no-costs-and-no-delay/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://assets.bbhub.io/company/sites/51/2022/02/Home.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/market-transparency" title="Market Transparency">
+                            Market Transparency
+                        </a>
+                        
+                        <a class="tag" href="/tags/short-selling" title="Short Selling">
+                            Short Selling
+                        </a>
+                        
+                    </div>
+                    <h1>Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Saturday, May 14, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="short-sale-data-matters">Short Sale Data Matters</h2>
+<p>Short selling, by definition, occurs when an investor borrows a security and sells it on the open market, planning to buy it back later for less money. Short-sellers bet on, and profit from, a drop in a security&rsquo;s price.</p>
+<p>Being timely informed about equities&rsquo; short-selling status is of interests to broad market participants. For investors, short-selling is a power signal indicating the existed or, sometimes, upcoming market sentiment, both matter a lot when making the trading decisions. For firms, the level of short-selling is a highly relevant indicator for market monitoring.</p>
+<p>Given the broad market interests about the timely short-selling data, several self-regulatory organizations (SROs) are providing on their websites daily aggregate short selling volume information for individual equity securities. The SROs are also providing website disclosure on a one-month delayed basis of information regarding individual short sale transactions in all exchange-listed equity securities.</p>
+<p>In this blog, I will summarize the available sources of short sale data at various granularity and introduce how to approach the daily-summarized short sale dataset from FINRA (the Financial Industry Regulatory Authority).</p>
+<h2 id="challenges-in-getting-affordable-short-sale-data">Challenges in Getting Affordable Short Sale Data</h2>
+<p>As the disclosure of short-selling data is out of self-regulatory purposes, the disclosure platforms and prices of the dataset are not uniform for different trading market.</p>
+<p>Regarding exchanges, NASDAQ sells real-time trade-by-trade short sale information for subscription fees $1,250 per firm per month, and similar for NYSE. CBOE, the 3rd largest exchange group in U.S., releases shorting data every night on <a href="https://www.cboe.com/us/equities/market_statistics/short_sale/">its website</a>.</p>
+<p>In terms of dark pools and OTC market, FINRA posts on its website a summary for each ticker symbol of the total reported off-exchange trading volume that day and the number of those reported shares that were sold by a short seller by the start of the next trading day. There is no transaction-by-transaction short sale information included in these daily summaries. Two weeks or so after the end of each month, FINRA posts all off-exchange transactions for that month that involve a short seller, and this trade-by-trade short sale dataset.</p>
+<p>As a result, the challenges in collecting short sale data mainly originate from the by nature non-integrated data sources, some of which may not necessarily be free or at a low price. That is why many existed literature seeks for help from professional data vendors, such as DataExplorers used by Massa et al. (2015, RFS) and S3 Paterners employed by Gargano (2020, WP),  to approach the short sale dataset.</p>
+<p>For those who want to acquire the affordable integrated short sale data, the following data sources may be at your disposal, depending on your requirement in granularity.</p>
+<ol>
+<li>
+<p><a href="https://wrds-www.wharton.upenn.edu/pages/get-data/compustat-capital-iq-standard-poors/compustat/north-america-daily/supplemental-short-interest-file/">Compustat - Monthly Summary Dataset</a></p>
+<ul>
+<li>Requires WRDS subscription</li>
+<li>Monthly summarized</li>
+<li>Data points start from 1973-01-15 to the present</li>
+<li>e.g., Gargano et al. (2017, RFS)</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files">FINRA - Daily Summary Dataset</a></p>
+<ul>
+<li>Public available</li>
+<li>Daily updated</li>
+<li>Exchange daily short summary data available since 2018-08-01</li>
+<li>Off-exchange daily short summary data available since 2009-08-03</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files">FINRA - Transaction Level Dataset</a></p>
+<ul>
+<li>Public available</li>
+<li>Monthly updated</li>
+<li>Trade-to-trade data</li>
+<li>Only off-exchange transactions available since 2009-08-03</li>
+<li>e.g., Hu et al. (2021, WP)</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.cboe.com/us/equities/market_statistics/short_sale/">CBOE - Transaction Level Dataset</a></p>
+<ul>
+<li>Public available</li>
+<li>Daily Updated</li>
+<li>Trade-to-trade data traded in CBOE exchange since 2008-01-02</li>
+<li>e.g., Hu et al. (2021, WP)</li>
+</ul>
+</li>
+<li>
+<p><a href="https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/">Reg SHO dataset</a></p>
+<ul>
+<li>Public available in both <a href="https://developer.finra.org/docs#query_api-equity">FINRA</a> and <a href="https://wrds-www.wharton.upenn.edu/pages/get-data/nyse-trade-and-quote/trade-and-quote-monthly-product-1993-2014/reg-sho-nyse-short-sales/">WRDS</a></li>
+<li>Transaction level data in stocks traded in NYSE</li>
+<li>Pilot program data only covering between 2005-01-03 and 2007-06-06</li>
+<li>e.g., Engelberg et al. (2012, JFE)</li>
+</ul>
+</li>
+</ol>
+<h2 id="acquire-daily-summarized-short-sale-data-from-finra">Acquire Daily Summarized Short Sale Data From FINRA</h2>
+<p>For most archival researchers, equity-level daily-summarized short sale data is perfectly enough. That is to say, the public available FINRA dataset might be the most ideal data source with complete coverage, low costs and acceptable time delay. In this section, I will introduce a light algorithm to parse daily short sale dataset from <a href="https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/daily-short-sale-volume-files">FINRA&rsquo;s website</a>.</p>
+<h3 id="analyze-website">Analyze Website</h3>
+<p>There are three features in FINRA&rsquo;s website.</p>
+<ol>
+<li>The daily short sales are classified into 6 categories, depending on which market the sales were executed. They are FINRA Consolidated NMS, FINRA/NASDAQ TRF Chicago, ADF, FINRA/NASDAQ TRF Carteret, FINRA/NYSE TRF, ORF. Note that the so-called &ldquo;FINRA Consolidated NMS&rdquo; is short sales executed in exchanges and the others are short sales executed in the off-exchange market.</li>
+</ol>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp1.PNG" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Analyze Website of FINRA</div>
+</center>
+<ol start="2">
+<li>
+<p>The naming way for daily data of the 6 categories is as the following table shows. Apparently, FINRA gives each market place a single name. For example, short sales happening in the exchanges are collected to filings started with CNMSshvol and short sales executed in the ADF are collected to filings started with FNRAshvol.</p>
+<table>
+<thead>
+<tr>
+<th>Market  Place</th>
+<th>Name</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FINRA  Consolidated NMS</td>
+<td>CNMS</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt</a></td>
+</tr>
+<tr>
+<td>FINRA/NASDAQ TRF Chicago</td>
+<td>FNQC</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/FNQCshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/FNQCshvol20220513.txt</a></td>
+</tr>
+<tr>
+<td>ADF</td>
+<td>FNRA</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/FNRAshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/FNRAshvol20220513.txt</a></td>
+</tr>
+<tr>
+<td>FINRA/NASDAQ TRF Carteret</td>
+<td>FNSQ</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/FNSQshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/FNSQshvol20220513.txt</a></td>
+</tr>
+<tr>
+<td>FINRA/NYSE TRF</td>
+<td>FNYX</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/FNYXshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/FNYXshvol20220513.txt</a></td>
+</tr>
+<tr>
+<td>ORF</td>
+<td>FORF</td>
+<td><a href="https://cdn.finra.org/equity/regsho/daily/FORFshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/FORFshvol20220513.txt</a></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Given that FINRA updates data every trading day since 2009-08-03, one only needs to iterate all the possible calendar dates thereafter and keep all existed filing-date matches. Of course there are dates where there are no FINRA updates at all. Just ignore them and continue the iteration.</p>
+</li>
+</ol>
+<h3 id="parsing-the-data">Parsing the data</h3>
+<p>With the above summarized features of FINRA&rsquo;s website, I wrote two simple functions.</p>
+<p><code>getdatelist()</code> : return the list of all possible calendar dates from 2009-08-01 to 2022-05-13.</p>
+<p><code>getfile(tabletype, date)</code>:</p>
+<ol>
+<li>
+<p>Format the download url for each dataset with parameters <code>tabletype</code> and <code>date</code>. For example, if one wants to get the short sales submitted to all exchanges (the NMS) on 2022-05-13, the parameter <code>tabletype</code> then is CNMS and the parameter <code>date</code> is 20220513. With the parameters, the download url of the dataset mechanically would be <a href="https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt">https://cdn.finra.org/equity/regsho/daily/CNMSshvol20220513.txt</a></p>
+</li>
+<li>
+<p>Check the existence of the dataset and record the content of the response if exists. If the dataset doesn&rsquo;t exist, the web page you get will show &ldquo;Access Denied&rdquo;. Note that I write all the data lines into a same filing named by the category name (e.g., CNMS) for all datasets belong to a same category but recorded in different dates.</p>
+<center>
+ <img style="border-radius: 0.3125em;
+ box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+ src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp3.png" width=800 height=400>
+ <br>
+ <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+ display: inline-block;
+ color: #999;
+ padding: 2px;">Figure 2: An Accepted Page: An Existed Datafile</div>
+</li>
+</ol>
+</center>
+   <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp2.png" width=800 height=100>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 3: A Denied Page: Non-existed Datafile</div>
+</center>
+<p>The last thing is to iterate over all the possible calendar dates during 2009-08-01 and 2022-05-13 for each of the 6 filing categories, which consist of CNMS, FNQC, FNRA, FNSQ, FNYX, and FORF. In such case, all the available short sale datasets in FINRA will be downloaded. One can modify the date range to update the dataset.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-34">34</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span><span style="color:#f92672">,</span> <span style="color:#111">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">requests</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">datetime</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">time</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">getdatelist</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">datelist</span> <span style="color:#f92672">=</span> <span style="color:#111">[]</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">start_date</span> <span style="color:#f92672">=</span> <span style="color:#111">datetime</span><span style="color:#f92672">.</span><span style="color:#111">date</span><span style="color:#111">(</span><span style="color:#ae81ff">2009</span><span style="color:#111">,</span> <span style="color:#ae81ff">8</span><span style="color:#111">,</span> <span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">end_date</span> <span style="color:#f92672">=</span> <span style="color:#111">datetime</span><span style="color:#f92672">.</span><span style="color:#111">date</span><span style="color:#111">(</span><span style="color:#ae81ff">2022</span><span style="color:#111">,</span> <span style="color:#ae81ff">5</span><span style="color:#111">,</span> <span style="color:#ae81ff">12</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">delta</span> <span style="color:#f92672">=</span> <span style="color:#111">datetime</span><span style="color:#f92672">.</span><span style="color:#111">timedelta</span><span style="color:#111">(</span><span style="color:#111">days</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">while</span> <span style="color:#111">start_date</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">end_date</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#111">datelist</span><span style="color:#f92672">.</span><span style="color:#111">append</span><span style="color:#111">(</span><span style="color:#111">start_date</span><span style="color:#f92672">.</span><span style="color:#111">strftime</span><span style="color:#111">(</span><span style="color:#d88200">&#34;%Y%m</span><span style="color:#d88200">%d</span><span style="color:#d88200">&#34;</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#111">start_date</span> <span style="color:#f92672">+=</span> <span style="color:#111">delta</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">return</span> <span style="color:#111">datelist</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">getfile</span><span style="color:#111">(</span><span style="color:#111">tabletype</span><span style="color:#111">,</span> <span style="color:#111">date</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">url</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;https://cdn.finra.org/equity/regsho/daily/</span><span style="color:#d88200">%s</span><span style="color:#d88200">shvol</span><span style="color:#d88200">%s</span><span style="color:#d88200">.txt&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">tabletype</span><span style="color:#111">,</span> <span style="color:#111">date</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">fileadd</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;C:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">Users</span><span style="color:#8045ff">\\</span><span style="color:#d88200">xu-m</span><span style="color:#8045ff">\\</span><span style="color:#d88200">Documents&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">page</span> <span style="color:#f92672">=</span> <span style="color:#111">requests</span><span style="color:#f92672">.</span><span style="color:#111">get</span><span style="color:#111">(</span><span style="color:#111">url</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">if</span> <span style="color:#f92672">not</span> <span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">findall</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Access Denied&#34;</span><span style="color:#111">,</span> <span style="color:#111">page</span><span style="color:#f92672">.</span><span style="color:#111">text</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#d88200">&#34;</span><span style="color:#d88200">%s</span><span style="color:#8045ff">\\</span><span style="color:#d88200">%s</span><span style="color:#d88200">.txt&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">fileadd</span><span style="color:#111">,</span> <span style="color:#111">tabletype</span><span style="color:#111">),</span> <span style="color:#d88200">&#39;ab&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">f</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#111">f</span><span style="color:#f92672">.</span><span style="color:#111">write</span><span style="color:#111">(</span><span style="color:#111">page</span><span style="color:#f92672">.</span><span style="color:#111">content</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#34;__main__&#34;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">tabletype</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#34;CNMS&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;FNQC&#34;</span><span style="color:#111">,</span><span style="color:#d88200">&#34;FNRA&#34;</span><span style="color:#111">,</span>	<span style="color:#d88200">&#34;FNSQ&#34;</span><span style="color:#111">,</span>	<span style="color:#d88200">&#34;FNYX&#34;</span><span style="color:#111">,</span>	<span style="color:#d88200">&#34;FORF&#34;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">datelist</span> <span style="color:#f92672">=</span> <span style="color:#111">getdatelist</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">for</span> <span style="color:#111">table</span> <span style="color:#f92672">in</span> <span style="color:#111">tabletype</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">for</span> <span style="color:#111">date</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">datelist</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#111">getfile</span><span style="color:#111">(</span><span style="color:#111">table</span><span style="color:#111">,</span> <span style="color:#111">date</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">##time.sleep(1)</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#00a8c8">except</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#111">print</span><span style="color:#111">([</span><span style="color:#111">table</span><span style="color:#111">,</span> <span style="color:#111">date</span><span style="color:#111">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="outcome">Outcome</h2>
+<p>If the code is executed successfully, one will get 6 text files named by CNMS, FNQC, FNRA, FNSQ, FNYX, and FORF separately. Each file contains all the available stock-level daily short sale record in FINRA.</p>
+   <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp5.png" width=800 height=150>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 4: Output: File Lists</div>
+</center>
+   <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp4.png" width=800 height=450>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 5: Output: An Example File</div>
+</center>
+<h2 id="summary">Summary</h2>
+<p>This blog posts introduces the sources from which one can collect short sale dataset with various granularity and shows the data collection procedures with FINRA as the data source. If necessary, one may easily collect trade-by-trade short sale dataset from <a href="https://www.cboe.com/us/equities/market_statistics/short_sale/">CBOE - Transaction Level Dataset</a> and <a href="https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data/monthly-short-sale-volume-files">FINRA - Transaction Level Dataset</a> following the spirit of this blogpost.</p>
+<p>Please let me know if you have any questions or suggestions. Just insert the comment below. You don&rsquo;t have to log in!</p>
+   <center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/pp6.png" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Log-in Free Comment</div>
+</center>
+<h2 id="references">References</h2>
+<p>Engelberg, Joseph E., Adam V. Reed, and Matthew C. Ringgenberg. &ldquo;How are shorts informed?: Short sellers, news, and information processing.&rdquo; <em>Journal of Financial Economics</em> 105, no. 2 (2012): 260-278.</p>
+<p>Gargano, Antonio. &ldquo;Short Selling Activity and Future Returns: Evidence from FinTech Data.&rdquo; <em>Available at SSRN 3775338</em> (2020).</p>
+<p>Gargano, Antonio, Alberto G. Rossi, and Russ Wermers. &ldquo;The freedom of information act and the race toward information acquisition.&rdquo; <em>The Review of Financial Studies</em> 30, no. 6 (2017): 2179-2228.</p>
+<p>Hu, Danqi, Charles M. Jones, and Xiaoyan Zhang. &ldquo;When do informed short sellers trade? Evidence from intraday data and implications for informed trading models.&rdquo; <em>Evidence from Intraday Data and Implications for Informed Trading Models (February 16, 2021)</em> (2021).</p>
+<p>Massa, Massimo, Bohui Zhang, and Hong Zhang. &ldquo;The invisible hand of short selling: Does short selling discipline earnings management?.&rdquo; <em>The Review of Financial Studies</em> 28, no. 6 (2015): 1701-1736.</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/utilize-google-search/" data-toggle="tooltip" data-placement="top" title="Utilize Google Search as an Integrated Data Source">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/seeking-alpha-from-investor-attention/" data-toggle="tooltip" data-placement="top" title="Seeking Alpha From Market Participants&#39; Information Acquisition Actions">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

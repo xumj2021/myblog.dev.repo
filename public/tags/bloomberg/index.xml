@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bloomberg on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/bloomberg/</link>
+    <description>Recent content in Bloomberg on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/bloomberg/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seeking Alpha From Market Participants&#39; Information Acquisition Actions</title>
+      <link>https://xumj2021.github.io/post/seeking-alpha-from-investor-attention/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/seeking-alpha-from-investor-attention/</guid>
+      <description>Motivation Just like the trading imbalance could be a powerful signal for upcoming stock price movement, investors&amp;rsquo; information acquisition actions are also indicative for future security returns. According to Lee and So (2015), acquiring information is costly for investors and thus they only do so when the expected profits can cover the relative costs. Ceteris paribus, securities which attract more investor attention may have a higher likelihood of experiencing abnormal stock volatility from which a sophisticated investor can cultivate Alphas.</description>
+    </item>
+    <item>
+      <title>Extract Mass Data Via Bloomberg API</title>
+      <link>https://xumj2021.github.io/post/bloomberg-api/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/bloomberg-api/</guid>
+      <description>Motivation Bloomberg has integrated massive data from various of data vendors. However, as a typical finance terminal designed for traders, it&amp;rsquo;s technically hard to use as a database for scholars. This blog will introduce how to prepare your Bloomberg Terminal for massive data extracting and how to access data via Bloomberg API.&#xA;Deploy Operation Enviornment Bloomberg Access Get a Bloomberg Terminal and of course a valid Bloomberg Account&#xA;Make sure the Bloomberg Add-in in Excel in this terminal works</description>
+    </item>
+  </channel>
+</rss>

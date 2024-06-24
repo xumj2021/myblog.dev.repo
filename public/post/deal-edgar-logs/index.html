@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://cdn.mos.cms.futurecdn.net/jK8B9JwVqWPXJE57HCt8cQ.jpg">
+    <meta property="twitter:image" content="https://cdn.mos.cms.futurecdn.net/jK8B9JwVqWPXJE57HCt8cQ.jpg" />
+    
+
+    
+    <meta name="title" content="Tracing The Origins of EDGAR Downloads" />
+    <meta property="og:title" content="Tracing The Origins of EDGAR Downloads" />
+    <meta property="twitter:title" content="Tracing The Origins of EDGAR Downloads" />
+    
+
+    
+    <meta name="description" content="How to distinguish EDGAR downloads from different stakeholders">
+    <meta property="og:description" content="How to distinguish EDGAR downloads from different stakeholders" />
+    <meta property="twitter:description" content="How to distinguish EDGAR downloads from different stakeholders" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/deal-edgar-logs/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.mos.cms.futurecdn.net/jK8B9JwVqWPXJE57HCt8cQ.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/information-acquisition" title="Information Acquisition">
+                            Information Acquisition
+                        </a>
+                        
+                        <a class="tag" href="/tags/edgar-logs" title="EDGAR Logs">
+                            EDGAR Logs
+                        </a>
+                        
+                    </div>
+                    <h1>Tracing The Origins of EDGAR Downloads</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Monday, July 31, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="1-introduction">1. Introduction</h2>
+<p><a href="https://sites.google.com/view/mengjiexu/">My research</a> centers around how market participants act upon their perceived informational advantages over others. And because of this, I have always found it intriguing to leverage people&rsquo;s digital traffic in accessing firms&rsquo; EDGAR filings to capture the dynamics of market participants&rsquo; information sets. During my explorations, I found <a href="http://IPinfo.io/">IPinfo.io</a> generously provided all the registered users with the bulk data for organization to which the IP address is registered. Per their invitation, I am pleased to share my methods on distinguishing EDGAR downloads from different stakeholder groups, especially those from the retail and institutional investors.</p>
+<p>In this blog post, I will firstly introduce some background information about EDGAR and EDGAR logs in case some readers are not familiar about these terms. Then I showcase the potential of the EDGAR log files in capturing the intended moves from different stakeholder groups. Readers with related backgrounds can skip these two sections. Next, I discuss the two viable pathways of figuring out the stakeholder types of EDGAR downloads and outlines the reason why I choose the pathway I utilize in this blog.</p>
+<p>Regarding the technical roadmap of the pathway chosen, I will begin by compiling a list of stakeholders with potentially informative EDGAR downloads. Next, I will demonstrate the process of searching for their respective IP address ranges. By combining the IP ranges with the EDGAR logs, I will proceed to extract the downloads from the targeted stakeholders. Finally, I will illustrate how to expand the stakeholder list and repeat the previous procedures to capture the EDGAR downloads for an entire stakeholder category, such as institutional investors and retail investors.</p>
+<p>In the conclusion part, I will focus on discussing avenues for researchers and practitioners to continue deriving valuable insights from EDGAR logs when considering the cessation of SEC&rsquo;s disclosure of EDGAR logs in the past few years and the increased redaction in the recently updated EDGAR logs.</p>
+<h2 id="2-what-is-edgar-and-edgar-log">2. What is EDGAR and EDGAR Log?</h2>
+<p>EDGAR (Electronic Data Gathering, Analysis, and Retrieval) is an online database maintained by the U.S. Securities and Exchange Commission (SEC). It collects and stores financial and non-financial information filed by publicly traded companies and other entities. Some common filings made through EDGAR include annual reports (Form 10-K), quarterly reports (Form 10-Q), and other specialized forms like proxy statements (Form DEF 14A) and registration statements for new securities offerings (Form S-1). The database provides public access to essential financial and operational information about these companies, aiding stakeholders in their research and analysis on firms.</p>
+<p>EDGAR log files provide information on internet search traffic for EDGAR filings through <a href="http://sec.gov/">SEC.gov</a>. Whenever users access the EDGAR database to retrieve or submit documents, the logs record various details about those interactions. These logs typically include information such as:</p>
+<ol>
+<li>IP addresses: The unique numerical addresses assigned to each device accessing EDGAR.</li>
+<li>Timestamps: The date and time of each interaction or request.</li>
+<li>Pages visited: Details of the specific pages or documents accessed on the EDGAR website.</li>
+<li>User agent: Information about the web browser or software used to access EDGAR.</li>
+</ol>
+<p>To provide readers with a glimpse of the EDGAR log files, I present five lines extracted from the EDGAR log for Sep. 30, 2013. The variable definitions for these files are sourced from the SEC and can be accessed at <a href="https://www.sec.gov/files/variables-edgar-log-file-data-sets.pdf">this link</a>. Although the fourth octets of the IP addresses are redacted, their precise retrieval is feasible using the map provided by Chen et al. (2020, JFE). I will discuss this issue further in the <a href="https://mengjiexu.com/post/deal-edgar-logs/#5-locate-edgar-downloads-from-specified-stakeholders">Section 5</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>date</th>
+<th>time</th>
+<th>zone</th>
+<th>cik</th>
+<th>accession</th>
+<th>extention</th>
+<th>code</th>
+<th>size</th>
+<th>idx</th>
+<th>norefer</th>
+<th>noagent</th>
+<th>find</th>
+<th>crawler</th>
+<th>browser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200.193.144.ede</td>
+<td>9/30/2013</td>
+<td>14:30:43</td>
+<td>0</td>
+<td>1534731</td>
+<td>0001534731-13-000003</td>
+<td>9.04.htm</td>
+<td>200</td>
+<td>18289</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>7</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>76.127.169.chj</td>
+<td>9/30/2013</td>
+<td>14:40:58</td>
+<td>0</td>
+<td>1070524</td>
+<td>0001070524-13-000029</td>
+<td>gcbc-20130930xdef14a.htm</td>
+<td>200</td>
+<td>51316</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>9</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>50.201.183.abb</td>
+<td>9/30/2013</td>
+<td>14:42:31</td>
+<td>0</td>
+<td>1237746</td>
+<td>0001193125-13-361255</td>
+<td>=-index.htm</td>
+<td>200</td>
+<td>3178</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>50.201.183.abb</td>
+<td>9/30/2013</td>
+<td>14:42:32</td>
+<td>0</td>
+<td>1237746</td>
+<td>0001193125-13-361255</td>
+<td>d555515ds1.htm</td>
+<td>304</td>
+<td>285</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>9</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>209.23.223.ech</td>
+<td>9/30/2013</td>
+<td>14:42:47</td>
+<td>0</td>
+<td>1063254</td>
+<td>0001171843-11-003356</td>
+<td>=-index.htm</td>
+<td>200</td>
+<td>2378</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-the-potential-of-edgar-logs">3. The Potential of EDGAR Logs</h2>
+<p>While the EDGAR logs attracted my attention for the relevance in revealing investor&rsquo; trading intention (e.g., Drake et al., 2020 TAR), I found their potential is far beyond that. One fascinating usage comes from Holzman et al. (2023, JAE). In this paper, the authors graphed weekly SEC downloads of firms&rsquo; 10-K, 10-Q, 8-K, Form 4, and S-1 filings around the start of its formal investigations on the pertained firms, as shown in Figure 1. Apparently, there is a noticeable spike in SEC downloads approximately 60 days prior to the formal SEC investigation start date, which could serve as a powerful signal for firms&rsquo; risk of being investigated if the EDGAR logs were updated in time. Having access to this signal with latency short enough could yield substantial profits, as firms are not obliged to disclose ongoing investigations, yet these investigations are highly predictive of significant price declines for the involved companies (Blackburne et al., 2021 MS).</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/edgarip.PNG" width=800 height=500>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 1: SEC Downloads of Company Filings Around Investigation</div>
+  </center>
+<p>The extant literature suggests that a wide spectrum of stakeholders actively engages in downloading company filings through EDGAR and none of these information acquisition activities come from the vacuum. Notably, investors refer to these filings to validate their private information, thereby making EDGAR downloads from investors indicative of firms&rsquo; subsequent abnormal returns (Drake et al., 2020 TAR, Crane et al., 2023 MS). Financial intermediaries (e.g., equity analysts) who extensively access company filings demonstrate higher dedication and efforts and are more likely to issue more precise forecasts compared to their peers (Gibbons et al., 2021 MS). Firms&rsquo; peers and competitors access company filings to inform their own investment and production decisions (Bernard et al., 2020 JFE). Imitators (copycats) can indeed profit from emulating their peer companies&rsquo; strategies (Cao et al., 2021 JAR). Potential and incumbent employees also utilize company filings to make informed career decisions. Firms exhibiting remarkable earnings growth attract more job seekers, whose rational behavior is supported by financial information&rsquo;s predictive value for future job prospects, including job openings and career growth (Choi et al., 2023 JAE). The SEC is not the sole federal agency utilizing EDGAR. The tax regulator IRS (Internal Revenue Service) and the economic policy maker Federal Reserve (the Fed) systematically leverage EDGAR to facilitate their respective duties (Bozanic et al., 2017 JAR; Li et al., 2023 TAR). Due diligence agencies like auditors access the financial statements of nonclient firms for benchmarking, indicating a need to clarify their client&rsquo;s financial records (Drake et al., 2019 RAST).</p>
+<p>In addition to the stakeholders whose informative EDGAR downloads have been well-documented in the existing literature, Figure 2 illustrates the broader potential of EDGAR log files. Beyond investors, financial intermediaries, peers, employees, and auditors, other relevant stakeholders also have demands in accessing company filings. These include supplier and customer firms, law firms, due diligence investigators, news media, and so on.</p>
+<p>For instance, a Wall Street Journal article published on June 29, 2022, highlights how news reporters analyzed 169,000 Form 144 filings submitted by company insiders from 2016 through 2021. The article accused managers in several firms, such as <a href="https://www.wsj.com/market-data/quotes/PLUG">Plug Power</a> Inc., <a href="https://www.wsj.com/market-data/quotes/NKTR">Nektar Therapeutics</a>, Aemetis, etc., of unfaithfully leveraging automatic trading plans (10b5-1 plans) to realize de facto insider trading profits. Imagine firms have a sense of Wall Street Journal&rsquo;s abnormal searches on them, what a blessing it would be for their PR departments (I am not suggesting such practice is valid or encouraging it anyway).</p>
+<p>Overall, the information acquisition traffic captured in the EDGAR logs holds significant potential. I am convinced that there are further valuable insights to be discovered with these logs.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/stakeholdersofedgar.PNG" width=800 height=500>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 2: Stakeholders With Interests in Company Filings</div>
+  </center>
+<h2 id="4-determine-pathway-to-classify-edgar-downloads">4. Determine Pathway to Classify EDGAR Downloads</h2>
+<p>Regarding the classification process for EDGAR downloads, there are two viable approaches to consider.</p>
+<p>The first option involves gathering unique IP addresses from the EDGAR log files, identifying the organizations associated with each IP address, and subsequently classifying the type of organizations and their corresponding downloads based on this organizational information.</p>
+<p>The second option starts with a specified entity list belonging to a designated stakeholder group. Next, you identify the IP addresses of the entities of interest using the WHOIS or other tools. Then, you select the downloads from EDGAR logs with IP addresses falling within the entities&rsquo; IP ranges. Consequently, these selected downloads by definition belong to the specified stakeholder group.</p>
+<p>In my perspective, the second pathway offers superior flexibility and higher data processing efficiency. To elaborate, in the first pathway, determining the organization of each download can lead to a significant number of inefficient data requests. In contrast, the second option is more entity-oriented, allowing for the identification of downloads solely from a small number of specific entities without figuring out the organization of every single download. At the same time, the second pathway also allows for the possibility of expanding the list of entities to encompass the entire group of certain stakeholders. These features make the second pathway a more favorable choice for determining the stakeholder group of EDGAR users, and I will follow this approach in this blog.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/EDGAR pathways.jpg" width=800 height=450>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 3: Pathways to Classify EDGAR Downloads</div>
+  </center>
+<h2 id="5-locate-edgar-downloads-from-specified-stakeholders">5. Locate EDGAR downloads From Specified Stakeholders</h2>
+<p>In this section, I will demonstrate the process of locating EDGAR downloads from a specified list of stakeholders. Once mastered, this method will enable us to capture EDGAR downloads from any stakeholder group of interest simply by expanding our stakeholder list accordingly.</p>
+<h3 id="step-1-compile-the-stakeholder-list">Step 1: Compile the Stakeholder List</h3>
+<p>To ensure comprehensive coverage of stakeholder spectrums, my stakeholder list in the following table includes as many categories as possible. Unlike other stakeholder groups, categorizing retail investors is less straightforward. Following the approach of Drake et al. (2020, TAR), I consider the retail investor group to consist of EDGAR users accessing the system through one of the top ten U.S. or top ten worldwide internet service providers (ISP), such as Comcast or Time Warner.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+</tr>
+<tr>
+<td>Goldman Sachs</td>
+<td>Top Institutional Investors</td>
+</tr>
+<tr>
+<td>Verizon Online LLC</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Comcast Cable Communications</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Securities and Exchange Commission</td>
+<td>Government Agencies</td>
+</tr>
+<tr>
+<td>Internal Revenue Service</td>
+<td>Government Agencies</td>
+</tr>
+<tr>
+<td>Tesla Inc.</td>
+<td>Company</td>
+</tr>
+<tr>
+<td>Nvidia Corporation</td>
+<td>Company</td>
+</tr>
+<tr>
+<td>The New York Times</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>The Wall Street Journal</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>Kirkland &amp; Ellis</td>
+<td>Law Firm</td>
+</tr>
+<tr>
+<td>Latham &amp; Watkins</td>
+<td>Law Firm</td>
+</tr>
+<tr>
+<td>Ernst &amp; Young</td>
+<td>Audit Firm</td>
+</tr>
+<tr>
+<td>KPMG</td>
+<td>Audit Firm</td>
+</tr>
+<tr>
+<td>Probes Reporter</td>
+<td>Due Diligence Check</td>
+</tr>
+<tr>
+<td>Check Fund Manager</td>
+<td>Due Diligence Check</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-2-google-the-ip-addresses-of-stakeholders">Step 2: Google the IP Addresses of Stakeholders</h3>
+<p>From my reading of extant literature, researchers typically employ a ‘‘WhoIs’’ Perl script to build a database based on the American Registry of Internet Numbers (ARIN; see: <a href="https://www.arin.net/">https://www.arin.net/</a>) to identify the organization to which the IP address is registered (e.g., Drake, 2020 TAR). However, I bypassed this step as IPinfo.io generously provides a highly similar dataset free of charge, available for download by any registered user at <a href="https://IPinfo.io/account/data-downloads">this link</a>. The key distinction lies in the identifiers used for organizations: IPinfo.io&rsquo;s dataset utilizes Autonomous System Numbers (ASNs), whereas the dataset built on WhoIs relies on ARIN as the identifier. Either case, the organization name and the IP address ranges can be mapped with the identifier.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ipinfo.png" width=800 height=300>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 4: Download ASN Dataset From IPinfo.io</div>
+  </center>
+<p>I present the first five rows of this dataset to showcase how does this dataset look like.</p>
+<table>
+<thead>
+<tr>
+<th>start_ip</th>
+<th>end_ip</th>
+<th>asn</th>
+<th>name</th>
+<th>domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0.0</td>
+<td>1.0.0.255</td>
+<td>AS13335</td>
+<td>Cloudflare, Inc.</td>
+<td>cloudflare.com</td>
+</tr>
+<tr>
+<td>1.0.4.0</td>
+<td>1.0.7.255</td>
+<td>AS38803</td>
+<td>Wirefreebroadband Pty Ltd</td>
+<td>gtelecom.com.au</td>
+</tr>
+<tr>
+<td>1.0.16.0</td>
+<td>1.0.16.255</td>
+<td>AS2519</td>
+<td>ARTERIA Networks Corporation</td>
+<td>arteria-net.com</td>
+</tr>
+<tr>
+<td>1.0.32.0</td>
+<td>1.0.32.255</td>
+<td>AS141748</td>
+<td>QUANTUM DATA COMMUNICATIONS, INC.</td>
+<td>qdatacom.com</td>
+</tr>
+<tr>
+<td>1.0.64.0</td>
+<td>1.0.127.255</td>
+<td>AS18144</td>
+<td>Energia Communications,Inc.</td>
+<td>enecom.co.jp</td>
+</tr>
+</tbody>
+</table>
+<p>Having IPinfo&rsquo;s ASN dataset in hand, I conduct Google searches for each entity&rsquo;s name along with &ldquo;IPinfo&rdquo; and record the corresponding ASNs from the search results. These ASNs will serve as the key to merge with IPinfo&rsquo;s ASN dataset, allowing us to identify the IP address ranges of the entities of interest.</p>
+<p>Using the institutional investor &ldquo;Wells Fargo&rdquo; as an illustration, Figure 4 showcases the retrieved results for Googling &ldquo;Wells Fargo IPinfo.&rdquo; What I did was to collect headlines from all the search results, specifically retaining those containing ASN-formatted characters while ensuring inclusion of the first word of the institution, &ldquo;Wells,&rdquo; in the headline. Then I extract all the unique ASN numbers of retained search results. In this case, I would record AS4196, AS10837, AS4243, AS10375, and AS10373.  I proceed to repeat this process for all stakeholders in the list, thereby obtaining the respective ASN numbers for each of them.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/searchres.PNG" width=800 height=600>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 5: Search ASN with Google </div>
+  </center>
+<p>While manually Googling a short list of stakeholders is viable, our objective is to acquire EDGAR downloads from the whole group of institutional/retail investors and other stakeholders. This will inevitably result in a substantial list, making it imperative to automate the process of Google searches for ASN numbers.</p>
+<p>To automate these Google searches, I slightly modified the codes I introduced in <a href="https://mengjiexu.com/post/utilize-google-search/">Utilize Google Search as an Integrated Data Source</a>. Readers can check there for further technical details on how to automate the Google searches. The codes for automating the ASN searches in this blog are as follows.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-54">54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-55">55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-56">56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-57">57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-58">58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-59">59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-60">60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-61">61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-62">62</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">selenium</span> <span style="color:#f92672">import</span> <span style="color:#111">webdriver</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">selenium.webdriver.firefox.options</span> <span style="color:#f92672">import</span> <span style="color:#111">Options</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">time</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">lxml</span> <span style="color:#f92672">import</span> <span style="color:#111">etree</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">random</span> <span style="color:#f92672">import</span> <span style="color:#111">randint</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">selenium.webdriver.common.keys</span> <span style="color:#f92672">import</span> <span style="color:#111">Keys</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">openbrowser</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">options</span> <span style="color:#f92672">=</span> <span style="color:#111">Options</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">options</span><span style="color:#f92672">.</span><span style="color:#111">binary_location</span> <span style="color:#f92672">=</span> <span style="color:#d88200">r</span><span style="color:#d88200">&#39;C:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">Program Files</span><span style="color:#8045ff">\\</span><span style="color:#d88200">Mozilla Firefox</span><span style="color:#8045ff">\\</span><span style="color:#d88200">firefox.exe&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span> <span style="color:#f92672">=</span> <span style="color:#111">webdriver</span><span style="color:#f92672">.</span><span style="color:#111">Firefox</span><span style="color:#111">(</span><span style="color:#111">executable_path</span><span style="color:#f92672">=</span><span style="color:#d88200">r</span><span style="color:#d88200">&#39;E:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">geckodriver.exe&#39;</span><span style="color:#111">,</span> <span style="color:#111">options</span><span style="color:#f92672">=</span><span style="color:#111">options</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">get</span><span style="color:#111">(</span><span style="color:#d88200">&#34;https://www.google.com/&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">3</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//div[@class=&#39;QS5gu sy4vM&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//div[@id=&#39;SIvCob&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//textarea[@type=&#39;search&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">send_keys</span><span style="color:#111">(</span><span style="color:#111">augkey</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//input[@type=&#39;submit&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">3</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//a[contains(text(), &#39;Change to English&#39;)]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">driver</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">parseweb</span><span style="color:#111">(</span><span style="color:#111">searchkey</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//div[@aria-label=&#39;Clear&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//textarea[@aria-label=&#39;Search&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">send_keys</span><span style="color:#111">(</span><span style="color:#d88200">&#39;</span><span style="color:#d88200">%s</span><span style="color:#d88200"> </span><span style="color:#d88200">%s</span><span style="color:#d88200">&#39;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">searchkey</span><span style="color:#111">,</span> <span style="color:#111">augkey</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">find_element</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xpath&#34;</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;//button[@aria-label=&#39;Search&#39;]&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">click</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#ae81ff">3</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">HtmlElement</span> <span style="color:#f92672">=</span> <span style="color:#111">etree</span><span style="color:#f92672">.</span><span style="color:#111">HTML</span><span style="color:#111">(</span><span style="color:#111">driver</span><span style="color:#f92672">.</span><span style="color:#111">page_source</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">HtmlStr</span> <span style="color:#f92672">=</span> <span style="color:#111">etree</span><span style="color:#f92672">.</span><span style="color:#111">tostring</span><span style="color:#111">(</span><span style="color:#111">HtmlElement</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;utf-8&#34;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">decode</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">html</span> <span style="color:#f92672">=</span> <span style="color:#111">etree</span><span style="color:#f92672">.</span><span style="color:#111">HTML</span><span style="color:#111">(</span><span style="color:#111">HtmlStr</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">candis</span> <span style="color:#f92672">=</span> <span style="color:#111">html</span><span style="color:#f92672">.</span><span style="color:#111">xpath</span><span style="color:#111">(</span><span style="color:#d88200">&#34;//h3[@class=&#39;LC20lb MBeuO DKV0Md&#39;]/text()&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">validcandis</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">i</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">candis</span> <span style="color:#00a8c8">if</span> <span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">search</span><span style="color:#111">(</span><span style="color:#d88200">&#34;^AS[\d]+&#34;</span><span style="color:#111">,</span> <span style="color:#111">i</span><span style="color:#111">)</span> <span style="color:#f92672">and</span> <span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">findall</span><span style="color:#111">(</span><span style="color:#111">searchkey</span><span style="color:#f92672">.</span><span style="color:#111">split</span><span style="color:#111">(</span><span style="color:#d88200">&#34; &#34;</span><span style="color:#111">)[</span><span style="color:#ae81ff">0</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">lower</span><span style="color:#111">(),</span> <span style="color:#111">i</span><span style="color:#f92672">.</span><span style="color:#111">lower</span><span style="color:#111">())]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">asns</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">search</span><span style="color:#111">(</span><span style="color:#d88200">&#34;AS[\d]+&#34;</span><span style="color:#111">,</span> <span style="color:#111">i</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">group</span><span style="color:#111">()</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">validcandis</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">unit</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">DataFrame</span><span style="color:#111">([</span><span style="color:#111">asns</span><span style="color:#111">,</span> <span style="color:#111">validcandis</span><span style="color:#111">])</span><span style="color:#f92672">.</span><span style="color:#111">T</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">unit</span><span style="color:#111">[</span><span style="color:#d88200">&#39;searchkey&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">searchkey</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">unit</span><span style="color:#111">[</span><span style="color:#d88200">&#39;category&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">cate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">unit</span><span style="color:#f92672">.</span><span style="color:#111">columns</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;asn&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;webname&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;searchkey&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;category&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">print</span><span style="color:#111">(</span><span style="color:#111">unit</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">unit</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">augkey</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;IPinfo&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">savefile</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;E:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">EDGARforIPinfo</span><span style="color:#8045ff">\\</span><span style="color:#d88200">EntityBlogASNs.csv&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">driver</span> <span style="color:#f92672">=</span> <span style="color:#111">openbrowser</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#34;E:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">EDGARforIPinfo</span><span style="color:#8045ff">\\</span><span style="color:#d88200">EntityListBlog.csv&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">for</span> <span style="color:#111">idx</span><span style="color:#111">,</span> <span style="color:#111">row</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">iterrows</span><span style="color:#111">()):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">[</span><span style="color:#111">searchkey</span><span style="color:#111">,</span> <span style="color:#111">cate</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">row</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">unit</span> <span style="color:#f92672">=</span> <span style="color:#111">parseweb</span><span style="color:#111">(</span><span style="color:#111">searchkey</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">if</span> <span style="color:#111">idx</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">unit</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">savefile</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">,</span> <span style="color:#111">index</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">else</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">unit</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">savefile</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">,</span> <span style="color:#111">index</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">time</span><span style="color:#f92672">.</span><span style="color:#111">sleep</span><span style="color:#111">(</span><span style="color:#111">randint</span><span style="color:#111">(</span><span style="color:#ae81ff">5</span><span style="color:#111">,</span> <span style="color:#ae81ff">7</span><span style="color:#111">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The output of this procedures is as follows. With the ASN numbers in the first column, we are ready to merge it with the ASN dataset for locating the organization&rsquo;s IP ranges.</p>
+<table>
+<thead>
+<tr>
+<th>asn</th>
+<th>webname</th>
+<th>searchkey</th>
+<th>category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AS4196</td>
+<td>AS4196 Wells Fargo &amp; Company details</td>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+</tr>
+<tr>
+<td>AS10837</td>
+<td>AS10837 Wells Fargo &amp; Company details</td>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>AS205483</td>
+<td>AS205483 KPMG S.A details</td>
+<td>KPMG</td>
+<td>Audit Firm</td>
+</tr>
+<tr>
+<td>AS134036</td>
+<td>AS134036 KPMG Global Services Private Limited details</td>
+<td>KPMG</td>
+<td>Audit Firm</td>
+</tr>
+<tr>
+<td>AS204299</td>
+<td>AS204299 KPMG Audit S.a r.l. details</td>
+<td>KPMG</td>
+<td>Audit Firm</td>
+</tr>
+</tbody>
+</table>
+<p>I then merge the ASNs of stakeholders with the IPinfo.io&rsquo;s ASN dataset to acquire their respective IP addresses. For the ease of the subsequent merge with EDGAR log files, I opt to utilize <code>SAS</code> for this procedure. The codes are as follows.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SAS" data-lang="SAS"><span style="display:flex;"><span><span style="color:#00a8c8">libname</span> home <span style="color:#d88200">&#39;E:\EDGARforIPinfo&#39;</span><span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc import </span>datafile=<span style="color:#d88200">&#34;E:\EDGARforIPinfo\asn.csv&#34;</span> <span style="color:#00a8c8">out</span>=home<span style="color:#ae81ff">.</span>IPinfo_asn dbms=csv <span style="color:#00a8c8">replace</span>; guessingrows=<span style="color:#ae81ff">10000</span><span style="color:#00a8c8">; run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc import </span>datafile=<span style="color:#d88200">&#34;E:\EDGARforIPinfo\EntityBlogASNs.csv&#34;</span> <span style="color:#00a8c8">out</span>=home<span style="color:#ae81ff">.</span>EntityBlogASNs dbms=csv <span style="color:#00a8c8">replace</span>; guessingrows=max<span style="color:#00a8c8">; run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc sql;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">create</span> <span style="color:#00a8c8">table</span> home<span style="color:#ae81ff">.</span>entityips <span style="color:#00a8c8">as</span> <span style="color:#00a8c8">select</span> <span style="color:#00a8c8">distinct</span> a<span style="color:#ae81ff">.</span>asn, a<span style="color:#ae81ff">.</span>searchkey, a<span style="color:#ae81ff">.</span>category, b.*
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">from</span> home<span style="color:#ae81ff">.</span>EntityBlogASNs a, home<span style="color:#ae81ff">.</span>IPinfo_asn b
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">where</span> a<span style="color:#ae81ff">.</span>asn=b<span style="color:#ae81ff">.</span>asn<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">quit;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc export </span>data=home<span style="color:#ae81ff">.</span>entityips outfile=<span style="color:#d88200">&#34;E:\EDGARforIPinfo\EntityIPs.csv&#34;</span> dbms=csv <span style="color:#00a8c8">replace</span><span style="color:#00a8c8">; run;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The output of this step is the IP addresses of the stakeholders of interest.</p>
+<table>
+<thead>
+<tr>
+<th>asn</th>
+<th>searchkey</th>
+<th>category</th>
+<th>start_ip</th>
+<th>end_ip</th>
+<th>name</th>
+<th>domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AS10372</td>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+<td>159.37.112.0</td>
+<td>159.37.115.255</td>
+<td>Wells Fargo &amp; Company</td>
+<td>wellsfargo.com</td>
+</tr>
+<tr>
+<td>AS10372</td>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+<td>159.37.120.0</td>
+<td>159.37.123.255</td>
+<td>Wells Fargo &amp; Company</td>
+<td>wellsfargo.com</td>
+</tr>
+<tr>
+<td>AS10837</td>
+<td>Wells Fargo</td>
+<td>Top Institutional Investors</td>
+<td>151.151.0.0</td>
+<td>151.151.127.255</td>
+<td>Wells Fargo &amp; Company</td>
+<td>wellsfargo.com</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-25-what-if-google-searches-do-not-work">Step 2.5: What If Google Searches Do Not Work?</h3>
+<p>It&rsquo;s worth noted that it&rsquo;s possible that you do not have any valid ASNs returned for some of your Google searches. In such as case, please remember that Google search is just one among many ways to locate firms&rsquo; IP address with their names. There are two alternative ways that I would recommend when the Google search does not work.</p>
+<ol>
+<li>
+<p>Perform a fuzzy match of your stakeholder&rsquo;s name with the corresponding Name entries in the ASN database provided by IPinfo.com.</p>
+</li>
+<li>
+<p>Conduct a Google search for the stakeholder&rsquo;s domain and then use websites such as <a href="https://www.whatismyip.com/dns-lookup/">whatismyip.com</a>, <a href="https://www.experte.com/dns-check/">experte.com</a>, or any other DNS lookup tool to retrieve the IP address associated with the domain. For example, with the domain of the Wall Street Journal <code>https://wsj.com</code>, the IP addresses are returned as in Figure 5.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/dns.png" width=800 height=450>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 6: Obtain IP Address with Domain</div>
+  </center>
+</li>
+</ol>
+<p>By any means, our task is not Google search per se but to locate stakeholders&rsquo; IP addresses based on their names. Only we have successfully determined the IP addresses associated with a specific stakeholder can we proceed to locate EDGAR downloads from them.</p>
+<h3 id="step-3-locate-edgar-downloads-from-specified-stakeholders">Step 3: Locate EDGAR Downloads from Specified Stakeholders</h3>
+<p>Having obtained the IP addresses of each stakeholder, our next step is to merge them with the EDGAR logs to identify downloads originating from these stakeholders. To facilitate this process, it is essential to prepare the mapping files provided by Chen et al. (2020, JFE) beforehand, which will enable us to replace the redacted fourth octets in EDGAR logs with the precise ones.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/map.PNG" width=800 height=450>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 7: Map for Decoding EDGAR IP Addresses</div>
+  </center>
+<p>The <code>SAS</code> codes for this step are as follows. First, I import the EDGAR log file and the mapping file into the <code>SAS</code>. Then, I extract the concealed fourth octets from each line in the log file and use them as the key variable for merging with the mapping file. This procedure enables the determination of the accurate fourth octets for each IP address in the log file. Finally, I merge the precise IP addresses in log file with the IP ranges of stakeholders to identify the EDGAR downloads from the specified stakeholders.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32">32</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#75715e">/* import the EDGAR log file */</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">data </span>home<span style="color:#ae81ff">.</span>logsample;
+</span></span><span style="display:flex;"><span>      <span style="color:#111">%let</span> _EFIERR_ = <span style="color:#ae81ff">0</span>; 
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">infile</span> <span style="color:#d88200">&#39;E:\edgarlogfileraw\log20170630.csv&#39;</span> <span style="color:#00a8c8">delimiter</span> = <span style="color:#d88200">&#39;,&#39;</span> MISSOVER DSD lrecl=<span style="color:#ae81ff">32767</span> firstobs=<span style="color:#ae81ff">2</span> obs=<span style="color:#ae81ff">1000000</span>;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">informat</span> ip $<span style="color:#ae81ff">20</span>. ;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">informat</span> date yymmdd10. ;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">informat</span> time anydtdtm40. ;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">informat</span> zone best32. ;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">informat</span> cik best32. ;
+</span></span><span style="display:flex;"><span>		 <span style="color:#00a8c8">format</span> date yymmdd10. ;
+</span></span><span style="display:flex;"><span>         <span style="color:#00a8c8">format</span> time datetime. ;
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">input</span> ip $ date time zone cik;
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">if</span> _ERROR_ <span style="color:#00a8c8">then</span> <span style="color:#00a8c8">call</span> symputx(<span style="color:#d88200">&#39;_EFIERR_&#39;</span>,<span style="color:#ae81ff">1</span>)<span style="color:#00a8c8">;  
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">run;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* import the mapping file from Chen et al. (2020, JFE) */</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc import </span>datafile=<span style="color:#d88200">&#34;E:\EDGARforIPinfo\edgardecodemap.csv&#34;</span> <span style="color:#00a8c8">out</span>=home<span style="color:#ae81ff">.</span>edgardecodemap dbms=csv <span style="color:#00a8c8">replace</span><span style="color:#00a8c8">; run;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* get precise ip addresses by applying the mapping file */</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc sql;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">create</span> <span style="color:#00a8c8">table</span> home<span style="color:#ae81ff">.</span>logsample <span style="color:#00a8c8">as</span> <span style="color:#00a8c8">select</span> a.*, b.*, <span style="color:#111">compress(</span>cat(<span style="color:#111">compress(</span>ip, b<span style="color:#ae81ff">.</span>char), b<span style="color:#ae81ff">.</span>num, <span style="color:#d88200">&#34; &#34;</span>)) <span style="color:#00a8c8">as</span> exactip
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">from</span> home<span style="color:#ae81ff">.</span>logsample a left join home<span style="color:#ae81ff">.</span>edgardecodemap b
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">on</span> <span style="color:#111">scan(</span>a<span style="color:#ae81ff">.</span>ip, <span style="color:#ae81ff">4</span>, <span style="color:#d88200">&#39;.&#39;</span>) = b<span style="color:#ae81ff">.</span>char<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">quit;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* Select EDGAR downloads from specified stakeholders by merging the IP addresses of stakeholders with EDGAR logs */</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc sql;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">create</span> <span style="color:#00a8c8">table</span> home<span style="color:#ae81ff">.</span>sampleentitydownloads <span style="color:#00a8c8">as</span> <span style="color:#00a8c8">select</span> <span style="color:#00a8c8">distinct</span> a.*, b<span style="color:#ae81ff">.</span>name, b<span style="color:#ae81ff">.</span>asn, b<span style="color:#ae81ff">.</span>domain
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">from</span> home<span style="color:#ae81ff">.</span>logsample a, home<span style="color:#ae81ff">.</span>entityips b
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">where</span> b<span style="color:#ae81ff">.</span>start_ip &lt;= a<span style="color:#ae81ff">.</span>exactip &lt;= b<span style="color:#ae81ff">.</span>end_ip
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">and</span> category ne <span style="color:#d88200">&#39;TOP Internet Service Providers (Retailers)&#39;</span><span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">quit;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The output of this procedure is as follows. Note that all these prior procedures are only based on the EDGAR log file for a single day. You can implement them log by log to capture the time series of stakeholders&rsquo; information acquisition interests.</p>
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>date</th>
+<th>time</th>
+<th>zone</th>
+<th>cik</th>
+<th>char</th>
+<th>num</th>
+<th>exactip</th>
+<th>name</th>
+<th>asn</th>
+<th>domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>162.138.210.ggf</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:00:02</td>
+<td>0</td>
+<td>1295391</td>
+<td>ggf</td>
+<td>3</td>
+<td>162.138.210.3</td>
+<td>U.S. Securities &amp; Exchange Commission</td>
+<td>AS26229</td>
+<td>sec.gov</td>
+</tr>
+<tr>
+<td>162.138.210.ggf</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:00:14</td>
+<td>0</td>
+<td>314808</td>
+<td>ggf</td>
+<td>3</td>
+<td>162.138.210.3</td>
+<td>U.S. Securities &amp; Exchange Commission</td>
+<td>AS26229</td>
+<td>sec.gov</td>
+</tr>
+<tr>
+<td>162.138.210.ggf</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:00:15</td>
+<td>0</td>
+<td>314808</td>
+<td>ggf</td>
+<td>3</td>
+<td>162.138.210.3</td>
+<td>U.S. Securities &amp; Exchange Commission</td>
+<td>AS26229</td>
+<td>sec.gov</td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>204.4.182.ide</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:40:12</td>
+<td>0</td>
+<td>850209</td>
+<td>ide</td>
+<td>17</td>
+<td>204.4.182.17</td>
+<td>The Goldman Sachs Group, Inc.</td>
+<td>AS33598</td>
+<td>gs.com</td>
+</tr>
+<tr>
+<td>204.4.182.jhd</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:26:27</td>
+<td>0</td>
+<td>1559992</td>
+<td>jhd</td>
+<td>14</td>
+<td>204.4.182.14</td>
+<td>The Goldman Sachs Group, Inc.</td>
+<td>AS33598</td>
+<td>gs.com</td>
+</tr>
+<tr>
+<td>204.4.182.jhd</td>
+<td>6/30/2017</td>
+<td>01JAN60:00:30:07</td>
+<td>0</td>
+<td>1657939</td>
+<td>jhd</td>
+<td>14</td>
+<td>204.4.182.14</td>
+<td>The Goldman Sachs Group, Inc.</td>
+<td>AS33598</td>
+<td>gs.com</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-locate-the-edgar-downloads-from-specified-stakeholder-group">6. Locate the EDGAR Downloads From Specified Stakeholder Group</h2>
+<p>At this stage, we have successfully extracted all the EDGAR downloads from a given stakeholder list for a specific day. By expanding the stakeholder list properly, we can capture the EDGAR downloads from specified stakeholder groups.</p>
+<h3 id="locate-edgar-downloads-from-retail-investors">Locate EDGAR Downloads from Retail Investors</h3>
+<p>I adopt the methodology employed by Drake et al. (2020, TAR) to identify EDGAR downloads from retail investors. In particular, the retail investor group is defined as EDGAR users accessing the system via one of the top ten U.S. or top ten worldwide internet service providers (ISP), such as Comcast or Time Warner. The following table provides the list of top ten U.S. internet service providers (ISP) provided by Drake et al. (2020, TAR) in Appendix A.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time Warner Cable  Internet LLC</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Verizon Online LLC</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Comcast Cable Communications, Inc.</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Cox Communications</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>EarthLink, Inc.</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>AT&amp;T Internet Services</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Qwest Communications Company</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Charter Communications</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Hurricane Electric</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+<tr>
+<td>Optimum Online</td>
+<td>Top Internet Service Providers (Retailers)</td>
+</tr>
+</tbody>
+</table>
+<p>Using the provided list of top 10 internet service providers worldwide, you can replicate the procedures outlined in <a href="https://mengjiexu.com/post/deal-edgar-logs/#5-locate-edgar-downloads-from-specified-stakeholders">Section 5</a> to identify all the EDGAR downloads from retail investors within a given log file. There are two tips to improve the program efficiency here.</p>
+<ol>
+<li>
+<p>As which internet service providers (ISPs) the retailers are using is not of primary importance in this context, you could avoid distinguishing among different ISPs.</p>
+</li>
+<li>
+<p>Given that internet service providers (ISPs) commonly utilize a broad range of overlapping IP addresses,  merging the overlapping IP ranges to reduce the number of IP ranges needed to be fit for EDGAR logs will also significantly enhance the program efficiency. As an illustrative example, consider the table below, which presents two IP ranges associated with Verizon. Without merging these IP ranges, the process would require checking EDGAR downloads against each IP range individually, totaling two separate checks. However, by identifying the joint <code>start_ip</code> and <code>end_ip</code> of these two ranges and merging them, we can effectively consolidate the IP ranges and reduce the EDGAR download check to just one instance. This streamlining significantly improves the efficiency of the program.</p>
+<table>
+<thead>
+<tr>
+<th>asn</th>
+<th>searchkey</th>
+<th>category</th>
+<th>start_ip</th>
+<th>end_ip</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AS2828</td>
+<td>Verizon Online LLC</td>
+<td>TOP Internet Service Providers (Retailers)</td>
+<td>140.239.0.0</td>
+<td>140.239.75.255</td>
+<td>Verizon Business</td>
+</tr>
+<tr>
+<td>AS2828</td>
+<td>Verizon Online LLC</td>
+<td>TOP Internet Service Providers (Retailers)</td>
+<td>140.239.144.0</td>
+<td>140.239.233.255</td>
+<td>Verizon Business</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h3 id="locate-edgar-downloads-from-institutional-investors">Locate EDGAR Downloads from Institutional Investors</h3>
+<p>The specification of the list of institutional investors is contingent upon the specific requirements and objectives of researchers or practitioners as this category encompasses a diverse range of entities, such as investment banks, hedge funds, commercial banks, insurance companies, among others. Using the methods elucidated in this blog, researchers and practitioners have the flexibility to compile a separate list of the most prominent entities from each subgroup and then combine them to form the whole institutional group.</p>
+<p>Suppose you are interested in studying EDGAR downloads of hedge funds, as Crane et al. (2023, MS) did.  There are multiple avenues to obtain a list of institutional investors. For instance, a quick online search using keywords like &lsquo;Top 100 hedge funds in US&rsquo; can lead you to resources such as the <a href="https://www.swfinstitute.org/fund-manager-rankings/hedge-fund-manager">List of Top 100 Hedge Fund Managers by Managed AUM</a> provided by the Sovereign Wealth Fund Institute. Alternatively, you could access the archival dataset from <a href="https://wrds-www.wharton.upenn.edu/pages/get-data/thomson-reuters/institutional-13f-holdings-s34/">WRDS Thomson Reuters Institutional (13f) Holdings</a> or <a href="https://corporateownershipdata.com/">Corporate Ownership of S&amp;P 500 firms</a> for a more comprehensive list of institutional investors, which includes hedge funds.</p>
+<p>Regardless of the sources chosen, you always have the discretion to compile a list of entities belonging to the institutional investor group,  and then utilize the techniques introduced in <a href="https://mengjiexu.com/post/deal-edgar-logs/#5-locate-edgar-downloads-from-specified-stakeholders">Section 5</a> to locate the EDGAR downloads from them.</p>
+<h2 id="7-summary">7. Summary</h2>
+<p>In this blog, I have explored the potential and methodologies for determining the stakeholder group of EDGAR users. However, it is essential to acknowledge that the SEC ceased updating EDGAR log files after June 30, 2017 for several years. While there were recent updates to the log files between May 19, 2020, and Feb 13, 2022, these new log files no longer include IP addresses, which deters identifying the identity of EDGAR users.</p>
+<p>Technically, one can make a Freedom of Information Act (FOIA) request to the SEC for unredacted EDGAR logs, as permitted by the Freedom of Information Act enacted in 1967. However, it is important to note that even before 2017, the SEC disclosed the EDGAR log files with a considerable latency of about one year. This delay could render much of the information embedded in EDGAR downloads stale, limiting their practical utility for trading purposes.</p>
+<p>Despite these complexities, it is undeniable that EDGAR logs still offer a valuable playing field for practitioners to gain retrospective insights. And I believe they will continue to provide a rich source of information for researchers to study market dynamics.</p>
+<h2 id="easter-eggs">Easter Eggs</h2>
+<p>Thanks for reading all over through! As a big fan of Christopher Nolan, I just watched the Oppenheimer in the movie theater. The movie was magnificent and made feel my efforts in sparing out 3 hours to watch it during my super busy job market preparation season was not wasted. But I have to say it might be hard to delve in if you do not have a <strong>decent understanding of the context before watching the movie</strong> - I did not see significant efforts from Nolan in this regard and saw some people in the theater left in the middle.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://miro.medium.com/v2/resize:fit:1400/1*YTF86hEDlUWQ9Nd6xfOUJA.png" width=800 height=350>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure A1: Photos of J. Robert Oppenheimer</div>
+  </center>
+<p>Combining my personal homework and  movie-watching experience, I will share f<strong>ive things you may want to know before watching Oppenheimer</strong>. Most of them are from <a href="https://en.wikipedia.org/wiki/J._Robert_Oppenheimer">the wiki profile of J. Robert Oppenheimer</a>, and I highlight them as they are clues for following the story line of the movie.</p>
+<ol>
+<li>The overarching context of this movie: <a href="https://en.wikipedia.org/wiki/J._Robert_Oppenheimer">J. Robert Oppenheimer</a> directed the <a href="https://en.wikipedia.org/wiki/Los_Alamos_Laboratory">Los Alamos Laboratory</a> during World War II, designing nuclear bombs. Given the Nazis has made progress in developing this weapon (see the <a href="https://en.wikipedia.org/wiki/Einstein%E2%80%93Szilard_letter">Einstein–Szilard letter</a> in 1939), the <strong>race against the Nazis</strong> had a crucial impact on the future of human lives.</li>
+<li>In 1924, while studying empirical physics in Cambridge, Oppenheimer expressed unhappiness. He even left a <strong>poisoned apple</strong> on his tutor Blackett&rsquo;s desk, which went uneaten. In 1926, he moved to the <a href="https://en.wikipedia.org/wiki/University_of_G%C3%B6ttingen">University of Göttingen</a> to study under <a href="https://en.wikipedia.org/wiki/Max_Born">Max Born</a>, where he began his influential career in theoretical physics at this leading center for this field then. In the autumn of 1928, Oppenheimer visited <a href="https://en.wikipedia.org/wiki/Paul_Ehrenfest">Paul Ehrenfest</a>&rsquo;s institute at the <a href="https://en.wikipedia.org/wiki/University_of_Leiden">University of Leiden</a>, the Netherlands, where he impressed by <strong>giving lectures in Dutch</strong>, despite having little experience with the language.</li>
+<li>On returning to the United States, Oppenheimer accepted an associate professorship from the <a href="https://en.wikipedia.org/wiki/University_of_California,_Berkeley">University of California, Berkeley</a>. During his lecturing time there, Oppenheimer had associations with individuals who were members of or sympathetic to the Communist Party and was part of intellectual circles at Berkeley that included <strong>left-leaning</strong> academics, writers, and activists. His lover <a href="https://en.wikipedia.org/wiki/Jean_Tatlock">Jean Tatlock</a> (started from 1936 and ended in 1939), wife <a href="https://en.wikipedia.org/wiki/Katherine_Oppenheimer">Katherine (&ldquo;Kitty&rdquo;) Puening</a> (since 1940), brother Frank, and Frank&rsquo;s wife Jackie were all (once) active in the Communist Party in the 1930s or 1940s. Moreover, one of his close friends during the weapon development was accused to leak the confidential information to the Soviet Union. These led to <strong>suspicions about his loyalty</strong> to the United States during the McCarthy era in 1950s and the revocation of his <a href="https://en.wikipedia.org/wiki/Security_clearance#United_States">security clearance</a> following a <a href="https://en.wikipedia.org/wiki/Oppenheimer_security_hearing">1954 security hearing</a>.</li>
+<li>Oppenheimer <strong>struggled a lot from the moral question about weapons of mass destruction</strong>. He later recalled that, while witnessing the explosion of the test bomb, Trinity, in July 1945, he thought of a verse from the <a href="https://en.wikipedia.org/wiki/Hindu">Hindu</a> holy book, the <em><a href="https://en.wikipedia.org/wiki/Bhagavad_Gita">Bhagavad Gita</a></em>: &ldquo;<em>If the radiance of a thousand suns were to burst at once into the sky, that would be like the splendor of the mighty one &hellip;</em>&rdquo; and &ldquo;<em>Now I am become Death, the destroyer of worlds.&rsquo; I suppose we all thought that, one way or another.</em>&rdquo; In October 1945, Oppenheimer met then US president <a href="https://en.wikipedia.org/wiki/Harry_S._Truman">Harry S. Truman</a> and said he felt he had &ldquo;<em>blood on my hands</em>&rdquo;. These struggles also played a role in his strong opposition to the development of the hydrogen bomb, which hurt him during the McCarthy era.</li>
+<li>In 1947, Oppenheimer accepted an offer from <a href="https://en.wikipedia.org/wiki/Lewis_Strauss">Lewis Strauss</a> to serve as a member of the Board of Consultants to Atomic Energy Commission. Lewis Strauss later became Oppenheimer&rsquo;s <strong>biggest enemy</strong> and initiated the revocation of the latter&rsquo;s <a href="https://en.wikipedia.org/wiki/Security_clearance#United_States">security clearance</a> in 1954. The anger between Lewis Strauss and Oppenheimer can be traced back to a public hearing in 1947, where Strauss had been questioned over security concerns regarding the exportation of radioactive isotopes, which he’d advocated for. Oppenheimer then not only disagreed with Strauss’ position but <strong>outright mocked it in front of everyone in attendance</strong>, which proved to be an important, bitter seed in his efforts to dismantle his career and reputation. Moreover, racked by guilt in the wake of Hiroshima and Nagasaki, Oppenheimer was <strong>strongly against the development of more destructive hydrogen bombs in post-war</strong>, whereas Strauss was on the opposite side. The latter suggested that if they do not develop hydrogen bombs first, their enemies would, and in turn they have to develop them anyway.</li>
+</ol>
+<h2 id="references">References</h2>
+<ol>
+<li>Drake, Michael S., Bret A. Johnson, Darren T. Roulstone, and Jacob R. Thornock. &ldquo;Is there information content in information acquisition?.&rdquo; <em>The Accounting Review</em> 95, no. 2 (2020): 113-139.</li>
+<li>Chen, Huaizhi, Lauren Cohen, Umit Gurun, Dong Lou, and Christopher Malloy. &ldquo;IQ from IP: Simplifying search in portfolio choice.&rdquo; <em>Journal of Financial Economics</em> 138, no. 1 (2020): 118-137.</li>
+<li>Holzman, Eric R., Nathan T. Marshall, and Brent A. Schmidt. &ldquo;When are firms on the hot seat? An analysis of SEC investigation preferences.&rdquo; <em>Journal of Accounting and Economics</em> (2023): 101610.</li>
+<li>Blackburne, Terrence, John D. Kepler, Phillip J. Quinn, and Daniel Taylor. &ldquo;Undisclosed SEC investigations.&rdquo; <em>Management Science</em> 67, no. 6 (2021): 3403-3418.</li>
+<li>Crane, Alan, Kevin Crotty, and Tarik Umar. &ldquo;Hedge funds and public information acquisition.&rdquo; <em>Management Science</em> 69, no. 6 (2023): 3241-3262.</li>
+<li>Gibbons, Brian, Peter Iliev, and Jonathan Kalodimos. &ldquo;Analyst information acquisition via EDGAR.&rdquo; <em>Management Science</em> 67, no. 2 (2021): 769-793.</li>
+<li>Bernard, Darren, Terrence Blackburne, and Jacob Thornock. &ldquo;Information flows among rivals and corporate investment.&rdquo; <em>Journal of Financial Economics</em> 136, no. 3 (2020): 760-779.</li>
+<li>Cao, Sean Shun, Kai Du, Baozhong Yang, and Alan L. Zhang. &ldquo;Copycat skills and disclosure costs: Evidence from peer companies’ digital footprints.&rdquo; <em>Journal of Accounting Research</em> 59, no. 4 (2021): 1261-1302.</li>
+<li>Choi, Bong-Geun, Jung Ho Choi, and Sara Malik. &ldquo;Not just for investors: The role of earnings announcements in guiding job seekers.&rdquo; <em>Journal of Accounting and Economics</em> (2023): 101588.</li>
+<li>Bozanic, Zahn, Jeffrey L. Hoopes, Jacob R. Thornock, and Braden M. Williams. &ldquo;IRS attention.&rdquo; <em>Journal of Accounting Research</em> 55, no. 1 (2017): 79-114.</li>
+<li>Li, Edward X., Gary Lind, K. Ramesh, and Min Shen. &ldquo;Externalities of accounting disclosures: evidence from the Federal Reserve.&rdquo; <em>The Accounting Review</em> (2023): 1-27.</li>
+<li>Drake, Michael S., Phillip T. Lamoreaux, Phillip J. Quinn, and Jacob R. Thornock. &ldquo;Auditor benchmarking of client disclosures.&rdquo; <em>Review of Accounting Studies</em> 24 (2019): 393-425.</li>
+<li>McGinty, Tom, Maremont, Mark, &ldquo;CEO Stock Sales Raise Questions About Insider Trading.&rdquo; <em>The Wall Street Journal</em> (2022).</li>
+</ol>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/deal-reedit/" data-toggle="tooltip" data-placement="top" title="Gain Insights From Organized Retail Investors in Reddit Wallstreetbets">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/get-insights-into-labor-market-with-glassdoor/" data-toggle="tooltip" data-placement="top" title="Get Insights into Workplace Environment Through the Lens of Glassdoor">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

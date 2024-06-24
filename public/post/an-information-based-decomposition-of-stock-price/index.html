@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://assets.bbhub.io/image/v1/convert?type=auto&amp;amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2Frsz_221005188_mini-Price-Evaluation1.jpg">
+    <meta property="twitter:image" content="https://assets.bbhub.io/image/v1/convert?type=auto&amp;amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2Frsz_221005188_mini-Price-Evaluation1.jpg" />
+    
+
+    
+    <meta name="title" content="Theory for the information-based decomposition of stock price" />
+    <meta property="og:title" content="Theory for the information-based decomposition of stock price" />
+    <meta property="twitter:title" content="Theory for the information-based decomposition of stock price" />
+    
+
+    
+    <meta name="description" content="Theoretical techniques in variance decomposition method proposed by Brogaard et al. (2022, RFS)">
+    <meta property="og:description" content="Theoretical techniques in variance decomposition method proposed by Brogaard et al. (2022, RFS)" />
+    <meta property="twitter:description" content="Theoretical techniques in variance decomposition method proposed by Brogaard et al. (2022, RFS)" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/an-information-based-decomposition-of-stock-price/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://assets.bbhub.io/image/v1/convert?type=auto&amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2Frsz_221005188_mini-Price-Evaluation1.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/market-mirco-structure" title="Market Mirco-structure">
+                            Market Mirco-structure
+                        </a>
+                        
+                        <a class="tag" href="/tags/price-informativeness" title="Price Informativeness">
+                            Price Informativeness
+                        </a>
+                        
+                        <a class="tag" href="/tags/impulse-response" title="Impulse Response">
+                            Impulse Response
+                        </a>
+                        
+                    </div>
+                    <h1>Theory for the information-based decomposition of stock price</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Monday, November 21, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>Brogaard et al. (2022, RFS) proposed a new  variance decomposition method (hereafter I call it Brogaard decomposition) for stock price volatility, which might be a powerful tool for both accounting and market micro-structure scholars to evaluate the impacts of informatinonal shocks on stock price informativeness. In this blog, I will introduce the potential and intuition of Brogaard decomposition, as well as the theory techniques embedded in this decomposition method.</p>
+<h2 id="the-potential-of-brogaard-decomposition">The potential of Brogaard Decomposition</h2>
+<p>The method of Brogaard Decomposition provides a novel way to distinguish the roles of different types of information (e.g., market-wide information, firm-specific private information, firm-specific public information) and noise in stock price movements. This could be relevant for both accounting scholars, who focus on the micro firm-specific movements, and market micro-structure scholars, who have apparent interests in analyzing how do different informational arrangements in the market affect the price informativeness. Beyond that, one can aggregate the model outputs both in cross section and in time series, cultivating more macro insights on how does the overall market efficiency evolve over time.</p>
+<p>Actually, Brogaard et al. (2022, RFS) has illustrated its potential through various tests. For example, by analyzing the time trend of the noise proportion in stock return variance, they show that market efficiency is dynamic, and is heavily influenced by the environment/market structure. Specifically, they find that the proportion of noise part in stock return movement is significantly responsive to a list of material changes in market microstructure like such as the exogenous decreases in tick size. Similarly, the proportion of firm-specific information part significantly increased after the implementation of Regulation Fair Disclosure (2000) and Sarbanes-Oxley Act (2022), both having increased the quality and quantity of corporate disclosure.</p>
+<p>Moreover, as a powerful response to the recent concern that the prevalence of high-frequency trading and passive investment may dampen the degree of which firms&rsquo; prices reflect their idiosyncratic information (e.g., Baldauf and Mollner, 2020; Lee, 2020), Brogaard et al. (2022, RFS) show that the proportion of firm-specific information accounts in stock volatility didn&rsquo;t see a significant decay in the last decade, when the concerning high-frequency trading as well as passive investment became prevalent.</p>
+<p>Last but not least, as the price variance decomposition in Brogaard et al. (2022, RFS) is actually conducted in firm level, this method could also empower both the cross-sectional and time-series comparasion among different firms, which is particularly an important feature for accounting scholars. For example, Brogaard et al. (2022, RFS) show that while there is an on average increase in price changes attributed to firm-specific shocks since 2000s, such price improvement is mainly driven by large firms.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Brogaard_trend.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Trend of Various Information Parts in Stock Volatility</div>
+</center>
+<h2 id="intuitions-for-brogaard-decomposition">Intuitions for Brogaard decomposition</h2>
+<p>Following the spirit of Beveridge and Nelson (1991), Brogaard et al. (2022, RFS) perceive that an informational shock should cause the stock price to adjust both permanently and transiently. For example, a sudden burst of unexpected buying of a stock, which is perceived as a shock to firm-specific private information by Brogaard et al. (2022, RFS), typically causes the stock price to temporarily overreact and then subsequently revert to a new equilibrium level through time. Suppose it takes 10 period for the stock price to adjust to a new equilibrium price, then the difference between the 10-step-forward price and the price just before the informational shock arrives should be the permanent price adjustment attributed to the informational shock. Correspondingly, the difference between the temporary price and the new equilibrium price is the transient noise part. Brogaard et al. (2022, RFS) showed that such intuition also applies to price underreaction, arrivals of concurrent informational shocks, as well as dynamically arrived informational shocks.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Brogaard_impulse.png" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 2: Intuition for Brogaard Decomposition (Overreaction)</div>
+</center>     
+<p>Having established the idea to identify the impact of informational shocks on stock price adjustment, Brogaard et al. (2022, RFS) partitioned the information impounded into stock prices into three sources, and anything left over is called pricing error and is attributed to noises.</p>
+<ul>
+<li>market-wide information, with the corresponding innovation term \(\varepsilon_{r_m, t}\)</li>
+<li>private firm-specific information incorporated through trading, with the corresponding innovation term \(\varepsilon_{x, t}\)</li>
+<li>and public firm-specific information such as firm-specific news disseminated in company announcements and by the media, with the corresponding innovation term \(\varepsilon_{r, t}\)</li>
+</ul>
+<p>By doing this, Brogaard et al. (2022, RFS)  decompose the stock returns into four parts</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Brogaard_decompose.png" width=500 height=100>
+    <br>
+</center>  
+<p>where \(\theta_{r_m} \varepsilon_{r_m, t}\) captures the market-wide information incorporated into stock prices,  \(\theta_x \varepsilon_{x, t}\)  captures the firm-specific private information revealed through submitted orders, and \(\theta_r \varepsilon_{r, t}\)  is the remaining part of firm-specific information that is not captured by trading on private information. \(\Delta s_t\) represents changes in the pricing errors.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Brogaard_bp.png" width=800 height=300>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 3: Decision Tree of Brogaard Decomposition</div>
+  </center>
+<p>Correspondingly, the variance of the realized stock returns \(\sigma_r^2\) is composed of the following four parts:
+$$
+\begin{aligned} \text { MktInfo } &amp;=\theta_{r_m}^2 \sigma_{\varepsilon_{r_m}}^2 \\\ \text { PrivateInfo } &amp;=\theta_x^2 \sigma_{\varepsilon_x}^2 \\\ \text { PublicInfo } &amp;=\theta_r^2 \sigma_{\varepsilon_r}^2 \\\ \text { Noise } &amp;=\sigma_s^2 . \end{aligned}\notag
+$$
+Normalizing these variance components to sum to 100% gives variance shares:
+$$
+\begin{aligned}
+\text { MktInfoShare } &amp;=\theta_{r_m}^2 \sigma_{\varepsilon_{r_m}}^2 /(\sigma_w^2+\sigma_s^2 )\\\
+\text { PrivateInfoShare } &amp;=\theta_{x}^2 \sigma_{\varepsilon_x}^2 /(\sigma_w^2+\sigma_s^2 ) \\\
+\text { PublicInfoShare } &amp;=\theta_r^2 \sigma_{\varepsilon_r}^2 /(\sigma_w^2+\sigma_s^2 ) \\\
+\text { NoiseShare } &amp;=\sigma_s^2 /(\sigma_w^2+\sigma_s^2 ) .
+\end{aligned} \notag
+$$
+where \(\sigma_w^2\) represents the sum of all information-based components in stock return volatility.
+$$
+\sigma_w^2 =\theta_{r_m}^2 \sigma_{\varepsilon_{r_m}}^2 +\theta_{x}^2 \sigma_{\varepsilon_{x}}^2 +\theta_{r}^2 \sigma_{\varepsilon_{r}}^2
+$$</p>
+<h2 id="technique-details-in-brogaard-decomposition">Technique details in Brogaard decomposition</h2>
+<h3 id="define-the-var-system">Define the VAR system</h3>
+<p>The system in Brogaard et al. (2022, RFS) is defined by a structural VAR with 3 variables and 5 lags</p>
+<p>$$
+r_{m, t} =\sum_{l=1}^5 a_{1, l} r_{m, t-l}+\sum_{l=1}^5 a_{2, l} x_{t-l}+\sum_{l=1}^5 a_{3, l} r_{t-l}+\varepsilon_{r_m, t}
+$$</p>
+<p>$$x_t =\sum_{l=0}^5 b_{1, l} r_{m, t-l}+\sum_{l=1}^5 b_{2, l} x_{t-l}+\sum_{l=1}^5 b_{3, l} r_{t-l}+\varepsilon_{x, t}$$</p>
+<p>$$r_t =\sum_{l=0}^5 c_{1, l} r_{m, t-l}+\sum_{l=0}^5 c_{2, l} x_{t-l}+\sum_{l=1}^5 c_{3, l} r_{t-l}+\varepsilon_{r, t}\tag{B1}$$</p>
+<p>where</p>
+<ul>
+<li>\(r_{m,t}\) is the market return, the corresponding innovation \(\varepsilon_{r_{m,t}}\) represents innovations in market-wide information</li>
+<li>\(x_t\) is the signed dollar volume of trading in the given stock, the corresponding innovation \(\varepsilon_{x,t}\) represents innovations in firm-specific private information</li>
+<li>\(r_t\) is the stock return, the corresponding innovation \(\varepsilon_{r,t}\) represents innovations in firm-specific public information</li>
+<li>the authors assume that \(\{\varepsilon_{r_m, t}, \varepsilon_{x, t}, \varepsilon_{r, t}\}\) are contemporaneously uncorrelated</li>
+</ul>
+<h3 id="identify-the-var-system">Identify the VAR system</h3>
+<ul>
+<li>first estimate the reduced-form version of the VAR model</li>
+</ul>
+<p>$$
+\begin{aligned}
+&amp;r_{m, t}=a_0^*+\sum_{l=1}^5 a_{1, l}^* r_{m, t-l}+\sum_{l=1}^5 a_{2, l}^* x_{t-l}+\sum_{l=1}^5 a_{3, l}^* r_{t-l}+e_{r_m, t} \\\
+&amp;x_t=b_0^*+\sum_{l=1}^5 b_{1, l}^* r_{m, t-l}+\sum_{l=1}^5 b_{2, l}^* x_{t-l}+\sum_{l=1}^5 b_{3, l}^* r_{t-l}+e_{x, t} \\\
+&amp;r_t=c_0^*+\sum_{l=1}^5 c_{1, l}^* r_{m, t-l}+\sum_{l=1}^5 c_{2, l}^* x_{t-l}+\sum_{l=1}^5 c_{3, l}^* r_{t-l}+e_{r, t}
+\end{aligned} \tag{B2}
+$$</p>
+<ul>
+<li>
+<p>impose Cholesky decomposition, forcing all elements above the principal diagonal of \(B^{-1}\) to be 0 so that the system can be exactly identified</p>
+<p>$$
+\left[\begin{array}{l}
+e_{r_m, t} \\\
+e_{x, t} \\\
+e_{r, t}
+\end{array}\right]=\left[\begin{array}{lll}
+1 &amp; 0 &amp; 0 \\\
+b_{1,0} &amp; 1 &amp; 0 \\\
+b_{2,0} &amp; b_{2,1} &amp; 1
+\end{array}\right]\left[\begin{array}{l}
+\varepsilon_{r_m, t} \\\
+\varepsilon_{x, t} \\\
+\varepsilon_{r, t}
+\end{array}\right]\tag{B3}
+$$</p>
+</li>
+<li>
+<p>these imposed restrictions imply</p>
+<ul>
+<li>the market return \(r_m\) is not contemporaneously affected by innovations in individual returns \(\varepsilon_{r,t}\) or individual order imbalance/trading volume \(\varepsilon_{x,t}\)</li>
+<li>the individual order imbalance/trading volume is not contemporaneously affected by innovations in individual stock return \(\varepsilon_{r,t}\)</li>
+</ul>
+</li>
+<li>
+<p>the equation (B3) implies</p>
+<p>$$
+\begin{gathered}
+e_{r_m, t}=\varepsilon_{r_m, t} \\\
+e_{x, t}=\varepsilon_{x, t}+b_{1,0} \varepsilon_{r_m, t}=\varepsilon_{x, t}+b_{1,0} e_{r_m, t}
+\end{gathered}\tag{B4}
+$$</p>
+</li>
+<li>
+<p>for ease of estimation, to write \(e_{r,t}\) as the function of \(e_{r_m,t}\) and \(e_{x,t}\)</p>
+<p>$$
+e_{r,t}=c_{1,0} e_{r_m, t}+c_{2,0} e_{x, t}+\varepsilon_{r, t} \tag{B5}
+$$</p>
+</li>
+<li>
+<p>plug (B4) into (B5) and get</p>
+<p>$$
+e_{r,t}=\varepsilon_{r, t}+\left(c_{1,0}+c_{2,0} b_{1,0}\right) \varepsilon_{r_m, t}+c_{2,0} \varepsilon_{x, t} \tag{B6}
+$$</p>
+</li>
+<li>
+<p>thus</p>
+<ul>
+<li>regress \(
+e_{x,t}\) on \(
+e_{r_m,t}\), one can get \(
+b_{1,0}\)</li>
+<li>regress \(
+e_{r,t}\) on \(
+e_{r_m,t}\), one can get \(
+c_{1,0}\)</li>
+<li>regress \(
+e_{r,t}\) on \(
+e_{x,t}\), one can get \(
+c_{2,0}\)</li>
+<li>note that \(
+e_{x,t}\), \(
+e_{r,t}\), \(
+e_{r,t}\) are residuls estimated from the reduced-form VAR system (B2)</li>
+</ul>
+</li>
+<li>
+<p>with the estimated parameters \(
+b_{1,0}, c_{1,0},c_{2,0}\) and the estimated variances of the reduced-form residuals \(
+\left(\sigma_{e_{r_m}}^2, \sigma_{e_x}^2, \text { and } \sigma_{e_r}^2\right)\), one can obtain the variances of the innovation terms based on equation (B4) and (B6)</p>
+<p>$$
+\begin{aligned}\sigma_{\varepsilon_{r_m}}^2 &amp;=\sigma_{e_{r_m}}^2 \\\
+\sigma_{\varepsilon_x}^2 &amp;=\sigma_{e_x}^2-b_{1,0}^2 \sigma_{e_{r_m}}^2 \\\
+\sigma_{\varepsilon_r}^2 &amp;=\sigma_{e_r}^2-\left(c_{1,0}^2+2 c_{1,0} c_{2,0} b_{1,0}\right) \sigma_{e_{r_m}}^2-c_{2,0}^2 \sigma_{e_x}^2 .\end{aligned} \tag{B7}
+$$</p>
+<p>where</p>
+<p>$$
+\sigma_{\varepsilon_r}^2=\sigma_{e_r}^2-\left(c_{1,0}+c_{2,0} b_{1,0}\right)^2\sigma_{e_{r_m}}^2-c_{2,0}^2(\sigma_{e_x}^2-b_{1,0}^2 \sigma_{e_{r_m}}^2)
+$$</p>
+</li>
+<li>
+<p>the impulse response can be generically conducted with the exactly identified VAR system</p>
+</li>
+</ul>
+<h3 id="variance-decomposition">Variance decomposition</h3>
+<ul>
+<li>
+<p>the cumulative return response to each of the innovations \(\left\{\varepsilon_{r_m, t}, \varepsilon_{x, t}, \varepsilon_{r, t}\right\}\) at \(t\) =15 (point at which the authors believe the responses are generally stable) gives estimates of \(\theta_{r_m}, \theta_x, \theta_r\) respectively</p>
+</li>
+<li>
+<p>in particular, the 15-step-ahead forecast error for stock return is</p>
+<p>$$
+\begin{aligned}r_{t+15}- E_t r_{t+15}&amp;=\phi_{31}(0) \varepsilon_{r_m t+15}+\phi_{31}(1) \varepsilon_{r_m t+15-1}+\cdots+\phi_{31}(14) \varepsilon_{r_m t+1} \\\
+&amp;+\phi_{32}(0) \varepsilon_{xt+15}+\phi_{32}(1) \varepsilon_{xt+15-1}+\cdots+\phi_{32}(14) \varepsilon_{xt+1} \\\
+&amp;+\phi_{33}(0) \varepsilon_{rt+15}+\phi_{33}(1) \varepsilon_{rt+15-1}+\cdots+\phi_{33}(14) \varepsilon_{rt+1} \end{aligned}
+$$</p>
+</li>
+<li>
+<p>the 15-step-ahead forecast error variance of \(r_{t+15}\) should contain</p>
+</li>
+</ul>
+<p>$$
+\begin{aligned}\theta_{r_m}\sigma_{\varepsilon_{r_m}}^2+\theta_{x}\sigma_{\varepsilon_{x}}^2+\theta_{r}\sigma_{\varepsilon_{r}}^2&amp;=\sigma_{\varepsilon_{r_m}}^2\left[\phi_{31}(0)^2+\phi_{31}(1)^2+\cdots+\phi_{31}(14)^2\right]\\\
+&amp;+\sigma_{\varepsilon_x}^2\left[\phi_{32}(0)^2+\phi_{32}(1)^2+\cdots+\phi_{32}(14)^2\right]\\\
+&amp;+\sigma_{\varepsilon_r}^2\left[\phi_{31}(0)^2+\phi_{31}(1)^2+\cdots+\phi_{31}(14)^2\right]\end{aligned}
+$$</p>
+<ul>
+<li>anything left in \(\sigma_r^2 (15)\) is attributed to noises</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>In this blog, I firstly discussed the potential of the variance decomposition method developed by Brogaard et al. (2022, RFS). Then I illustrate the intuition as well as the theoretical techniques employed by the Brogaard decomposition.</p>
+<h2 id="main-references">Main References</h2>
+<ol>
+<li>Baldauf, Markus, and Joshua Mollner. &ldquo;High‐frequency trading and market performance.&rdquo; The Journal of Finance 75.3 (2020): 1495-1526.</li>
+<li>Bernanke, Ben S. &ldquo;Alternative explanations of the money-income correlation.&rdquo; (1986).</li>
+<li>Beveridge, Stephen, and Charles R. Nelson. &ldquo;A new approach to decomposition of economic time series into permanent and transitory components with particular attention to measurement of the ‘business cycle’.&rdquo; <em>Journal of Monetary Economics</em> 7, no. 2 (1981): 151-174.</li>
+<li>Blanchard, Olivier J., and Danny Quah.  &ldquo;The Dynamic Effects of Aggregate Demand and Supply Disturbances.&rdquo; <em>The American Economic Review</em> 79, no. 4 (1989): 655-673.</li>
+<li>Enders, Walter. &ldquo;Applied Econometric Time Series. 2th ed.&rdquo; <em>New York (US): University of Alabama</em> (2004).</li>
+<li>Lee, Jeongmin. &ldquo;Passive investing and price efficiency.&rdquo; Available at SSRN 3725248 (2020).</li>
+<li>Sims, Christopher A. &ldquo;Macroeconomics and reality.&rdquo; <em>Econometrica</em> (1980): 1-48.</li>
+</ol>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/seeking-alpha-from-investor-attention/" data-toggle="tooltip" data-placement="top" title="Seeking Alpha From Market Participants&#39; Information Acquisition Actions">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/touch-into-var/" data-toggle="tooltip" data-placement="top" title="Touch into the Vector Auto Regression Model">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

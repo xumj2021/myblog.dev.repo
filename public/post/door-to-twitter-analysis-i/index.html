@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://data.bloomberglp.com/company/sites/2/2013/10/potash-mine_Berezniki_Russia-586x397.jpg">
+    <meta property="twitter:image" content="https://data.bloomberglp.com/company/sites/2/2013/10/potash-mine_Berezniki_Russia-586x397.jpg" />
+    
+
+    
+    <meta name="title" content="Twitter API: Door To Social Media Analysis I" />
+    <meta property="og:title" content="Twitter API: Door To Social Media Analysis I" />
+    <meta property="twitter:title" content="Twitter API: Door To Social Media Analysis I" />
+    
+
+    
+    <meta name="description" content="Introduction to Twitter API v2">
+    <meta property="og:description" content="Introduction to Twitter API v2" />
+    <meta property="twitter:description" content="Introduction to Twitter API v2" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/door-to-twitter-analysis-i/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://data.bloomberglp.com/company/sites/2/2013/10/potash-mine_Berezniki_Russia-586x397.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/twitter-api" title="Twitter API">
+                            Twitter API
+                        </a>
+                        
+                        <a class="tag" href="/tags/social-media" title="Social Media">
+                            Social Media
+                        </a>
+                        
+                    </div>
+                    <h1>Twitter API: Door To Social Media Analysis I</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Monday, November 1, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>In the last few decades, a series of papers published in top accounting journals have repeatedly proved that <strong>Twitter data could empower very fascinating research ideas</strong>. To give readers an <strong>intuition about the potential of Twitter data</strong>, I would roughly show three directions and their relative examples which I have deepest impression through my limited personal reading experience.</p>
+<ul>
+<li>
+<p><strong>Wisdom of crowds</strong></p>
+<p>Bartov, Faurel, and Mohanram (2018, TAR) found opinions of individuals tweeted just prior to a firm’s earnings announcement can predict its earnings and announcement returns. Similarly, Tang (2018, JAR) showed the customer responses towards a firm&rsquo;s products in Twitter obtain a siginificant predictive power for the upcoming firm sales.</p>
+</li>
+<li>
+<p><strong>Information dissemination</strong></p>
+<p>Blankespoor, Miller, and White (2013, TAR) illustrated that firms who disseminate their earnings announcements via Twitter besides traditional dissemination channels (e.g., SEC EDGAR, business press, firm websites, etc) have higher maket visibility (e.g., bigger liquidity around earnings announcements, greater market depths, etc), which is especially crucial for samll and medium enterprises. Based on this idea, Jung, Naughton, Tahoun, and Wang (2018, TAR) showed that firms strategically use social media like Twitter as an extra information dissemination channel. Specifically, they found firms are less likely to disseminate their earnings in Twitter if they are underperforming.</p>
+</li>
+<li>
+<p><strong>Risk management</strong></p>
+<p>Lee, Hutton, and Shu (2015, JAR) noticed that the very special feature of Twitter, compared to traditional information dissemination intermediaries, is that firms can communicate quickly and directly with their stakeholders via their Twitter accounts. Utilizing this interactive feature, the authors found that firms who directly communicate with stakeholders in Twitter after the outbreak of crisis (e.g., product recall) experience attenuated negative market reaction.</p>
+</li>
+</ul>
+<p>Having made clear about the potential of Twitter data, in this blogpost I will briefly <strong>introduce some necesary background information which lays a base for efficiently obtaining a tailored dataset</strong> using <a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api">Twitter API v2</a>. <em><u>A sample project which replicates the Tweets extraction process of Bartov, Faurel, and Mohanram (2018, TAR) will be discussed in <a href="https://mengjiexu.com/post/door-to-twitter-analysis-ii/">the next blogpost</a>.</u></em></p>
+<h2 id="get-access-to-twitter-api-v2">Get Access To Twitter API v2</h2>
+<p>To make any request to the Twitter API, you must first apply for a developer account and have your use case approved. <strong>Twitter offers generous free academic developer accounts</strong> which provides qualified academic researchers access to elevated access and enhanced functionality (compared to <a href="https://developer.twitter.com/en/apply-for-access">standard version</a>), including access to the <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search">full-archive search endpoint</a>, a higher monthly <a href="https://developer.twitter.com/en/docs/projects/overview#tweet-cap">Tweet cap</a> (e.g., 10,000,000 tweets per month), and enhanced filtering capabilities with the filtered stream and recent search endpoint. One can apply for an academic developer account via this <a href="https://developer.twitter.com/en/portal/petition/academic/is-it-right-for-you.html">link</a>. To make sure the account will be properly used, Twitter might require you to porvide the following information:</p>
+<blockquote>
+<ul>
+<li>Your full name as it is appears on your institution’s documentation</li>
+<li>Links to webpages that help establish your identity; provide one or more of the following:
+<ul>
+<li>A link to your profile in your institution’s faculty or student directory</li>
+<li>A link to your Google Scholar profile</li>
+<li>A link to your research group, lab or departmental website where you are listed</li>
+</ul>
+</li>
+<li>In English, describe your methodology for analyzing Twitter data, Tweets, and/or Twitter users. Minimum 200 characters.
+<ul>
+<li>In other words, what types of analyses do you intend to perform with Twitter data? This should be more descriptive of your tactics than the question above.</li>
+</ul>
+</li>
+<li>Will your research present Twitter data individually or in aggregate?
+<ul>
+<li>Think of it as presenting individual Tweets or users vs. aggregate statistics or models.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>To maintain a well-functioning developer community and also avoid potential litigation risks, please do not forget to check the <a href="https://developer.twitter.com/en/developer-terms/policy">multiple policies</a> you need to comply, the <a href="https://developer.twitter.com/en/developer-terms/more-on-restricted-use-cases">restricted uses</a> of your Twitter API account, and the <a href="https://developer.twitter.com/en/products/twitter-api/academic-research">speed limit of requests</a>.</p>
+<p>The dashboard of the developer portal is as follows. Click the little sign I have circled in Figure 1, you will have the various tokens showed in Figure 2.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/dash.png" width=500 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Dashboard of the Twitter Developer Account</div>
+</center>
+<p>Twitter defines the different tokens as following:</p>
+<ul>
+<li>
+<p>Think of the <strong>API key</strong> as the user name that represents your App when making API requests. It helps us verify who you are.</p>
+</li>
+<li>
+<p>Our <strong>API Key Secret</strong> is like a password and helps verify your API Key.</p>
+</li>
+<li>
+<p><strong>Bearer Token</strong> is an Access Token used in authentication that allows you to pull specific data.</p>
+</li>
+</ul>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/keys.png" width=500 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 2: Generate Access Token</div>
+</center>
+<p>For the safety of your developer account, you might not want to have the tokens explicitly displayed in your codes. In such case, you could basically <a href="https://stackoverflow.com/questions/7501678/set-environment-variables-on-mac-os-x-lion">set the tokens as the enviornment variables</a> in your terminal and just cite the environment variables when writing codes.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#f92672">(</span>base<span style="color:#f92672">)</span> mengjiexu@MacBook-von-mengjie ~ % vim ~/.zsh_profile
+</span></span><span style="display:flex;"><span><span style="color:#111">export</span> <span style="color:#111">CONSUMER_KEY</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;&lt;Your API Key&gt;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">export</span> <span style="color:#111">CONSUMER_SECRET</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;&lt;Your API Key&gt;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">export</span> <span style="color:#111">BEARER_TOKEN</span><span style="color:#f92672">=</span><span style="color:#111">$BEARER_TOKEN</span>:<span style="color:#d88200">&#39;&lt;Your Bearer Token&gt;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>base<span style="color:#f92672">)</span> mengjiexu@MacBook-von-mengjie ~ % <span style="color:#111">source</span> ~/.zsh_profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="what-can-twitter-api-v2-do">What Can Twitter API v2 Do?</h2>
+<p>According to <a href="https://developer.twitter.com/en/docs/twitter-api/early-access">the official manual</a>, one can achieve the following functions via Twitter API v2.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Function</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tweets</td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/introduction">Tweet lookup</a></td>
+<td style="text-align:left">Look  up Tweets by ID.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/introduction">Search Tweets</a></td>
+<td style="text-align:left">Query  the most recent seven days or the full-archive of Tweets, and receive a  full-fidelity response. The full-archive search endpoint  is currently only available via the Academic Research product track.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/counts/introduction">Tweet counts</a></td>
+<td style="text-align:left">Retrieve  a count of Tweets from either the last seven days or from the full-archive  that matches a query. The full-archive Tweet counts  endpoint is currently only available via the Academic Research product track.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/introduction">Timelines</a></td>
+<td style="text-align:left">Retrieve  a timeline of either the Tweets composed by a specified Twitter account, or  the mentions of a specified Twitter account.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/introduction">Filtered stream</a></td>
+<td style="text-align:left">Filter  the complete stream of real-time public Tweets.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/introduction">Sampled stream</a></td>
+<td style="text-align:left">Stream  a sample of new Tweets as they are published, across ~1% of all public Tweets  in real-time.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/introduction">Retweets</a></td>
+<td style="text-align:left">Retrieve  a list of accounts that have Retweeted a Tweet, or Retweet or undo a Retweet  of a Tweet.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/likes/introduction">Likes</a></td>
+<td style="text-align:left">Retrieve  a list of users who liked a Tweet, retrieve a list of Tweets that a user has  liked, or like and unlike a Tweet.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/tweets/hide-replies/introduction">Hide replies</a></td>
+<td style="text-align:left">Hide  or unhide a reply to a Tweet.</td>
+</tr>
+<tr>
+<td>Users</td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/introduction">User lookup</a></td>
+<td style="text-align:left">Look  up users by name or ID.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/introduction">Follows</a></td>
+<td style="text-align:left">Retrieve  an account&rsquo;s followers, retrieve a list of who an account is following, or  follow and unfollow a user.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/users/blocks/introduction">Blocks</a></td>
+<td style="text-align:left">Retrieve  a list of users that an account has blocked, or block and unblock a user.</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/users/mutes/introduction">Mutes</a></td>
+<td style="text-align:left">Retrieve  a list of users that an account has muted, or mute and unmute a user</td>
+</tr>
+<tr>
+<td>Spaces</td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/spaces/lookup">Lookup Spaces</a></td>
+<td style="text-align:left">Lookup a Space  using IDs or a creator&rsquo;s username</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/spaces/search">Search Spaces</a></td>
+<td style="text-align:left">Search  for a Space using a keyword</td>
+</tr>
+<tr>
+<td>Compliance</td>
+<td><a href="https://developer.twitter.com/en/docs/twitter-api/compliance/batch-compliance">Batch compliance</a></td>
+<td style="text-align:left">Batch  upload dataset to understand what action is needed to ensure that your  datasets reflect the current state of the content on Twitter.</td>
+</tr>
+</tbody>
+</table>
+<p>Twitter also provides a series of sample codes to realize those functions using various programming languages (e.g., Java, Node.js, Python, R, Ruby). The codes are public available at <a href="https://github.com/twitterdev/Twitter-API-v2-sample-code">Twitter Developer&rsquo;s Github Repositories</a>. I will introduce the most frequently used functions that researchers would use in the subsequent blogposts.</p>
+<h2 id="data-objects">Data Objects</h2>
+<p>Before we move to the sample project, it&rsquo;s necessary to make clear which data is available. According to the <a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet">official manual</a>, there are three primary types (<code>Tweet</code>, <code>User</code>, <code>Space</code>) of objects and three expanded ones (<code>Media</code>, <code>Place</code>, <code>Poll</code>). Each of them has a series of fields ready for requests.</p>
+<p>Those objects are:</p>
+<ul>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet">Tweet object</a> - Tweets are the basic building block of all things Twitter. The Tweet object has a long list of ‘root-level’ fields, such as <code>id</code>, <code>text</code>, and <code>created_at</code>. Tweet objects are also the ‘parent’ object to several child objects including <code>user</code>, <code>media</code>, <code>poll</code>, and <code>place</code>. Use the field parameter <code>tweet.fields</code> when requesting these root-level fields on the Tweet object.</li>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/user">User object</a> - The user object contains Twitter user account metadata describing the referenced user. The user object is the primary object returned in the <a href="https://developer.twitter.com/en/docs/twitter-api/users/lookup/introduction.html">User Lookup</a> endpoint. When requesting additional user fields on this endpoint, simply use the fields parameter <code>user.fields</code>.</li>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/space">Space object</a> - Spaces allow expression and interaction via live audio conversations. The Space data dictionary contains relevant metadata about a Space; all the details are updated in real time.</li>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/media">Media object</a> - Media refers to any image, GIF, or video attached to a Tweet. The media object is not a primary object on any endpoint, but can be found and expanded in the Tweet object.</li>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/place">Place objects</a> - The place tagged in a Tweet is not a primary object on any endpoint, but can be found and expanded in the Tweet resource.</li>
+<li><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/poll">Poll object</a> - A poll included in a Tweet is not a primary object on any endpoint, but can be found and expanded in the Tweet object.</li>
+</ul>
+<p>For research purposes, the most frequently used objects are <code>Tweet object</code> and <code>User object</code>. Thus, I will display the field lists of these two objects here. One could also find more detailed information about those fields in the <a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/tweet">official manual</a>.</p>
+<h3 id="fields-of-tweet-object">Fields of Tweet Object</h3>
+<table>
+<thead>
+<tr>
+<th>Field value</th>
+<th>Type</th>
+<th>How it can be used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id (default)</td>
+<td>string</td>
+<td>Use  this to programmatically retrieve a specific Tweet.</td>
+</tr>
+<tr>
+<td>text (default)</td>
+<td>string</td>
+<td>Keyword  extraction and sentiment analysis/classification.</td>
+</tr>
+<tr>
+<td>attachments</td>
+<td>object</td>
+<td>Understanding  the objects returned for requested expansions</td>
+</tr>
+<tr>
+<td>author_id</td>
+<td>string</td>
+<td>Hydrating  User object, sharing dataset for peer review</td>
+</tr>
+<tr>
+<td>context_annotations</td>
+<td>array</td>
+<td>Entity  recognition/extraction, topical analysis</td>
+</tr>
+<tr>
+<td>conversation_id</td>
+<td>string</td>
+<td>Use  this to reconstruct the conversation from a Tweet.</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date (ISO 8601)</td>
+<td>This  field can be used to understand when a Tweet was created and used for  time-series analysis etc.</td>
+</tr>
+<tr>
+<td>entities</td>
+<td>object</td>
+<td>Entities  are JSON objects that provide additional information about hashtags, urls,  user mentions, and cashtags associated with a Tweet. Reference each  respective entity for further details.</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>object</td>
+<td>Determine  if a Tweet is related to a named location with corresponding geo coordinates.</td>
+</tr>
+<tr>
+<td>in_reply_to_user_id</td>
+<td>string</td>
+<td>Use  this to determine if this Tweet was in reply to another Tweet.</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>string</td>
+<td>Classify  Tweets by spoken language.</td>
+</tr>
+<tr>
+<td>non_public_metrics</td>
+<td>object</td>
+<td>Use  this to determine the total number of impressions generated for the Tweet.</td>
+</tr>
+<tr>
+<td>organic_metrics</td>
+<td>object</td>
+<td>Use  this to measure organic engagement for the Tweet.</td>
+</tr>
+<tr>
+<td>possibly_sensitive</td>
+<td>boolean</td>
+<td>Studying  circulation of certain types of content.</td>
+</tr>
+<tr>
+<td>promoted_metrics</td>
+<td>object</td>
+<td>Use  this to measure engagement for the Tweet when it was promoted.</td>
+</tr>
+<tr>
+<td>public_metrics</td>
+<td>object</td>
+<td>Use  this to measure Tweet engagement.</td>
+</tr>
+<tr>
+<td>referenced_tweets</td>
+<td>array</td>
+<td>This  field can be used to understand conversational aspects of retweets etc.</td>
+</tr>
+<tr>
+<td>reply_settings</td>
+<td>string</td>
+<td>This  field allows you to determine whether conversation reply settings have been  set for the Tweet and if so, what settings have been set.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>Determine  if a Twitter user posted from the web, mobile device, or other app.</td>
+</tr>
+<tr>
+<td>withheld</td>
+<td>object</td>
+<td><a href="https://help.twitter.com/en/rules-and-policies/tweet-withheld-by-country">When   present, contains withholding details for withheld   content.</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fields-of-user-object">Fields of User Object</h3>
+<table>
+<thead>
+<tr>
+<th>Field value</th>
+<th>Type</th>
+<th>How it can be used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id (default)</td>
+<td>string</td>
+<td>Use  this to programmatically retrieve information about a specific Twitter  user.</td>
+</tr>
+<tr>
+<td>name (default)</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>username (default)</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>date (ISO 8601)</td>
+<td>Can  be used to determine how long a someone has been using Twitter</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>entities</td>
+<td>object</td>
+<td>Entities  are JSON objects that provide additional information about hashtags, urls,  user mentions, and cashtags associated with the description. Reference each  respective entity for further details.</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>pinned_tweet_id</td>
+<td>string</td>
+<td>Determine  the Tweet pinned to the top of the user’s profile. Can potentially be used to  determine the user’s language.</td>
+</tr>
+<tr>
+<td>profile_image_url</td>
+<td>string</td>
+<td>Can  be used to download this user&rsquo;s profile image.</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>public_metrics</td>
+<td>object</td>
+<td>Can  potentially be used to determine a Twitter user’s reach or influence,  quantify the user’s range of interests, and the user’s level of engagement on  Twitter.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>A  URL provided by a Twitter user in their profile. This could be a homepage,  but is not always the case.</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>boolean</td>
+<td>Indicates  whether or not this Twitter user has a verified account. A verified account  lets people know that an account of public interest is authentic.</td>
+</tr>
+<tr>
+<td>withheld</td>
+<td>object</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary-and-upcoming-posts">Summary and Upcoming Posts</h2>
+<p>In this blogpost, I have introduced the necessary background information about Twitter API v2. To give the readers a big picture about how Twitter API can serve for one&rsquo;s research project, I will replicate the Tweets extraction process of Bartov, Faurel, and Mohanram (2018, TAR) aforementioned in <a href="https://mengjiexu.com/post/door-to-twitter-analysis-ii/">the next blogpost</a>.</p>
+<h2 id="references">References</h2>
+<p>Bartov, Eli, Lucile Faurel, and Partha S. Mohanram. &ldquo;Can Twitter help predict firm-level earnings and stock returns?.&rdquo; <em>The Accounting Review</em> 93.3</p>
+<p>Blankespoor, Elizabeth, Gregory S. Miller, and Hal D. White. &ldquo;The role of dissemination in market liquidity: Evidence from firms&rsquo; use of Twitter™.&rdquo; <em>The Accounting Review</em> 89.1 (2014): 79-112.</p>
+<p>Jung, Michael J., et al. &ldquo;Do firms strategically disseminate? Evidence from corporate use of social media.&rdquo; <em>The Accounting Review</em> 93.4 (2018): 225-252.</p>
+<p>Lee, Lian Fen, Amy P. Hutton, and Susan Shu. &ldquo;The role of social media in the capital market: Evidence from consumer product recalls.&rdquo; <em>Journal of Accounting Research</em> 53.2 (2015): 367-404.</p>
+<p>Tang, Vicki Wei. &ldquo;Wisdom of crowds: Cross‐sectional variation in the informativeness of third‐party‐generated product information on Twitter.&rdquo; <em>Journal of Accounting Research</em> 56.3 (2018): 989-1034.</p>
+<p><a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api">https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api</a></p>
+<p><a href="https://stackoverflow.com/questions/7501678/set-environment-variables-on-mac-os-x-lion">https://stackoverflow.com/questions/7501678/set-environment-variables-on-mac-os-x-lion</a></p>
+<p><a href="https://github.com/twitterdev/Twitter-API-v2-sample-code">https://github.com/twitterdev/Twitter-API-v2-sample-code</a></p>
+<p><a href="https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/">https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/</a></p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/door-to-twitter-analysis-ii/" data-toggle="tooltip" data-placement="top" title="Twitter API: Door To Social Media Analysis II">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/deal-with-high-frequency-data/" data-toggle="tooltip" data-placement="top" title="Extract High-frequency Data via PC SAS">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

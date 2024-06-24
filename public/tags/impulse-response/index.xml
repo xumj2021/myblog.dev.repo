@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Impulse Response on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/impulse-response/</link>
+    <description>Recent content in Impulse Response on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/impulse-response/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Theory for the information-based decomposition of stock price</title>
+      <link>https://xumj2021.github.io/post/an-information-based-decomposition-of-stock-price/</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/an-information-based-decomposition-of-stock-price/</guid>
+      <description>Motivation Brogaard et al. (2022, RFS) proposed a new variance decomposition method (hereafter I call it Brogaard decomposition) for stock price volatility, which might be a powerful tool for both accounting and market micro-structure scholars to evaluate the impacts of informatinonal shocks on stock price informativeness. In this blog, I will introduce the potential and intuition of Brogaard decomposition, as well as the theory techniques embedded in this decomposition method.</description>
+    </item>
+  </channel>
+</rss>

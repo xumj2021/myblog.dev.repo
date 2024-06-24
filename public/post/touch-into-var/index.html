@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://assets.bbhub.io/image/v1/resize?type=auto&amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2F385236110.jpg">
+    <meta property="twitter:image" content="https://assets.bbhub.io/image/v1/resize?type=auto&amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2F385236110.jpg" />
+    
+
+    
+    <meta name="title" content="Touch into the Vector Auto Regression Model" />
+    <meta property="og:title" content="Touch into the Vector Auto Regression Model" />
+    <meta property="twitter:title" content="Touch into the Vector Auto Regression Model" />
+    
+
+    
+    <meta name="description" content="The logics of VAR, Impulse Reaction, and Variance Decomposition">
+    <meta property="og:description" content="The logics of VAR, Impulse Reaction, and Variance Decomposition" />
+    <meta property="twitter:description" content="The logics of VAR, Impulse Reaction, and Variance Decomposition" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/touch-into-var/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://assets.bbhub.io/image/v1/resize?type=auto&url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2F385236110.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/time-series" title="Time series">
+                            Time series
+                        </a>
+                        
+                        <a class="tag" href="/tags/var" title="VAR">
+                            VAR
+                        </a>
+                        
+                    </div>
+                    <h1>Touch into the Vector Auto Regression Model</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Tuesday, November 22, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>In <a href="https://mengjiexu.com/post/an-information-based-decomposition-of-stock-price/">my last blog</a>, I recognized the potential of the information-based variance decomposition method introduced by Brogaard et al. (2022, RFS) and showed interests of applying this method into my own research.</p>
+<p>As replicating Brogaard et al. (2022, RFS) requires some manipulations on the VAR estimation outputs, I took some time to figure out the theory and estimation of the reduced-form VAR coefficients, Impulse response functions (IRFs), structural IRFS, orthogonalized IRFs, and variance decomposition.</p>
+<p>I summarized what&rsquo;ve got in three blogs. In <a href="https://mengjiexu.com/post/touch-into-var/">the first blog</a>, I  show the basic logics of VAR model with the simplest 2-variable, 1-lag VAR model. In <a href="https://mengjiexu.com/post/common-practice-of-var-estimation-in-stata/">the second blog</a>, I show how to use <code>var</code> and <code>svar</code> commands to conveniently estimate the VAR model in Stata. In <a href="https://mengjiexu.com/post/manually-replicate-statas-practice-in-estimations-of-var-irfs-and-variance-decomposition/">the third blog</a>, I will dig deeper, show the theoretical definitions and calculation formula of major outputs in VAR model, and manually calculate them in Stata to thourougly uncover the black box of the  VAR estimation.</p>
+<p>This blog is the first one among my VAR blog series. In this blog, I summarized the logics of VAR, Impulse Reaction, and Variance Decomposition with the simplest 2-variable, 1-lag VAR model. The following summary is based on PP.264-PP.311 of Enders (2004).</p>
+<h2 id="var-in-structural-and-reduced-form">VAR in structural and reduced form</h2>
+<p>Consider <em>a bivariate structural VAR system</em> composed by two \(I(0)\) series \({y_{t}}\) and \({z_{t}}\)</p>
+<p>$$
+\begin{aligned}
+y_t&amp;=b_{10}-b_{12} z_t+\gamma_{11} y_{t-1}+\gamma_{12} z_{t-1}+\epsilon_{y t} \\\
+z_t&amp;=b_{20}-b_{21} y_t+\gamma_{21} y_{t-1}+\gamma_{22} z_{t-1}+\epsilon_{z t}
+\end{aligned} \tag{1}
+$$</p>
+<p>where \({\epsilon_{y t}}\) and \({\epsilon_{z t}}\) are uncorrelated white-noise disturbances.</p>
+<p><em>This is not a VAR in reduced form since \(y_{t}\)  and \(z_{t}\) has a contemporaneous effect on each other</em>.</p>
+<p>Represent Equation (1) in a compact form</p>
+<p>$$
+B x_t=\Gamma_0+\Gamma_1 x_{t-1}+\epsilon_t \tag{2}
+$$</p>
+<p>where</p>
+<p>$$
+\begin{aligned}
+&amp;B=\left[\begin{array}{cc}
+1 &amp; b_{12} \\\
+b_{21} &amp; 1
+\end{array}\right], \quad x_t=\left[\begin{array}{l}
+y_t \\\
+z_1
+\end{array}\right], \quad \Gamma_0=\left[\begin{array}{l}
+b_{10} \\\
+b_{20}
+\end{array}\right] \\\
+&amp;\Gamma_1=\left[\begin{array}{ll}
+\gamma_{11} &amp; \gamma_{12} \\\
+\gamma_{21} &amp; \gamma_{22}
+\end{array}\right], \quad \epsilon_t=\left[\begin{array}{l}
+\epsilon_{y t} \\\
+\epsilon_{z t}
+\end{array}\right] \\\
+&amp;
+\end{aligned}
+$$</p>
+<p><em>Pre-multiply \(B^{-1}\) to obtain VAR model in standard (reduced) form</em></p>
+<p>$$
+x_t=A_0+A_1 x_{r-1}+e_t \tag{3}
+$$</p>
+<p>where</p>
+<p>$$
+\begin{aligned}&amp;A_0=B^{-1} \Gamma_0 \\\
+&amp;A_1=B^{-1} \Gamma_1 \\\
+&amp;e_1=B^{-1} \epsilon_1\end{aligned}
+$$</p>
+<p>in this special case</p>
+<p>$$
+B^{-1}=\frac{1}{1-b_{12} b_{21}}\left[\begin{array}{cc}
+1 &amp; -b_{12} \\\
+-b_{21} &amp; 1
+\end{array}\right]
+$$</p>
+<p>and thus</p>
+<p>$$
+\left[\begin{array}{l}
+e_{y t} \\\
+e_{z t}
+\end{array}\right]=B^{-1}\left[\begin{array}{l}
+\epsilon_{y t} \\\
+\epsilon_{z t}
+\end{array}\right]=\left[\begin{array}{l}
+\left(\epsilon_{y t}-b_{12} \epsilon_{2 t}\right) /\left(1-b_{12} b_{21}\right) \\\
+\left(\epsilon_{z t}-b_{21} \epsilon_{y t}\right) /\left(1-b_{12} b_{21}\right)
+\end{array}\right]\tag{4}
+$$</p>
+<h3 id="identification-logic">Identification logic</h3>
+<ul>
+<li>
+<p>as in the reduced form, the right hand side only contains predetermined variables and the error terms are assumed to be serially uncorrelated with constant variance, <em>each equation in the reduced-form system can be estimated using OLS.</em></p>
+<ul>
+<li>
+<p>the latter feature is obtained because the disturbance terms are assumed to be uncorrelated white noise series, which results</p>
+<p>$$
+E e_{1t} e_{1 t-i}=E\frac{\left[\left(\epsilon_{y t}-b_{12} \epsilon_{2 t}\right)\left(\epsilon_{y t-i}-b_{12} \epsilon_{z t-i}\right)\right]}{\left(1-b_{12} b_{21}\right)^2}=0,
+\forall i \neq 0
+$$</p>
+</li>
+<li>
+<p>the OLS estimation is proved to be consistent and asymptotically efficient in reduced form</p>
+</li>
+</ul>
+</li>
+<li>
+<p>however, we care about how does the innovations cause contemporaneous changes in focal variables</p>
+</li>
+<li>
+<p>thus, the typical logic of VAR estimation is to employ OLS to <em>estimate the reduced-form VAR first</em>, and then <em>back out the coefficients in the structural VAR using the parameters estimated in the reduced-form VAR</em></p>
+</li>
+</ul>
+<h3 id="identification-techniques">Identification Techniques</h3>
+<h4 id="necessity-of-adding-restrictions-for-identification">Necessity of adding restrictions for identification</h4>
+<p>Consider a first-order VAR model with \(n\) variables <em>(the identification procedure is invariant to lag length)</em>.</p>
+<p>$$
+\left[\begin{array}{ccccc}
+1 &amp; b_{12} &amp; b_{13} &amp; \ldots &amp; b_{1 n} \\\
+b_{21} &amp; 1 &amp; b_{23} &amp; \ldots &amp; b_{2 n} \\\
+\cdot &amp; . &amp; \cdot &amp; . &amp; \cdot \\\
+b_{n 1} &amp; b_{n 2} &amp; b_{n 3} &amp; \ldots &amp; 1
+\end{array}\right]\left[\begin{array}{l}
+x_{11} \\\
+x_{2 t} \\\
+\cdots \\\
+x_{n t}
+\end{array}\right]=\left[\begin{array}{c}
+b_{10} \\\
+b_{20} \\\
+\ldots \\\
+b_{n 0}
+\end{array}\right]+\left[\begin{array}{ccccc}
+\gamma_{11} &amp; \gamma_{12} &amp; \gamma_{13} &amp; \ldots &amp; \gamma_{1 n} \\\
+\gamma_{21} &amp; \gamma_{22} &amp; \gamma_{23} &amp; \ldots &amp; \gamma_{2 n} \\\
+\cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; \cdot \\\
+\gamma_{n 1} &amp; \gamma_{n 2} &amp; \gamma_{n 3} &amp; \ldots &amp; \gamma_{n n}
+\end{array}\right]\left[\begin{array}{c}
+x_{1 t-1} \\\
+x_{2 t-1} \\\
+\ldots \\\
+x_{n t-1}
+\end{array}\right]+\left[\begin{array}{c}
+\epsilon_{1 t} \\\
+\epsilon_{2 t} \\\
+\ldots \\\
+\epsilon_{n t}
+\end{array}\right] \tag{5}
+$$
+or in compact form</p>
+<p>$$
+B x_t=\Gamma_0+\Gamma_1 x_{t-1}+\epsilon_t \tag{6}
+$$</p>
+<p>pre-multiply (5) with \(B^{-1}\) and get the reduced form</p>
+<p>$$
+x_t=B^{-1} \Gamma_0+B^{-1} \Gamma_1 x_{t-1}+B^{-1} \epsilon_t \tag{7}
+$$</p>
+<p>in practice, we use OLS to estimate each regression in system (6) and get the variance-covariance matrix \(\Sigma\)</p>
+<p>$$
+\Sigma=\left[\begin{array}{cccc}\sigma_1^2 &amp; \sigma_{12} &amp; \ldots &amp; \sigma_{1 n} \\\
+\sigma_{21} &amp; \sigma_2^2 &amp; \ldots &amp; \sigma_{2 n} \\\
+\cdot &amp; \cdot &amp; . &amp; . \\\
+\sigma_{n 1} &amp; \sigma_{n 2} &amp; \ldots &amp; \sigma_n^2\end{array}\right]
+$$</p>
+<p>since \(\Sigma\) is symmetric, we can only get \((n^2+n)/2\) distinct equations for identification.</p>
+<p>however, the identification of \(B\) needs \(n^2\) conditions.</p>
+<p>Thus, <em>we need to impose \(n^2-(n^2+n)/2=(n^2-n)/2\) restrictions to matrix \(B\) to exactly identify the structural model from an estimation of the reduce-form VAR.</em></p>
+<p>The way of adding restrictions can differ with economic contexts, but there are mainly two prevalent procedures in use.</p>
+<h4 id="sims-bernanke-procedure">Sims-Bernanke procedure</h4>
+<ul>
+<li>
+<p>this procedure is represented by Sims (1986) and Bernanke (1986).</p>
+</li>
+<li>
+<p><em>in this procedure, the scholars force all elements above the principal diagonal of \(B^{-1}\) to be 0, which is also called <strong>Cholesky decomposition</strong></em></p>
+<p>$$
+\begin{gathered}
+b_{12}=b_{13}=b_{14}=\cdots=b_{1 n}=0 \\\
+b_{23}=b_{24}=\cdots=b_{2 n}=0 \\\
+b_{34}=\cdots=b_{3 n}=0 \\\
+\cdots \\\
+b_{n-1 n}=0
+\end{gathered}
+$$</p>
+</li>
+<li>
+<p>by doing this, there are \((n^2-n)/2\) restrictions manually imposed to the matrix \(B\), which facilitates the exact identification of \(B\)</p>
+</li>
+</ul>
+<h4 id="blanchard-quach-procedure">Blanchard-Quach procedure</h4>
+<ul>
+<li>this procedure is represented by Blanchard and Quach (1989), which reconsidered the Beveridge and Nelson (1981) decomposition of real GNP into its temporary and permanent components
+<ul>
+<li>an especially useful feature of the technique is that it provides a unique <em>decomposition of an economic time series into its temporary and permanent components</em></li>
+</ul>
+</li>
+<li>differences from Sims-Bernanke procedure
+<ul>
+<li>at least one variables to be nonstationary since \(I(0)\) do not have a permanent component</li>
+<li>do not directly associate the \({\varepsilon_{1t}}\) and \({\varepsilon_{2t}}\) shocks with the \({y_t}\) and \({z_t}\) variables</li>
+</ul>
+</li>
+<li><em>the key to decomposing the \({y_t}\) sequence (or other non-stationary sequences in the VAR system) into its permanent and stationary components is to assume that at least one of the shocks has a temporary effect on the \({y_t}\) sequence, which allows the identification of the structural VAR</em></li>
+</ul>
+<h5 id="example">Example</h5>
+<ul>
+<li>
+<p>to illustrate the idea better, consider a bivariate VAR system with \({y_t}\)  being a \(I(1)\) series. write it into a VMA form as follows.</p>
+<p>$$
+\begin{aligned}
+\Delta y_t &amp;=\sum_{k=0}^{\infty} c_{11}(k) \epsilon_{1 t-k}+\sum_{k=0}^{\infty} c_{12}(k) \epsilon_{2 t-k} \\\
+z_t &amp;=\sum_{k=0}^{\infty} c_{21}(k) \epsilon_{1 t-k}+\sum_{k=0}^{\infty} c_{22}(k) \epsilon_{2 t-k}
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>the key assumption of Blanchard-Quach procedure is that <em>the cumulated effect of the shock \({\varepsilon_{1t}}\) on the \(\Delta y_t\) sequence must be equal to zero</em>, for any possible realization of the \({\varepsilon_{1t}}\) sequence</p>
+<p>$$
+\sum_{k=0}^{\infty} c_{11}(k) \epsilon_{1 t-k}=0
+$$</p>
+</li>
+<li>
+<p>this restrictions combined with the three distinct variance-covariance parameters \(var(e_1), var(e_2), cov(e_1,e_2)\)  estimated from the reduced-form VAR can achieve the exact identification of the \(2\times2\) matrix \(B\)  in this bivariate VAR system</p>
+</li>
+</ul>
+<h3 id="impulse-response">Impulse response</h3>
+<h4 id="logic-of-impulse-response">Logic of impulse response</h4>
+<ul>
+<li>the idea of impulse response is to <em>trace the effects of a one-unit shock in \(\epsilon_{y t}\) and \(\epsilon_{z t}\) on the time paths of the \({y_{t}}\) and \({z_{t}}\) sequences</em></li>
+<li>to achieve this goal, it would be more convenient to represent \({y_{t}}\) and \({z_{t}}\) sequences using the \({\epsilon_{y t}}\) and \({\epsilon_{z t}}\) sequences, which means <em>transferring VAR to a VMA model</em></li>
+<li>to illustrate the intuition better, the derivation of the impulse response function will still be based on the bivariate VAR system</li>
+</ul>
+<h4 id="from-var-to-vma">From VAR to VMA</h4>
+<ul>
+<li>
+<p>start from the reduced-form VAR represented by equation (3)</p>
+<p>$$
+x_t=A_0+A_1 x_{r-1}+e_t
+$$</p>
+</li>
+<li>
+<p>iterate the above equation to obtain</p>
+<p>$$
+x_t =A_0+A_1\left(A_0+A_1 x_{t-2}+e_{t-1}\right)+e_t =\left(I+A_1\right) A_0+A_1^2 x_{t-2}+A_1 e_{t-1}+e_t
+$$</p>
+</li>
+<li>
+<p>after \(n\) iterations</p>
+<p>$$
+x_t=\left(I+A_1+\cdots+A_1^n\right) A_0+\sum_{i=0}^n A_1^i e_{t-i}+A_1^{n+1} x_{t-n-1}
+$$</p>
+</li>
+<li>
+<p>if \(x_t\) should converge, then the term \(A^n\) needs to vanish as \(n\) approaches infinity</p>
+</li>
+<li>
+<p>assume the stability condition is met, we can write the VAR model in a VMA form</p>
+<p>$$
+x_t=\mu+\sum_{i=0}^{\infty} A_1^i e_{t-i} \tag{8}
+$$</p>
+<p>where \(\mu=\left[\begin{array}{ll}\bar{y} &amp; \bar{z}\end{array}\right]^{\prime}\)</p>
+<p>and</p>
+<p>$$
+\begin{aligned}&amp;\bar{y}=\left[a_{10}\left(1-a_{22}\right)+a_{12} a_{20}\right] / \Delta, \quad \bar{z}=\left[a_{20}\left(1-a_{11}\right)+a_{21} a_{10}\right] / \Delta \\\
+&amp;\Delta=\left(1-a_{11}\right)\left(1-a_{22}\right)-a_{12} a_{21}\end{aligned}
+$$</p>
+<p>note that \(\mu\) can be calculated by applying the following formula</p>
+<p>$$
+I+A_1+&hellip;+A_1^n = [I-A_1]^{-1}
+$$</p>
+</li>
+</ul>
+<h4 id="from-vma-to-impulse-response-function">From VMA to impulse response function</h4>
+<ul>
+<li>
+<p>start from equation (8), which is the VMA representation of VAR model</p>
+<p>$$
+x_t=\mu+\sum_{i=0}^{\infty} A_1^i e_{t-i}
+$$</p>
+</li>
+<li>
+<p>write in a loose form</p>
+<p>$$
+\left[\begin{array}{l}
+y_t \\\
+z_t
+\end{array}\right]=\left[\begin{array}{l}
+\bar{y} \\\
+\bar{z}
+\end{array}\right]+\sum_{i=0}^{\infty}\left[\begin{array}{ll}
+a_{11} &amp; a_{12} \\\
+a_{21} &amp; a_{22}
+\end{array}\right]^i\left[\begin{array}{l}
+e_{1 t-i} \\\
+e_{2 t-i}
+\end{array}\right] \tag{9}
+$$</p>
+</li>
+<li>
+<p>recall from equation (4) the relationship between reduced-form error term and the innovations</p>
+<p>$$
+\left[\begin{array}{l}
+e_{1 t} \\\
+e_{2 t}
+\end{array}\right]=B^{-1}\left[\begin{array}{l}
+\epsilon_{y t} \\\
+\epsilon_{z t}
+\end{array}\right]=\frac{1}{1-b_{12} b_{21}}\left[\begin{array}{cc}
+1 &amp; -b_{12} \\\
+-b_{21} &amp; 1
+\end{array}\right]\left[\begin{array}{c}
+\epsilon_{y t} \\\
+\epsilon_{z t}
+\end{array}\right] \tag{10}
+$$</p>
+</li>
+<li>
+<p>the VMA representation of VAR model can be rewritten in terms of \({\epsilon_{y t}}\) and \({\epsilon_{z t}}\) sequences by plugging (10) into (9), which is also called the impulse response functions</p>
+</li>
+<li>
+<p>use \(\phi_{ij}(k)\) to represent the impulse response coefficients</p>
+<p>$$
+\left[\begin{array}{l}
+y_t \\\
+z_t
+\end{array}\right]=\left[\begin{array}{l}
+\bar{y} \\\
+\bar{z}
+\end{array}\right]+\sum_{i=0}^{\infty}\left[\begin{array}{ll}
+\phi_{11}(i) &amp; \phi_{12}(i) \\\
+\phi_{21}(i) &amp; \phi_{22}(i)
+\end{array}\right]\left[\begin{array}{l}
+\epsilon_{y t-i} \\\
+\epsilon_{z t-i}
+\end{array}\right]
+$$</p>
+</li>
+<li>
+<p>in a compact format</p>
+<p>$$
+x_t=\mu+\sum_{i=0}^{\infty} \phi_i \epsilon_{t-i} \tag{11}
+$$</p>
+</li>
+<li>
+<p>the accumulated effects of unit impulses in \(\epsilon_{y t}\) and \(\epsilon_{z t}\) can be obtained by appropriate summation of the coefficients of the impulse response functions</p>
+<ul>
+<li>
+<p>for example, after \(n\) periods, the cumulated sum of effects of \(\epsilon_{zt}\) on the \({y_t}\) sequence is</p>
+<p>$$
+\sum_{i=0}^n \phi_{12}(i)
+$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="confidence-intervals-of-impulse-response-coefficients">Confidence intervals of impulse response coefficients</h4>
+<ul>
+<li>draw \(T\), which is the sample size, random numbers so as to represent \({\epsilon}\) sequence and then use it combined with the naive estimation of reduced-form VAR to construct \({\hat{x}}\) series, then estimate the impulse response function</li>
+<li>repeat the above procedure for 1000 times or more and use the realized impulse response coefficients to get bootstrap confidence intervals</li>
+</ul>
+<h3 id="variance-decomposition">Variance decomposition</h3>
+<ul>
+<li>
+<p>start from equation (9), which is the impulse response equations</p>
+<p>$$
+x_t=\mu+\sum_{i=0}^{\infty} \phi_i \epsilon_{t-i}
+$$</p>
+</li>
+<li>
+<p>suppose now we are forecast the \(n\) periods after \(t\)</p>
+<p>$$
+x_{t+n}=\mu+\sum_{i=0}^{\infty} \phi_i \epsilon_{t+n-i}
+$$</p>
+</li>
+<li>
+<p>as both \({\epsilon_{y t}}\) and \({\epsilon_{z t}}\) are white-noise disturbances, the \(n\)-period forecast error is</p>
+<p>$$
+x_{t+n}-E_t x_{t+n}=\sum_{i=0}^{n-1} \phi_i \epsilon_{t+n-i} \tag{12}
+$$</p>
+</li>
+<li>
+<p>take the \({y_t}\) sequence as an example, the \(n\)-period forecast error is</p>
+<p>$$
+\begin{gathered}
+y_{t+n}-E_t y_{t+n}=\phi_{11}(0) \epsilon_{y t+n}+\phi_{11}(1) \epsilon_{y t+n-1}+\cdots+\phi_{11}(n-1) \epsilon_{y t+1} \\\
++\phi_{12}(0) \epsilon_{z t+n}+\phi_{12}(1) \epsilon_{z t+n-1}+\cdots+\phi_{12}(n-1) \epsilon_{z t+1}
+\end{gathered}
+$$</p>
+</li>
+<li>
+<p>denote the \(n\)-step-ahead forecast error variance of \(y_{t+n}\) as \(\sigma_y(n)^2\)</p>
+<p>$$
+\sigma_y(n)^2=\sigma_y^2\left[\phi_{11}(0)^2+\phi_{11}(1)^2+\cdots+\phi_{11}(n-1)^2\right]+\sigma_z^2\left[\phi_{12}(0)^2+\phi_{12}(1)^2+\cdots+\phi_{12}(n-1)^2\right]
+$$</p>
+</li>
+<li>
+<p>thus, it’s possible to decompose the \(n\)-step-ahead forecast error variance into proportions due to innovations in \({\epsilon_{y t}}\) and \({\epsilon_{z t}}\) respectively</p>
+<p>$$
+\begin{gathered}\frac{\sigma_y^2\left[\phi_{11}(0)^2+\phi_{11}(1)^2+\cdots+\phi_{11}(n-1)^2\right]}{\sigma_y(n)^2} \\\
+\frac{\sigma_z^2\left[\phi_{12}(0)^2+\phi_{12}(1)^2+\cdots+\phi_{12}(n-1)^2\right]}{\sigma_y(n)^2}\end{gathered}
+$$</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ol>
+<li>Enders, Walter. &ldquo;Applied Econometric Time Series. 2th ed.&rdquo; <em>New York (US): University of Alabama</em> (2004).</li>
+</ol>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/an-information-based-decomposition-of-stock-price/" data-toggle="tooltip" data-placement="top" title="Theory for the information-based decomposition of stock price">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/common-practice-of-var-estimation-in-stata/" data-toggle="tooltip" data-placement="top" title="Estimations of VAR, IRFs, and Variance Decomposition in Stata">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

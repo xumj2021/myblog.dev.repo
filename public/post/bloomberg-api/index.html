@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://assets.bbhub.io/image/v1/convert?type=auto&amp;amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2FCG_FX_SB_09_cam02_00061.jpg">
+    <meta property="twitter:image" content="https://assets.bbhub.io/image/v1/convert?type=auto&amp;amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2FCG_FX_SB_09_cam02_00061.jpg" />
+    
+
+    
+    <meta name="title" content="Extract Mass Data Via Bloomberg API" />
+    <meta property="og:title" content="Extract Mass Data Via Bloomberg API" />
+    <meta property="twitter:title" content="Extract Mass Data Via Bloomberg API" />
+    
+
+    
+    <meta name="description" content="Operation Environment Preparation and Data Extracting">
+    <meta property="og:description" content="Operation Environment Preparation and Data Extracting" />
+    <meta property="twitter:description" content="Operation Environment Preparation and Data Extracting" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/bloomberg-api/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://assets.bbhub.io/image/v1/convert?type=auto&amp;url=https%3A%2F%2Fassets.bbhub.io%2Fprofessional%2Fsites%2F10%2FCG_FX_SB_09_cam02_00061.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/bloomberg" title="Bloomberg">
+                            Bloomberg
+                        </a>
+                        
+                        <a class="tag" href="/tags/api" title="API">
+                            API
+                        </a>
+                        
+                    </div>
+                    <h1>Extract Mass Data Via Bloomberg API</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu and Qi Zhang
+                             
+                            on 
+                            Thursday, July 8, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>Bloomberg has integrated massive data from various of data vendors. However, as a typical finance terminal designed for traders,  it&rsquo;s technically hard to use as a database  for scholars. This blog will introduce how to prepare your Bloomberg Terminal for massive data extracting and how to access data via Bloomberg API.</p>
+<h2 id="deploy-operation-enviornment">Deploy Operation Enviornment</h2>
+<h3 id="bloomberg-access">Bloomberg Access</h3>
+<ul>
+<li>
+<p>Get a Bloomberg Terminal and of course a valid Bloomberg Account</p>
+</li>
+<li>
+<p>Make sure the Bloomberg Add-in in Excel in this terminal works</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp2PNG.PNG" width=800 height=300>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Bloomberg Add-in in Excel</div>
+</center>
+</li>
+</ul>
+<h3 id="install-blommberg-c-sdk">Install Blommberg C++ SDK</h3>
+<ul>
+<li>
+<p>Visit <a href="https://www.bloomberg.com/professional/support/api-library/">Bloomberg API Library</a> and downlaod C++ Supported Release</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp0.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 2: Bloomberg API Library</div>
+</center>
+</li>
+<li>
+<p>Copy <code>blpapi3_32.dll</code> and <code>blpapi3_64.dll</code> from the <code>lib</code> folder of downloaded zip file (typically named <code>blpapi_cpp_3.16.6.1-windows.zip</code>) to Bloomberg <code>BLPAPI_ROOT</code> folder in the terminal (usually <code>C:/blp/DAPI</code>). If any note saying the files would be replaced appears, confirm the replacement.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp3.PNG" width=800 height=420>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 3: Replace Files in BlPAPI_Root</div>
+</center>
+</li>
+<li>
+<p>Please make sure the Bloomberg App is closed before replacing those two root files.</p>
+</li>
+</ul>
+<h3 id="install-pythonanaconda">Install Python/Anaconda</h3>
+<p>As Anaconda has integrated the majority of most frequently used Python packages, I would recommend installing Anaconda as a shortcut. If you choose to purely install Python, remember to click the option&quot; Add Python into Enviornment Path&quot; when installing to make sure your later procedures easier.</p>
+<p>Suppose you&rsquo;ve already installed Anaconda, launch the <code>cmd</code> from the navigator panel (or directly from the start menu).</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp4.PNG" width=800 height=480>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 4: Install Anaconda</div>
+</center>
+<h3 id="install-necessary-packages">Install Necessary Packages</h3>
+<p>Type the following orders in the <code>cmd</code> window you launched from Anaconda Navigator.</p>
+<ul>
+<li>
+<p>Install Bloomberg official Python API</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pip install blpapi --index-url<span style="color:#f92672">=</span>https://bcms.bloomberg.com/pip/simple/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Install <code>numpy</code>, <code>pandas</code>, <code>ruamel.yaml</code> and <code>payarrow</code>. As Anaconda has integrated <code>numpy</code> and <code>pandas</code>, we only need to install the last two packages.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#111">conda</span> <span style="color:#111">install</span> <span style="color:#111">ruamel</span><span style="color:#111">.</span><span style="color:#111">yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">conda</span> <span style="color:#111">install</span> <span style="color:#111">pyarrow</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Install a third-party package that enables better data extracting experience <code>xbbg</code></p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#111">pip</span> <span style="color:#111">install</span> <span style="color:#111">xbbg</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="login-in-bloomberg-terminal">Login in Bloomberg Terminal</h3>
+<p>This steps activates your access to Bloomberg data and enables the following data extracting.</p>
+<h2 id="test-api">Test API</h2>
+<p>Type <code>python</code> in the <code>cmd</code> window, you will enter the Python enviornment. If you enter the following code and get the same result as mine, that means you&rsquo;ve deployed the operation enviornment for Bloomberg API successfully. All of the following examples are obtained from the <a href="https://github.com/alpha-xone/xbbg">Github Page of <code>xbbg</code></a>.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#111">In</span> <span style="color:#111">[</span><span style="color:#ae81ff">1</span><span style="color:#111">]:</span> <span style="color:#f92672">from</span> <span style="color:#111">xbbg</span> <span style="color:#f92672">import</span> <span style="color:#111">blp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>BDP</code> example:</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#111">In</span> <span style="color:#111">[</span><span style="color:#ae81ff">2</span><span style="color:#111">]:</span> <span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdp</span><span style="color:#111">(</span><span style="color:#111">tickers</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;NVDA US Equity&#39;</span><span style="color:#111">,</span> <span style="color:#111">flds</span><span style="color:#f92672">=</span><span style="color:#111">[</span><span style="color:#d88200">&#39;Security_Name&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;GICS_Sector_Name&#39;</span><span style="color:#111">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Out[2]:
+</span></span><span style="display:flex;"><span>               security_name        gics_sector_name
+</span></span><span style="display:flex;"><span>NVDA US Equity   NVIDIA Corp  Information Technology
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>BDP</code> with overrides:</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#111">In</span> <span style="color:#111">[</span><span style="color:#ae81ff">3</span><span style="color:#111">]:</span> <span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdp</span><span style="color:#111">(</span><span style="color:#d88200">&#39;AAPL US Equity&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;Eqy_Weighted_Avg_Px&#39;</span><span style="color:#111">,</span> <span style="color:#111">VWAP_Dt</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;20181224&#39;</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Out[3]:
+</span></span><span style="display:flex;"><span>                eqy_weighted_avg_px
+</span></span><span style="display:flex;"><span>AAPL US Equity               148.75
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>BDH</code> example:</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#111">In</span> <span style="color:#111">[</span><span style="color:#ae81ff">4</span><span style="color:#111">]:</span> <span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdh</span><span style="color:#111">(</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span>     <span style="color:#111">tickers</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;SPX Index&#39;</span><span style="color:#111">,</span> <span style="color:#111">flds</span><span style="color:#f92672">=</span><span style="color:#111">[</span><span style="color:#d88200">&#39;high&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;low&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;last_price&#39;</span><span style="color:#111">],</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span>     <span style="color:#111">start_date</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2018-10-10&#39;</span><span style="color:#111">,</span> <span style="color:#111">end_date</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2018-10-20&#39;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span> <span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-11">11</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Out[4]:
+</span></span><span style="display:flex;"><span>           SPX Index
+</span></span><span style="display:flex;"><span>                high      low last_price
+</span></span><span style="display:flex;"><span>2018-10-10  2,874.02 2,784.86   2,785.68
+</span></span><span style="display:flex;"><span>2018-10-11  2,795.14 2,710.51   2,728.37
+</span></span><span style="display:flex;"><span>2018-10-12  2,775.77 2,729.44   2,767.13
+</span></span><span style="display:flex;"><span>2018-10-15  2,775.99 2,749.03   2,750.79
+</span></span><span style="display:flex;"><span>2018-10-16  2,813.46 2,766.91   2,809.92
+</span></span><span style="display:flex;"><span>2018-10-17  2,816.94 2,781.81   2,809.21
+</span></span><span style="display:flex;"><span>2018-10-18  2,806.04 2,755.18   2,768.78
+</span></span><span style="display:flex;"><span>2018-10-19  2,797.77 2,760.27   2,767.78
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>BDH</code> example with Excel compatible inputs:</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#111">In</span> <span style="color:#111">[</span><span style="color:#ae81ff">5</span><span style="color:#111">]:</span> <span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdh</span><span style="color:#111">(</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span>     <span style="color:#111">tickers</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;SHCOMP Index&#39;</span><span style="color:#111">,</span> <span style="color:#111">flds</span><span style="color:#f92672">=</span><span style="color:#111">[</span><span style="color:#d88200">&#39;high&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;low&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;last_price&#39;</span><span style="color:#111">],</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span>     <span style="color:#111">start_date</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2018-09-26&#39;</span><span style="color:#111">,</span> <span style="color:#111">end_date</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;2018-10-20&#39;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span>     <span style="color:#111">Per</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;W&#39;</span><span style="color:#111">,</span> <span style="color:#111">Fill</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;P&#39;</span><span style="color:#111">,</span> <span style="color:#111">Days</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;A&#39;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">...</span><span style="color:#111">:</span> <span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Out[5]:
+</span></span><span style="display:flex;"><span>           SHCOMP Index
+</span></span><span style="display:flex;"><span>                   high      low last_price
+</span></span><span style="display:flex;"><span>2018-09-28     2,827.34 2,771.16   2,821.35
+</span></span><span style="display:flex;"><span>2018-10-05     2,827.34 2,771.16   2,821.35
+</span></span><span style="display:flex;"><span>2018-10-12     2,771.94 2,536.66   2,606.91
+</span></span><span style="display:flex;"><span>2018-10-19     2,611.97 2,449.20   2,550.47
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="an-example--extract-esg-disclosure-scores">An Example : Extract ESG Disclosure Scores</h2>
+<p>Suppose we want to extract the <code>ESG Disclosure Score</code> for a list of 8000 securities via API. A very first obstacle is that we have no idea what does this variable is named in API and which function we should use to request the data. Thus, the first step is to obtain all those information you demand by building an example spreadsheet through Bloomberg Excel Add-in.</p>
+<h3 id="get-the-function-name-and-key-parameters">Get The Function Name and Key Parameters</h3>
+<p>Click the <code>Spreadsheet Builder</code> in Bloomberg Excel Add-in. Click <code>Historical Data Table</code>.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp5.PNG" width=800 height=700>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 5: Open Spreadsheet Builder</div>
+</center>
+<p>You can randomly pick one (or more) security. I would choose Apple (<code>AAPL</code>) here as an example. Then there appears a window where you can select fields you want.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp6.PNG" width=800 height=700>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Select Fields</div>
+</center>
+<p>Then you can select the data range and periodicity. For variables like <code>ESG Disclosure Score</code>, we typically choose &ldquo;Yearly&rdquo;.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp7.PNG" width=800 height=750>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 7: Select Data Range and Periodicity</div>
+</center>
+<p>Finally, you will obtain the results. Click the cell exactly below <code>Dates</code>, you will get</p>
+<ul>
+<li>Function <code>bdh</code></li>
+<li>Variable name <code>ESG_DISCLOSURE_SCORE</code></li>
+<li>Equity Name <code>APPL US Equity</code></li>
+<li>Start Date <code>1/01/2010</code></li>
+<li>End Date <code>8/07/2021</code></li>
+<li>Periodicity <code>Per=Y</code></li>
+</ul>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp8.PNG" width=600 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 8: Find Out the Variable Names in API</div>
+</center>
+<p>With the above information, you can construct the function you need for extracting data via API.</p>
+<h3 id="code">Code</h3>
+<h4 id="purely-extract-single-variable">Purely Extract Single Variable</h4>
+<p>In this case, you only need to</p>
+<ul>
+<li>Prepare a cusip list <code>cusiplist.xlsx</code></li>
+<li>Customize the key parameters as you need
+<ul>
+<li>Searching start date <code>date_from</code></li>
+<li>Searching end date <code>date_until</code></li>
+<li>Searching variable name <code>target</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-14">14</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Py" data-lang="Py"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">xbbg</span> <span style="color:#f92672">import</span> <span style="color:#111">blp</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_excel</span><span style="color:#111">(</span><span style="color:#d88200">&#39;cusiplist.xlsx&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">date_from</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;20090101&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">date_until</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;20210630&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">target</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;ESG_DISCLOSURE_SCORE&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">for</span> <span style="color:#111">cusip</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">df_index</span><span style="color:#111">[</span><span style="color:#d88200">&#39;cusip&#39;</span><span style="color:#111">]):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#f92672">=</span><span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdh</span><span style="color:#111">(</span><span style="color:#111">tickers</span><span style="color:#f92672">=</span><span style="color:#111">cusip</span><span style="color:#111">,</span><span style="color:#111">flds</span><span style="color:#f92672">=</span><span style="color:#111">target</span><span style="color:#111">,</span><span style="color:#111">start_date</span><span style="color:#f92672">=</span><span style="color:#111">date_from</span><span style="color:#111">,</span><span style="color:#111">end_date</span><span style="color:#f92672">=</span><span style="color:#111">date_until</span><span style="color:#111">,</span>\
+</span></span><span style="display:flex;"><span>    <span style="color:#111">Per</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;Y&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#39;ESG_Score_Single.csv&#39;</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="extract-multiple-variables">Extract Multiple Variables</h4>
+<p>As the institutional quota of request is monthly limited, it would be more efficient to request multiple variables together. In this case, you need to deal with a tricky situation. Suppose you request 7 variables for  each firm, but some firm only has 4 variables valid while others have 5 variables valid. The distribution is random. API only returns the valid columns, which means the size of the returned dataframe and the order of the variable names could be random.</p>
+<p>To deal with this situation, I write a function <code>prepare()</code> to pre-specify an order for all the requested variables to make sure the data returned for each variable should be written to the pre-specified column</p>
+<ul>
+<li>
+<p>For example, the data returned for <code>SOCIAL_SCORE</code> is always written to the 3rd column while the data returned for <code>ENVIRON_DISCLOSURE_SCORE</code> is always written to the 6th column</p>
+</li>
+<li>
+<p>If there is no data returned for a variable during one request, then write a blank stirng <code>&quot;&quot;</code> to the respect column</p>
+</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-54">54</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">xbbg</span> <span style="color:#f92672">import</span> <span style="color:#111">blp</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_excel</span><span style="color:#111">(</span><span style="color:#d88200">&#39;cusiplist.xlsx&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">date_from</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;20090101&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">date_until</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;20210630&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">target</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;ESG_DISCLOSURE_SCORE&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;SOCIAL_SCORE&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;ENVIRONMENTAL_SCORE&#39;</span><span style="color:#111">,</span>\
+</span></span><span style="display:flex;"><span>          <span style="color:#d88200">&#39;SOCIAL_DISCLOSURE_SCORE&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;ENVIRON_DISCLOSURE_SCORE&#39;</span><span style="color:#111">,</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#d88200">&#39;GOVNCE_DISCLOSURE_SCORE&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;ESG_RISK_SCR_MOMENTUM&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">prepare</span><span style="color:#111">(</span><span style="color:#111">temp</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">cols</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">i</span><span style="color:#111">[</span><span style="color:#ae81ff">1</span><span style="color:#111">]</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">temp</span><span style="color:#f92672">.</span><span style="color:#111">columns</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">diff</span> <span style="color:#f92672">=</span> <span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">target</span><span style="color:#111">)</span> <span style="color:#f92672">-</span> <span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">cols</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">diffindex</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">target</span><span style="color:#f92672">.</span><span style="color:#111">index</span><span style="color:#111">(</span><span style="color:#111">i</span><span style="color:#111">)</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">diff</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">leftindex</span> <span style="color:#f92672">=</span> <span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">range</span><span style="color:#111">(</span><span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">target</span><span style="color:#111">)))</span> <span style="color:#f92672">-</span> <span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">diffindex</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">dictt</span> <span style="color:#f92672">=</span> <span style="color:#111">list</span><span style="color:#111">(</span><span style="color:#111">zip</span><span style="color:#111">(</span><span style="color:#111">range</span><span style="color:#111">(</span><span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">cols</span><span style="color:#111">)),</span> <span style="color:#111">leftindex</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span><span style="color:#111">([</span><span style="color:#111">cols</span><span style="color:#111">,</span> <span style="color:#111">dictt</span><span style="color:#111">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Iterate each cusip in the cusip list</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">iterrows</span><span style="color:#111">()):</span>
+</span></span><span style="display:flex;"><span>  	<span style="color:#75715e"># Obtain cusip</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">cusip</span> <span style="color:#f92672">=</span> <span style="color:#111">i</span><span style="color:#111">[</span><span style="color:#ae81ff">1</span><span style="color:#111">][</span><span style="color:#ae81ff">2</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Request data from Bloomberg API</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">temp</span> <span style="color:#f92672">=</span> <span style="color:#111">blp</span><span style="color:#f92672">.</span><span style="color:#111">bdh</span><span style="color:#111">(</span><span style="color:#111">tickers</span><span style="color:#f92672">=</span><span style="color:#111">cusip</span><span style="color:#111">,</span><span style="color:#111">flds</span><span style="color:#f92672">=</span><span style="color:#111">target</span><span style="color:#111">,</span> <span style="color:#111">start_date</span><span style="color:#f92672">=</span><span style="color:#111">date_from</span><span style="color:#111">,</span>\
+</span></span><span style="display:flex;"><span>                   <span style="color:#111">end_date</span><span style="color:#f92672">=</span><span style="color:#111">date_until</span><span style="color:#111">,</span> <span style="color:#111">Per</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;Y&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">[</span><span style="color:#111">cols</span><span style="color:#111">,</span> <span style="color:#111">dictt</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">prepare</span><span style="color:#111">(</span><span style="color:#111">temp</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#d88200">&#39;Esg_Score_Multiple&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">f</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>      	<span style="color:#75715e"># Open a csv file with mode &#39;a&#39;, which allows adding new rows</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># without covering existed rows</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">g</span> <span style="color:#f92672">=</span> <span style="color:#111">csv</span><span style="color:#f92672">.</span><span style="color:#111">writer</span><span style="color:#111">(</span><span style="color:#111">f</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Create a list with length equal to the number of requested </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># variables plus 3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">headline</span> <span style="color:#f92672">=</span><span style="color:#111">[</span><span style="color:#d88200">&#39;DATE&#39;</span><span style="color:#111">]</span><span style="color:#f92672">+</span><span style="color:#111">target</span><span style="color:#f92672">+</span><span style="color:#111">[</span><span style="color:#d88200">&#39;CUSIP&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;FIELDS&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">res</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#34;&#34;</span><span style="color:#111">]</span><span style="color:#f92672">*</span><span style="color:#111">(</span><span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">target</span><span style="color:#111">)</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Iterate each row of returned dataframe</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">row</span> <span style="color:#f92672">in</span> <span style="color:#111">temp</span><span style="color:#f92672">.</span><span style="color:#111">iterrows</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">for</span> <span style="color:#111">j</span><span style="color:#111">,</span><span style="color:#111">k</span>  <span style="color:#f92672">in</span> <span style="color:#111">dictt</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>              	<span style="color:#75715e"># Put date to the first cell</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">res</span><span style="color:#111">[</span><span style="color:#ae81ff">0</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">row</span><span style="color:#111">[</span><span style="color:#ae81ff">0</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Put variables returned by API following the</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># pre-specified order</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">res</span><span style="color:#111">[</span><span style="color:#111">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">row</span><span style="color:#111">[</span><span style="color:#ae81ff">1</span><span style="color:#111">][</span><span style="color:#111">j</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Put the identifier of security into the list</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">res</span><span style="color:#111">[</span><span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">target</span><span style="color:#111">)</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">cusip</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Put names of valid variables returned for the security</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># into the last cell of the list for cross-check</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">res</span><span style="color:#111">[</span><span style="color:#111">len</span><span style="color:#111">(</span><span style="color:#111">target</span><span style="color:#111">)</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">cols</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Write the revised list to the opened csv file</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">g</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">(</span><span style="color:#111">res</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sample-outcome">Sample Outcome</h3>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/blp9.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Sample Outcome - Multi Variables</div>
+</center>
+<h2 id="main-references">Main References</h2>
+<ul>
+<li><a href="https://github.com/alpha-xone/xbbg">https://github.com/alpha-xone/xbbg</a></li>
+<li><a href="https://www.bloomberg.com/professional/support/api-library/">https://www.bloomberg.com/professional/support/api-library/</a></li>
+</ul>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/parse-wsj-archive/" data-toggle="tooltip" data-placement="top" title="Obtain Searched Results From WSJ Website">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/connect-to-wrds-via-python/" data-toggle="tooltip" data-placement="top" title="Exploit WRDS Cloud via Python">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

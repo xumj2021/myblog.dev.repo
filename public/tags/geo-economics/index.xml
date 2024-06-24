@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geo-Economics on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/geo-economics/</link>
+    <description>Recent content in Geo-Economics on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/geo-economics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From NOAA ISD Dataset to Panel Data</title>
+      <link>https://xumj2021.github.io/post/noaa/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/noaa/</guid>
+      <description>Motivation The motivation to clean this dataset is from Mukherjee et al. (2021, JFE). In this paper, the authors documented that one can get ahead-of-announcement estimation about the storage hubs for crude oil in the US from satellite images and trade on it. This will decrease the market reaction around the release of official figures because the oil storage information has been partially revealed during the traders&amp;rsquo; arbitrage before announcement due to traders&amp;rsquo; use of satellite images.</description>
+    </item>
+  </channel>
+</rss>

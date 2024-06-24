@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EDGAR Logs on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/edgar-logs/</link>
+    <description>Recent content in EDGAR Logs on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/edgar-logs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tracing The Origins of EDGAR Downloads</title>
+      <link>https://xumj2021.github.io/post/deal-edgar-logs/</link>
+      <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/deal-edgar-logs/</guid>
+      <description>1. Introduction My research centers around how market participants act upon their perceived informational advantages over others. And because of this, I have always found it intriguing to leverage people&amp;rsquo;s digital traffic in accessing firms&amp;rsquo; EDGAR filings to capture the dynamics of market participants&amp;rsquo; information sets. During my explorations, I found IPinfo.io generously provided all the registered users with the bulk data for organization to which the IP address is registered.</description>
+    </item>
+  </channel>
+</rss>

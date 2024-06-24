@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VAR on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/var/</link>
+    <description>Recent content in VAR on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/var/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dig into Estimation of VAR Coefficients, IRFs, and Variance Decomposition in Stata</title>
+      <link>https://xumj2021.github.io/post/manually-replicate-statas-practice-in-estimations-of-var-irfs-and-variance-decomposition/</link>
+      <pubDate>Mon, 09 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/manually-replicate-statas-practice-in-estimations-of-var-irfs-and-variance-decomposition/</guid>
+      <description>Motivation While people can always use integrated commands in Stata (e.g., var and svar) to produce abundant outputs of VAR estimation, many can not confidently interpret these results without knowing how they are theoretically defined and practically calculated. Manually replicating the outputs of the Stata&amp;rsquo;s integrated commands for VAR estimation will be very helpful to resolve this issue.&#xA;In this blog, I will firstly provide the theoretical calculation formulas of reduced-form coefficients, IRFs, Structural IRFs, Orthogonalized IRFs, and Forecast Error Variance Decomposition.</description>
+    </item>
+    <item>
+      <title>Estimations of VAR, IRFs, and Variance Decomposition in Stata</title>
+      <link>https://xumj2021.github.io/post/common-practice-of-var-estimation-in-stata/</link>
+      <pubDate>Mon, 09 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/common-practice-of-var-estimation-in-stata/</guid>
+      <description>Motivation This blog is the second one of my 3 blogs about VAR model. In this blog, I will introduce how to use Stata&amp;rsquo;s integrated commands var and svar to estimate the VAR model, which is also the common practices for researchers in VAR estimation. While it has little incremental value to an extant blog Vector autoregressions in Stata written by David Schenck, this blog will serve as an important benchmark for my manual calculations of all the major VAR estimation outputs in the next blog.</description>
+    </item>
+    <item>
+      <title>Touch into the Vector Auto Regression Model</title>
+      <link>https://xumj2021.github.io/post/touch-into-var/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/touch-into-var/</guid>
+      <description>Motivation In my last blog, I recognized the potential of the information-based variance decomposition method introduced by Brogaard et al. (2022, RFS) and showed interests of applying this method into my own research.&#xA;As replicating Brogaard et al. (2022, RFS) requires some manipulations on the VAR estimation outputs, I took some time to figure out the theory and estimation of the reduced-form VAR coefficients, Impulse response functions (IRFs), structural IRFS, orthogonalized IRFs, and variance decomposition.</description>
+    </item>
+  </channel>
+</rss>

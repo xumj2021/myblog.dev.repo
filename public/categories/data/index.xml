@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/categories/data/</link>
+    <description>Recent content in Data on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/categories/data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get Insights into Workplace Environment Through the Lens of Glassdoor</title>
+      <link>https://xumj2021.github.io/post/get-insights-into-labor-market-with-glassdoor/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/get-insights-into-labor-market-with-glassdoor/</guid>
+      <description>Motivation Recently, at the request of my colleagues, I have been working on parsing the comprehensive Glassdoor dataset for 2,219 firms and gathering insights from employees residing in various states across the United States. In this blog post, I will share the detailed techniques and algorithms to fulfill this task. For readers who want to access the codes directly, please jump to this section.&#xA;Why Glassdoor Glassdoor has been offering rich insights for practitioners, stakeholders, and researchers and seems to continue to do so in the foreseeable future.</description>
+    </item>
+    <item>
+      <title>Tracing The Origins of EDGAR Downloads</title>
+      <link>https://xumj2021.github.io/post/deal-edgar-logs/</link>
+      <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/deal-edgar-logs/</guid>
+      <description>1. Introduction My research centers around how market participants act upon their perceived informational advantages over others. And because of this, I have always found it intriguing to leverage people&amp;rsquo;s digital traffic in accessing firms&amp;rsquo; EDGAR filings to capture the dynamics of market participants&amp;rsquo; information sets. During my explorations, I found IPinfo.io generously provided all the registered users with the bulk data for organization to which the IP address is registered.</description>
+    </item>
+    <item>
+      <title>Gain Insights From Organized Retail Investors in Reddit Wallstreetbets</title>
+      <link>https://xumj2021.github.io/post/deal-reedit/</link>
+      <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/deal-reedit/</guid>
+      <description>Motivation In January 2021, a group of retail investors noticed that several hedge funds had taken large short positions on GameStop&amp;rsquo;s stock, essentially betting that its price would decline. Retail investors, many of whom were part of the Reddit community Wall Street Bets (hereafter, WSB), saw an opportunity to drive up the stock&amp;rsquo;s price and squeeze the short sellers. They began buying GameStop shares en masse, causing the stock price to skyrocket.</description>
+    </item>
+    <item>
+      <title>Replicate Brogaard Stock Volatility Decomposition</title>
+      <link>https://xumj2021.github.io/post/replicate-brogaard-stock-volatility-decomposition/</link>
+      <pubDate>Tue, 10 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/replicate-brogaard-stock-volatility-decomposition/</guid>
+      <description>Introduction Having recognized the potential of the stock volatility decomposition method introduced by Brogaard et al. (2022, RFS) in my previous blog, I will show how to implement this method to empower your own research in this blog.&#xA;For readers with time constraints, the codes for implementing this variance decomposition method can be approched via this link.&#xA;As replicating Brogaard et al. (2022, RFS) requires some manipulations on the VAR estimation outputs, I took some time to figure out the theory and estimation of the reduced-form VAR coefficients, Impulse response functions (IRFs), structural IRFS, orthogonalized IRFs, and variance decomposition and summarized what I&amp;rsquo;ve got in a three-blog series about VAR.</description>
+    </item>
+    <item>
+      <title>Estimations of VAR, IRFs, and Variance Decomposition in Stata</title>
+      <link>https://xumj2021.github.io/post/common-practice-of-var-estimation-in-stata/</link>
+      <pubDate>Mon, 09 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/common-practice-of-var-estimation-in-stata/</guid>
+      <description>Motivation This blog is the second one of my 3 blogs about VAR model. In this blog, I will introduce how to use Stata&amp;rsquo;s integrated commands var and svar to estimate the VAR model, which is also the common practices for researchers in VAR estimation. While it has little incremental value to an extant blog Vector autoregressions in Stata written by David Schenck, this blog will serve as an important benchmark for my manual calculations of all the major VAR estimation outputs in the next blog.</description>
+    </item>
+    <item>
+      <title>Seeking Alpha From Market Participants&#39; Information Acquisition Actions</title>
+      <link>https://xumj2021.github.io/post/seeking-alpha-from-investor-attention/</link>
+      <pubDate>Thu, 08 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/seeking-alpha-from-investor-attention/</guid>
+      <description>Motivation Just like the trading imbalance could be a powerful signal for upcoming stock price movement, investors&amp;rsquo; information acquisition actions are also indicative for future security returns. According to Lee and So (2015), acquiring information is costly for investors and thus they only do so when the expected profits can cover the relative costs. Ceteris paribus, securities which attract more investor attention may have a higher likelihood of experiencing abnormal stock volatility from which a sophisticated investor can cultivate Alphas.</description>
+    </item>
+    <item>
+      <title>Collect Daily Level Short Sale Data From FINRA With Low Costs and Low Delay</title>
+      <link>https://xumj2021.github.io/post/collect-daily-level-short-selling-data-with-no-costs-and-no-delay/</link>
+      <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/collect-daily-level-short-selling-data-with-no-costs-and-no-delay/</guid>
+      <description>Short Sale Data Matters Short selling, by definition, occurs when an investor borrows a security and sells it on the open market, planning to buy it back later for less money. Short-sellers bet on, and profit from, a drop in a security&amp;rsquo;s price.&#xA;Being timely informed about equities&amp;rsquo; short-selling status is of interests to broad market participants. For investors, short-selling is a power signal indicating the existed or, sometimes, upcoming market sentiment, both matter a lot when making the trading decisions.</description>
+    </item>
+    <item>
+      <title>Utilize Google Search as an Integrated Data Source</title>
+      <link>https://xumj2021.github.io/post/utilize-google-search/</link>
+      <pubDate>Thu, 31 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/utilize-google-search/</guid>
+      <description>Introduction I find Google Search is a fairly nice platform as an integrated information source, especially when the information that you want has not been collected by the existed database, or - you think it&amp;rsquo;s not worthwhile to pay for it.&#xA;For example, in my last project, I need to collect firms&amp;rsquo; Twitter account for 3000+ different companies. However, there is no established database which I have access to.&#xA;The solution I found is to submit firm name or firm Ticker plus &amp;lsquo;Twitter Account&amp;rsquo; to Google search, record the most relevant search results, and write them into my excel sheet - That is basically what I would do if I am hand-collecting the data and means huge workload if I actually do it.</description>
+    </item>
+    <item>
+      <title>Extract High-frequency Data via PC SAS</title>
+      <link>https://xumj2021.github.io/post/deal-with-high-frequency-data/</link>
+      <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/deal-with-high-frequency-data/</guid>
+      <description>I. Motivation High-frequency traders (HFTs) are market participants that are characterized by the high speed (typically in milliseconds level) with which they react to incoming news, the low inventory on their books, and the large number of trades they execute (SEC, 2010). According to Breckenfelder (2019, WP), The high-frequency trading industry grew rapidly since its inception in the mid-2000s and has represented about 50% of trading in US equity markets by 2017 (down from a 2009 peak, when it topped 60%).</description>
+    </item>
+    <item>
+      <title>Twitter API: Door To Social Media Analysis I</title>
+      <link>https://xumj2021.github.io/post/door-to-twitter-analysis-i/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/door-to-twitter-analysis-i/</guid>
+      <description>Motivation In the last few decades, a series of papers published in top accounting journals have repeatedly proved that Twitter data could empower very fascinating research ideas. To give readers an intuition about the potential of Twitter data, I would roughly show three directions and their relative examples which I have deepest impression through my limited personal reading experience.&#xA;Wisdom of crowds&#xA;Bartov, Faurel, and Mohanram (2018, TAR) found opinions of individuals tweeted just prior to a firm’s earnings announcement can predict its earnings and announcement returns.</description>
+    </item>
+    <item>
+      <title>Twitter API: Door To Social Media Analysis II</title>
+      <link>https://xumj2021.github.io/post/door-to-twitter-analysis-ii/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/door-to-twitter-analysis-ii/</guid>
+      <description>Introduction Please see the background information about Twitter API v2 in my last blogpost Twitter API: Door To Social Media Analysis I. In this blogpost, I will replicate the Tweets extraction porcess of Bartov, Faurel, and Mohanram (2018, TAR), which found that opinions of individuals tweeted just prior to a firm’s earnings announcement can predict its earnings and announcement returns.&#xA;From a perspective of implementation, we need to get all the tweets which mentioned a given firm in a specified time range.</description>
+    </item>
+    <item>
+      <title>Exploit WRDS Cloud via Python</title>
+      <link>https://xumj2021.github.io/post/connect-to-wrds-via-python/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/connect-to-wrds-via-python/</guid>
+      <description>Motivation The WRDS-SAS Studio seems to be suspended soon. As a big fan of this cloud platform, I have to find something alternative to make my data extraction from WRDS replicable. Compiled from a series of WRDS guidances (you can find them in the Reference part), this blog will introduce how to exploit WRDS cloud via Python.&#xA;The biggest advantage of WRDS Cloud is that you don&amp;rsquo;t have to download everything to your computer but just deal with the massive data using the computing source of WRDS Cloud.</description>
+    </item>
+    <item>
+      <title>Extract Mass Data Via Bloomberg API</title>
+      <link>https://xumj2021.github.io/post/bloomberg-api/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/bloomberg-api/</guid>
+      <description>Motivation Bloomberg has integrated massive data from various of data vendors. However, as a typical finance terminal designed for traders, it&amp;rsquo;s technically hard to use as a database for scholars. This blog will introduce how to prepare your Bloomberg Terminal for massive data extracting and how to access data via Bloomberg API.&#xA;Deploy Operation Enviornment Bloomberg Access Get a Bloomberg Terminal and of course a valid Bloomberg Account&#xA;Make sure the Bloomberg Add-in in Excel in this terminal works</description>
+    </item>
+    <item>
+      <title>From NOAA ISD Dataset to Panel Data</title>
+      <link>https://xumj2021.github.io/post/noaa/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/noaa/</guid>
+      <description>Motivation The motivation to clean this dataset is from Mukherjee et al. (2021, JFE). In this paper, the authors documented that one can get ahead-of-announcement estimation about the storage hubs for crude oil in the US from satellite images and trade on it. This will decrease the market reaction around the release of official figures because the oil storage information has been partially revealed during the traders&amp;rsquo; arbitrage before announcement due to traders&amp;rsquo; use of satellite images.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Information on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/information/</link>
+    <description>Recent content in Information on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/information/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Replicate Brogaard Stock Volatility Decomposition</title>
+      <link>https://xumj2021.github.io/post/replicate-brogaard-stock-volatility-decomposition/</link>
+      <pubDate>Tue, 10 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/replicate-brogaard-stock-volatility-decomposition/</guid>
+      <description>Introduction Having recognized the potential of the stock volatility decomposition method introduced by Brogaard et al. (2022, RFS) in my previous blog, I will show how to implement this method to empower your own research in this blog.&#xA;For readers with time constraints, the codes for implementing this variance decomposition method can be approched via this link.&#xA;As replicating Brogaard et al. (2022, RFS) requires some manipulations on the VAR estimation outputs, I took some time to figure out the theory and estimation of the reduced-form VAR coefficients, Impulse response functions (IRFs), structural IRFS, orthogonalized IRFs, and variance decomposition and summarized what I&amp;rsquo;ve got in a three-blog series about VAR.</description>
+    </item>
+  </channel>
+</rss>

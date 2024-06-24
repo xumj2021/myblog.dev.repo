@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20analytics/our%20insights/confronting%20the%20risks%20of%20artificial%20intelligence/confonting-the-risks-of-ai-1536x1536-200.jpg">
+    <meta property="twitter:image" content="https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20analytics/our%20insights/confronting%20the%20risks%20of%20artificial%20intelligence/confonting-the-risks-of-ai-1536x1536-200.jpg" />
+    
+
+    
+    <meta name="title" content="Extract High-frequency Data via PC SAS" />
+    <meta property="og:title" content="Extract High-frequency Data via PC SAS" />
+    <meta property="twitter:title" content="Extract High-frequency Data via PC SAS" />
+    
+
+    
+    <meta name="description" content="Request trade and quotes data from WRDS-TAQ database for intra-day event study">
+    <meta property="og:description" content="Request trade and quotes data from WRDS-TAQ database for intra-day event study" />
+    <meta property="twitter:description" content="Request trade and quotes data from WRDS-TAQ database for intra-day event study" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/deal-with-high-frequency-data/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20analytics/our%20insights/confronting%20the%20risks%20of%20artificial%20intelligence/confonting-the-risks-of-ai-1536x1536-200.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/taq" title="TAQ">
+                            TAQ
+                        </a>
+                        
+                        <a class="tag" href="/tags/sas" title="SAS">
+                            SAS
+                        </a>
+                        
+                        <a class="tag" href="/tags/high-frequency" title="High Frequency">
+                            High Frequency
+                        </a>
+                        
+                        <a class="tag" href="/tags/wrds" title="WRDS">
+                            WRDS
+                        </a>
+                        
+                    </div>
+                    <h1>Extract High-frequency Data via PC SAS</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Friday, December 3, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="i-motivation">I. Motivation</h2>
+<p>High-frequency traders (HFTs) are market participants that are characterized by the high speed (typically in milliseconds level) with which they react to incoming news, the low inventory on their books, and the large number of trades they execute (SEC, 2010). According to Breckenfelder (2019, WP), The high-frequency trading industry grew rapidly since its inception in the mid-2000s and has represented about 50% of trading in US equity markets by 2017 (down from a 2009 peak, when it topped 60%).</p>
+<p>In academia, there is a decade-long debate regarding whether HFTs benefit or harm market quality. Some argues that HFTs increase price discovery by systematically correcting the in-attention of human traders and inducing the public information to be incorporated into the stock prices more promptly (e.g., Chordia and Miao, 2020 JAE; Bhattacharya et al., 2020 RAS). Others believe that the predatory behaviour of HFTs, which dampens other market participants&rsquo; information acquisition incentives, must have harmed market effieciency (e.g., Ahmed et al., 2020 JAR; Lee and Watts, 2021 TAR).</p>
+<p>Either way, there are two things that can be assured.</p>
+<ol>
+<li>HFTs have played a big part in today&rsquo;s capital market.</li>
+<li>To cope with today&rsquo;s high-frequency capital market,  scholars need to grapple with high-frequency trading data (typically in second-level before 2014 and millisecond level after 2014) to unravel the latest market micro-structure.</li>
+</ol>
+<p>In this blogpost, I will introduce how to extract second/millisecond-level trade and quotes data from the WRDS-TAQ database. Such data is typically used for intra-day event studies (e.g., Rogers et al., 2016 RAS; Rogers et al., 2017 JAR). For people who are familar with the WRDS data structure, you can directly access the SAS code via <a href="https://mengjiexu.com/post/deal-with-high-frequency-data/#vi-sas-code">this link </a>.</p>
+<h2 id="ii-project-description">II. Project Description</h2>
+<h3 id="project-purpose">Project Purpose</h3>
+<p>I got time stamps for firm-related events and want to get all the trade and quotes records 15 miniutes before and after the event time. Like any other event studies, the events happened in different days.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/rvsample.png" width=800 height=600>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Intra-day Event Time</div>
+</center>
+<h3 id="challenges">Challenges</h3>
+<p>Due to the huge size of the everyday market order flows, WRDS-TAQ database saves the daily trade and quotes data separately for each day. That means if the events in our sample happened in 2000 unique trading days, we have to query 2000 different trade datasets and another 2000 different quote datasets in the WRDS-TAQ database.</p>
+<p>To help the readers get an intuition about the size of the trade and quotes data, I extracted the trade records during two trading hours on December 5th, 2014. It appears that 13,197,152 trades were executed in that just two trading hours, not to mention the even (sometimes much more) bigger quote records.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SAS" data-lang="SAS"><span style="display:flex;"><span>NOTE: There were <span style="color:#ae81ff">13197152</span> observations read <span style="color:#00a8c8">from</span> the data <span style="color:#00a8c8">set</span> TAQ<span style="color:#ae81ff">.</span>CT_20141205.
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">WHERE</span> ((time&gt;=<span style="color:#d88200">&#39; 9:30:00&#39;</span>T <span style="color:#00a8c8">and</span> time&lt;=<span style="color:#d88200">&#39;10:30:00&#39;</span>T) <span style="color:#00a8c8">or</span> (time&gt;=<span style="color:#d88200">&#39;15:00:00&#39;</span>T 
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">and</span> time&lt;=<span style="color:#d88200">&#39;16:00:59&#39;</span>T));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="iii-data-source-wrds-taq-database">III. Data Source: WRDS-TAQ database</h2>
+<p>Daily TAQ (Trade and Quote) provides users with access to all trades and quotes for all issues traded on NYSE, Nasdaq and the regional exchanges for the previous trading day. It’s a comprehensive history of daily activity from NYSE markets and the U.S. Consolidated Tape covering all U.S. Equities instruments (including all CTA and UTP participating markets). One can find more details about the WRDS-TAQ database in <a href="https://wrds-www.wharton.upenn.edu/documents/774/Daily_TAQ_Client_Spec_v2.2a.pdf">WRDS-TAQ User Guide</a>. For those who are familiar with the TAQ database, you can jump via <a href="https://mengjiexu.com/post/deal-with-high-frequency-data/#road-map">this link</a>.</p>
+<h3 id="markets-covered">Markets Covered</h3>
+<p>The Daily TAQ database covers:</p>
+<ul>
+<li>All CTA Participating Markets – Tapes A, B and C</li>
+<li>NYSE</li>
+<li>Nasdaq (OTC)</li>
+<li>All Regionals Exchanges</li>
+</ul>
+<h3 id="dataset-description">Dataset Description</h3>
+<ul>
+<li>
+<p>Daily TAQ Trades File (Daily @ 9:00 PM EST; History: 24 Apr 2002 – present.) A Daily TAQ Trade file is available as a separate file in WRDS which contains all trades reported to the consolidated tape at the same day. Each trade identifies the time, exchange, security, volume, price, salecondition, the exchange where the order is executed, etc.</p>
+</li>
+<li>
+<p>Daily TAQ Quotes File (Daily @ 2:00 am EST; History: 11 Apr 2002 – present.) A Daily TAQ Quote file is available as a separate file in WRDS which contains all quotes reported to the consolidated tape at the same day. Each quote identifies the time, exchange, security, bid/offer volumes, bid/offer prices, NBBO indicator, etc.</p>
+</li>
+</ul>
+<h3 id="library-and-table-names-in-wrds">Library and table names in WRDS</h3>
+<ul>
+<li>
+<p>Until December 2014, the WRDS trade and quotes data is mainly in second-level (the millisecond level data is technically available in WRDS since 2002 but many institutions don&rsquo;t subscribe the  before-2015 millisecond level data). WRDS-TAQ database saves the second-level data with table format like</p>
+<ul>
+<li>
+<p>TAQ.CT_20130305 for second-level trade record,</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ctsample.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: Second-level TAQ Trades Sample Data (TAQ.CT_20130305)</div>
+</center>
+</li>
+<li>
+<p>and TAQ.CQ_20130305 for second-level quote record.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/cqsample.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 2: Second-level TAQ Quotes Sample Data (TAQ.CQ_20130305)</div>
+</center>
+</li>
+</ul>
+</li>
+<li>
+<p>Since 2015, the millisecond-level trade and quotes data has been prevailed. To distinguish the millisecond-level data from the second-level data, WRDS-TAQ database saves the millisecond-level data with format like</p>
+<ul>
+<li>
+<p>TAQMSEC.CTM_20150305 for millisecond-level trade record,</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ctmsample.png" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 3: Millisecond-level TAQ Trades Sample Data (TAQMSEC.CTM_20150305)</div>
+</center>
+</li>
+<li>
+<p>TAQMSEC.CQM_20150305 for millisecond-level quote record</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/cqmsample.png" width=800 height=450>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 4: Millisecond-level TAQ Quotes Sample Data (TAQMSEC.CQM_20150305)</div>
+</center>
+</li>
+</ul>
+</li>
+<li>
+<p>Compared with second-level data, the millisecond-level dataset provides more abundent information in at least ways:</p>
+<ul>
+<li>The time precision is improved from second-level (07:25:39) to millisecond-level (07:25:39.105)</li>
+<li>Each order is assigned with an tracking-ID, which lends significant convenience for identifying the subsequent activities (e.g., whether the order is cancelled later) after the order is placed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="iv-road-map">IV. Road Map</h2>
+<h3 id="step-0-connect-to-wrds-server-via-pc-sas">Step 0. Connect to WRDS server via PC SAS</h3>
+<p>In this blog post, I connect the WRDS server via the PC SAS because it helps to monitor the output from the server and finetune the codes more efficiently. One can also find how to access the WRDS server via SSH and submit the batched job in my previous blog post <a href="https://mengjiexu.com/post/connect-to-wrds-via-python/">Exploit WRDS Cloud via Python</a>.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#111">%let</span> wrds = wrds<span style="color:#ae81ff">.</span>wharton<span style="color:#ae81ff">.</span>upenn<span style="color:#ae81ff">.</span>edu <span style="color:#ae81ff">4016</span>;
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">options</span> comamid=TCP remote=WRDS;
+</span></span><span style="display:flex;"><span>signon username=_prompt_<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">run;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-1-import-the-events-into-sas-work-library">Step 1. Import the events into SAS work library</h3>
+<p>First, you need to import your event sample into the SAS work library. Here I use a small sample named as &ldquo;requestsample.csv&rdquo;. It contains 999 unique events from 18 distinct days.</p>
+<p>Code</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#00a8c8">libname</span> home <span style="color:#d88200">&#39;C:\Users\xu-m\Documents\wrdsas\&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">libname</span> outdir <span style="color:#d88200">&#39;C:\Users\xu-m\Documents\wrdsas\taqoutput&#39;</span><span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc import </span>datafile=<span style="color:#d88200">&#34;requestsample.csv&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#d88200">    out=rvsample
+</span></span></span><span style="display:flex;"><span><span style="color:#d88200">    dbms=csv
+</span></span></span><span style="display:flex;"><span><span style="color:#d88200">    replace;
+</span></span></span><span style="display:flex;"><span><span style="color:#d88200">run;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Output</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE has <span style="color:#ae81ff">999</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: DATA statement used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.04</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.04</span> seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">999</span> rows created <span style="color:#00a8c8">in</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE <span style="color:#00a8c8">from</span> requestsample<span style="color:#ae81ff">.</span>csv.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NOTE: WORK<span style="color:#ae81ff">.</span>RVSAMPLE data <span style="color:#00a8c8">set</span> was successfully created.
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE has <span style="color:#ae81ff">999</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: PROCEDURE IMPORT used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.13</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.12</span> seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-2-put-all-the-unique-dates-into-a-macro-variable">Step 2. Put all the unique dates into a Macro variable</h3>
+<p>Let&rsquo;s name the macro variable as <strong>datesValsM</strong>. This step prepares for the later loop procedure.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-28">28</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#ae81ff">671</span>  rsubmit;
+</span></span><span style="display:flex;"><span>NOTE: Remote submit to WRDS commencing.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">296</span>  proc upload data=rvsample <span style="color:#00a8c8">out</span>=rvsample;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">297</span>  run;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NOTE: Upload <span style="color:#00a8c8">in</span> progress <span style="color:#00a8c8">from</span> data=WORK<span style="color:#ae81ff">.</span>RVSAMPLE to <span style="color:#00a8c8">out</span>=WORK<span style="color:#ae81ff">.</span>RVSAMPLE
+</span></span><span style="display:flex;"><span>NOTE: <span style="color:#ae81ff">191808</span> bytes were transferred at <span style="color:#ae81ff">584780</span> bytes/second.
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE has <span style="color:#ae81ff">999</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: Uploaded <span style="color:#ae81ff">999</span> observations of <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE has <span style="color:#ae81ff">999</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: PROCEDURE UPLOAD used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.51</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.00</span> seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">298</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">299</span>  proc sql noprint;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">300</span>    <span style="color:#00a8c8">select</span> <span style="color:#00a8c8">distinct</span> ndate <span style="color:#00a8c8">into</span> :datesValsM separated <span style="color:#00a8c8">by</span> <span style="color:#d88200">&#39; &#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">301</span>    <span style="color:#00a8c8">from</span> work<span style="color:#ae81ff">.</span>rvsample;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">302</span>  quit;
+</span></span><span style="display:flex;"><span>NOTE: PROCEDURE SQL used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.00</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.00</span> seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">303</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">304</span>  <span style="color:#111">%put</span> <span style="color:#111">&amp;datesValsM</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20130301</span> <span style="color:#ae81ff">20130303</span> <span style="color:#ae81ff">20130304</span> <span style="color:#ae81ff">20130305</span> <span style="color:#ae81ff">20130306</span> <span style="color:#ae81ff">20130307</span> <span style="color:#ae81ff">20130308</span> <span style="color:#ae81ff">20130311</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20130312</span> <span style="color:#ae81ff">20130313</span> <span style="color:#ae81ff">20130314</span> <span style="color:#ae81ff">20130315</span> <span style="color:#ae81ff">20130316</span> <span style="color:#ae81ff">20130317</span> <span style="color:#ae81ff">20130318</span> <span style="color:#ae81ff">20130319</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20130320</span> <span style="color:#ae81ff">20130321</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-3-request-trade-and-quotes-data-from-wrds-server">Step 3: Request trade and quotes data from WRDS server</h3>
+<p>To efficiently implement this procedure, I wrote three macros</p>
+<ol>
+<li><strong>%getdict(yyyymmdd, type);</strong></li>
+</ol>
+<ul>
+<li>
+<p>The purpose of this macro is to get the table name <code>dataset</code> that should be requested (e.g., TAQ.CQ_20130305) in the WRDS server based on the event date <code>yyyymmdd</code> (e.g., 20130305) and table type <code>type</code> (ct or cq). The name of the respect output table <code>outname</code> will also be determined (e.g., taqout_cq_29130305)</p>
+</li>
+<li>
+<p>This is because apart from the exact trading date, there are two extra parameters to decide when picking the exact table that we request data from:</p>
+<ul>
+<li>The library name - <code>TAQ</code> if the trading date is before 2014.12.31, and <code>TAQMSEC</code>otherwise</li>
+<li>The table name - <code>CT</code> (in <code>TAQ</code>) or <code>CTM</code> (in <code>TAQMSEC</code>) for trades data; <code>CQ</code> (in <code>TAQ</code>) or <code>CQM</code> (in <code>TAQMSEC</code>) for quotes data</li>
+</ul>
+</li>
+<li>
+<p>To make sure the table name <code>dataset</code> (which we request data from) and the table name <code>outname</code> (which we save output data) can be referenced by other macros, I define those two variables as global macro variables.</p>
+</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-28">28</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#ae81ff">705</span>  <span style="color:#111">%macro</span> getdict(yyyymmdd, type);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">706</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">707</span>      <span style="color:#111">%global</span> dataset dataset;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">708</span>      <span style="color:#111">%global</span> outname outname;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">709</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">710</span>      <span style="color:#111">%if</span> <span style="color:#111">%SYSEVALF</span>(<span style="color:#111">&amp;yyyymmdd</span>/<span style="color:#ae81ff">10000</span>) &lt;= <span style="color:#ae81ff">2014</span> <span style="color:#111">%then</span> <span style="color:#111">%do</span>; <span style="color:#111">%let</span> dic = taq ; <span style="color:#111">%let</span> type = <span style="color:#111">&amp;type</span>; <span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">711</span>      <span style="color:#111">%else</span> <span style="color:#111">%do</span>; <span style="color:#111">%let</span> dic = taqmsec; <span style="color:#111">%let</span> type = <span style="color:#111">%sysfunc</span>(catx(, <span style="color:#111">&amp;type</span>, m)); <span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">712</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">713</span>      <span style="color:#111">%let</span> dataset = <span style="color:#111">&amp;dic.</span>.<span style="color:#111">&amp;type.</span>_<span style="color:#111">&amp;yyyymmdd</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">714</span>      <span style="color:#111">%let</span> outname = taqout_<span style="color:#111">&amp;type.</span>_<span style="color:#111">&amp;yyyymmdd</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">715</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">716</span>      <span style="color:#111">%put</span> <span style="color:#111">&amp;dataset</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">717</span>      <span style="color:#111">%put</span> <span style="color:#111">&amp;outname</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">718</span>  <span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">719</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">720</span>  <span style="color:#75af00">%getdict</span>(<span style="color:#ae81ff">20130305</span>, cq);
+</span></span><span style="display:flex;"><span>taq<span style="color:#ae81ff">.</span>cq_20130305
+</span></span><span style="display:flex;"><span>taqout_cq_20130305
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">721</span>  <span style="color:#75af00">%getdict</span>(<span style="color:#ae81ff">20130305</span>, ct);
+</span></span><span style="display:flex;"><span>taq<span style="color:#ae81ff">.</span>ct_20130305
+</span></span><span style="display:flex;"><span>taqout_ct_20130305
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">722</span>  <span style="color:#75af00">%getdict</span>(<span style="color:#ae81ff">20130305</span>, cq);
+</span></span><span style="display:flex;"><span>taq<span style="color:#ae81ff">.</span>cq_20130305
+</span></span><span style="display:flex;"><span>taqout_cq_20130305
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">723</span>  <span style="color:#75af00">%getdict</span>(<span style="color:#ae81ff">20130305</span>, ct);
+</span></span><span style="display:flex;"><span>taq<span style="color:#ae81ff">.</span>ct_20130305
+</span></span><span style="display:flex;"><span>taqout_ct_20130305
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><strong>%getdaily(date, dataset, outname, start, end);</strong></li>
+</ol>
+<ul>
+<li>The idea is to
+<ul>
+<li>select out all the events that happened in a specified date <code>date</code> from the whole sample,</li>
+<li>submit query to the table whose name <code>dataset</code> has been decided by the first macro <code>%getdict(yyyymmdd, type)</code>,</li>
+<li>require that the trading time should no earlier than the event time minus <code>start</code> number of seconds and no later than the event time plus <code>end</code> number of seconds,</li>
+<li>Download the query results and save the output data as <code>outname</code>, which is also determined by the previous macro <code>%getdict(yyyymmdd, type)</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-50">50</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#ae81ff">746</span>  rsubmit;
+</span></span><span style="display:flex;"><span>NOTE: Remote submit to WRDS commencing.   
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">87</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">88</span>   <span style="color:#111">%macro</span> getdaily(date, dataset, outname, start, <span style="color:#00a8c8">end</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">89</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">90</span>       data datainput;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">91</span>           <span style="color:#00a8c8">set</span> rvsample;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">92</span>           <span style="color:#00a8c8">where</span> ndate = <span style="color:#00a8c8">input</span>(<span style="color:#d88200">&#34;</span><span style="color:#111">&amp;date</span><span style="color:#d88200">&#34;</span>, BEST12.);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">93</span>       run;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">94</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">95</span>       proc sql;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">96</span>           <span style="color:#00a8c8">create</span> <span style="color:#00a8c8">table</span> <span style="color:#111">&amp;outname</span> <span style="color:#00a8c8">as</span> <span style="color:#00a8c8">select</span> a<span style="color:#ae81ff">.</span>cusip, a<span style="color:#ae81ff">.</span>date, a<span style="color:#ae81ff">.</span>time,
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">96</span> ! a<span style="color:#ae81ff">.</span>g_ens_key, b<span style="color:#ae81ff">.</span>time <span style="color:#00a8c8">as</span> tradetime, b.*
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">97</span>           <span style="color:#00a8c8">from</span> datainput a , <span style="color:#111">&amp;dataset</span> b
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">98</span>           <span style="color:#00a8c8">where</span> a<span style="color:#ae81ff">.</span>tic = b<span style="color:#ae81ff">.</span>symbol <span style="color:#00a8c8">and</span> b<span style="color:#ae81ff">.</span>time ge a<span style="color:#ae81ff">.</span>time-<span style="color:#111">&amp;start</span> <span style="color:#00a8c8">and</span> b<span style="color:#ae81ff">.</span>time le
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">98</span> ! a<span style="color:#ae81ff">.</span>time+<span style="color:#111">&amp;end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">99</span>       quit;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">101</span>      proc download data=<span style="color:#111">&amp;outname</span> <span style="color:#00a8c8">out</span>=outdir.<span style="color:#111">&amp;outname</span><span style="color:#00a8c8">; run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">102</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">103</span>  <span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">104</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">105</span>  <span style="color:#75af00">%getdaily</span>(<span style="color:#ae81ff">20130305</span>, taq<span style="color:#ae81ff">.</span>ct_20130305, taqout_ct_20130305, <span style="color:#ae81ff">900</span>, <span style="color:#ae81ff">900</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NOTE: There were <span style="color:#ae81ff">74</span> observations read <span style="color:#00a8c8">from</span> the data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>RVSAMPLE.
+</span></span><span style="display:flex;"><span>      <span style="color:#00a8c8">WHERE</span> ndate=<span style="color:#ae81ff">20130305</span>;
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>DATAINPUT has <span style="color:#ae81ff">74</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">18</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: DATA statement used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.00</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.00</span> seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WARNING: Variable DATE already exists <span style="color:#00a8c8">on</span> <span style="color:#00a8c8">file</span> WORK<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305.
+</span></span><span style="display:flex;"><span>WARNING: Variable TIME already exists <span style="color:#00a8c8">on</span> <span style="color:#00a8c8">file</span> WORK<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305.
+</span></span><span style="display:flex;"><span>NOTE: <span style="color:#00a8c8">Table</span> WORK<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305 created, with <span style="color:#ae81ff">44545</span> rows <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">12</span> columns.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NOTE: PROCEDURE SQL used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">0.44</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.31</span> seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NOTE: Download <span style="color:#00a8c8">in</span> progress <span style="color:#00a8c8">from</span> data=WORK<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305 to <span style="color:#00a8c8">out</span>=OUTDIR<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305
+</span></span><span style="display:flex;"><span>NOTE: The <span style="color:#00a8c8">length</span> of one <span style="color:#00a8c8">or</span> more variables has been promoted to preserve
+</span></span><span style="display:flex;"><span>      precision.
+</span></span><span style="display:flex;"><span>NOTE: <span style="color:#ae81ff">4454500</span> bytes were transferred at <span style="color:#ae81ff">3263370</span> bytes/second.
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> OUTDIR<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305 has <span style="color:#ae81ff">44545</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">12</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: Downloaded <span style="color:#ae81ff">44545</span> observations of <span style="color:#ae81ff">12</span> variables.
+</span></span><span style="display:flex;"><span>NOTE: The data <span style="color:#00a8c8">set</span> WORK<span style="color:#ae81ff">.</span>TAQOUT_CT_20130305 has <span style="color:#ae81ff">44545</span> observations <span style="color:#00a8c8">and</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>      variables.
+</span></span><span style="display:flex;"><span>NOTE: PROCEDURE DOWNLOAD used (Total process time):
+</span></span><span style="display:flex;"><span>      real time           <span style="color:#ae81ff">1.50</span> seconds
+</span></span><span style="display:flex;"><span>      cpu time            <span style="color:#ae81ff">0.08</span> seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><strong>%iterate(type, start, end);</strong></li>
+</ol>
+<ul>
+<li>With the previous two macros, we have finished the query for a single date. The only left thing is to iterate the query over all the unique days in our sample.</li>
+<li>This step is like a wrapper for our single-date query and thus needs to utilize the previous two queries.</li>
+<li>The three parameters in this macro are the very input parameters for our little high-frequency query project
+<ul>
+<li>Type - <code>ct</code>for trades data query, <code>cq</code>for quotes data query</li>
+<li>Start - The <code>Start </code>number of seconds before the event time would be the beginning of the window. For example, I assign <code>Start</code>as 900 because I want the query window to start at 15 minutes before the event time.</li>
+<li>End - The <code>End </code> number of seconds after the event time would be the beginning of the window. For example, I assign <code>End</code> as 900 because I want the query window to end at 15 minutes after the event time.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sas" data-lang="sas"><span style="display:flex;"><span><span style="color:#ae81ff">336</span>  <span style="color:#111">%macro</span> iterate(type, start, <span style="color:#00a8c8">end</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">337</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">338</span>      <span style="color:#111">%let</span> i=<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">339</span>      <span style="color:#111">%let</span> yyyymmdd=<span style="color:#111">%scan</span>(<span style="color:#111">&amp;datesValsM</span>,<span style="color:#111">&amp;i</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">340</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">341</span>      <span style="color:#111">%do</span> <span style="color:#111">%while</span>(<span style="color:#d88200">&#34;</span><span style="color:#111">&amp;yyyymmdd</span><span style="color:#d88200">&#34;</span> ~= <span style="color:#d88200">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">342</span>          <span style="color:#75af00">%getdict</span>(<span style="color:#111">&amp;yyyymmdd</span>, <span style="color:#111">&amp;type</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">343</span>          <span style="color:#111">%if</span> <span style="color:#111">%sysfunc</span>(<span style="color:#111">exist(</span><span style="color:#111">&amp;dataset</span>)) <span style="color:#111">%then</span> <span style="color:#75af00">%getdaily</span>(<span style="color:#111">&amp;yyyymmdd</span>, <span style="color:#111">&amp;dataset</span>,
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">343</span>! <span style="color:#111">&amp;outname</span>, <span style="color:#111">&amp;start</span>, <span style="color:#111">&amp;end</span>) ;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">344</span>          <span style="color:#111">%let</span> i = <span style="color:#111">%eval</span>(<span style="color:#111">&amp;i</span> + <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">345</span>          <span style="color:#111">%let</span> yyyymmdd=<span style="color:#111">%scan</span>(<span style="color:#111">&amp;datesValsM</span>,<span style="color:#111">&amp;i</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">346</span>      <span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">347</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">348</span>  <span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">349</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">350</span>  <span style="color:#75af00">%iterate</span>(ct, <span style="color:#ae81ff">900</span>, <span style="color:#ae81ff">900</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="v-output">V. Output</h2>
+<p>The output dataset are saved separately for each date, named as the way we have determined with the macro <code>%getdict(yyyymmdd, type)</code>.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/hftout2.PNG" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 5: Output Files</div>
+</center>
+<p>The dataset looks like as following.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/hftout1.PNG" width=800 height=450>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Sample Output Dataset</div>
+</center>
+<h2 id="vi-sas-code">VI. SAS Code</h2>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-54">54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-55">55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-56">56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-57">57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-58">58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-59">59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-60">60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-61">61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-62">62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-63">63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-64">64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-65">65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-66">66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-67">67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-68">68</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-69">69</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-70">70</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-71">71</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-72">72</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-73">73</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SAS" data-lang="SAS"><span style="display:flex;"><span><span style="color:#00a8c8">libname</span> home <span style="color:#d88200">&#39;C:\Users\xu-m\Documents\wrdsas\&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">libname</span> outdir <span style="color:#d88200">&#39;C:\Users\xu-m\Documents\wrdsas\1203test&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%let</span> wrds = wrds<span style="color:#ae81ff">.</span>wharton<span style="color:#ae81ff">.</span>upenn<span style="color:#ae81ff">.</span>edu <span style="color:#ae81ff">4016</span>;
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">options</span> comamid=TCP remote=WRDS;
+</span></span><span style="display:flex;"><span>signon username=_prompt_<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc import </span>datafile=<span style="color:#d88200">&#34;requestsample.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">out</span>=rvsample
+</span></span><span style="display:flex;"><span>    dbms=csv
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">replace</span><span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">run;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rsubmit<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc upload </span>data=rvsample <span style="color:#00a8c8">out</span>=rvsample<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">proc sql </span>noprint;
+</span></span><span style="display:flex;"><span>  <span style="color:#00a8c8">select</span> <span style="color:#00a8c8">distinct</span> ndate <span style="color:#00a8c8">into</span> :datesValsM separated <span style="color:#00a8c8">by</span> <span style="color:#d88200">&#39; &#39;</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#00a8c8">from</span> work<span style="color:#ae81ff">.</span>rvsample<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">quit;</span>  <span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">%put </span><span style="color:#111">&amp;datesValsM</span><span style="color:#960050;background-color:#1e0010">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%macro</span> getdict(yyyymmdd, type);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%global</span> dataset dataset;
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%global</span> outname outname;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%if</span> <span style="color:#111">%SYSEVALF</span>(<span style="color:#111">&amp;yyyymmdd</span>/<span style="color:#ae81ff">10000</span>) &lt;= <span style="color:#ae81ff">2014</span> <span style="color:#111">%then</span> <span style="color:#111">%do</span>; <span style="color:#111">%let</span> dic = taq ; <span style="color:#111">%let</span> type = <span style="color:#111">&amp;type</span>; <span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%else</span> <span style="color:#111">%do</span>; <span style="color:#111">%let</span> dic = taqmsec; <span style="color:#111">%let</span> type = <span style="color:#111">%sysfunc</span>(catx(, <span style="color:#111">&amp;type</span>, m)); <span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%let</span> dataset = <span style="color:#111">&amp;dic.</span>.<span style="color:#111">&amp;type.</span>_<span style="color:#111">&amp;yyyymmdd</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%let</span> outname = taqout_<span style="color:#111">&amp;type.</span>_<span style="color:#111">&amp;yyyymmdd</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%macro</span> getdaily(date, dataset, outname, start, <span style="color:#00a8c8">end</span>)<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">		
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">	data </span>datainput;
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">set</span> rvsample;
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">where</span> ndate = <span style="color:#00a8c8">input</span>(<span style="color:#d88200">&#34;</span><span style="color:#111">&amp;date</span><span style="color:#d88200">&#34;</span>, BEST12.)<span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">	run;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">	proc sql;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">create</span> <span style="color:#00a8c8">table</span> <span style="color:#111">&amp;outname</span> <span style="color:#00a8c8">as</span> <span style="color:#00a8c8">select</span> a<span style="color:#ae81ff">.</span>cusip, a<span style="color:#ae81ff">.</span>date, a<span style="color:#ae81ff">.</span>time, a<span style="color:#ae81ff">.</span>g_ens_key, b<span style="color:#ae81ff">.</span>time <span style="color:#00a8c8">as</span> tradetime, b.*
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">from</span> datainput a , <span style="color:#111">&amp;dataset</span> b
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">where</span> a<span style="color:#ae81ff">.</span>tic = b<span style="color:#ae81ff">.</span>symbol <span style="color:#00a8c8">and</span> b<span style="color:#ae81ff">.</span>time ge a<span style="color:#ae81ff">.</span>time-<span style="color:#111">&amp;start</span> <span style="color:#00a8c8">and</span> b<span style="color:#ae81ff">.</span>time le a<span style="color:#ae81ff">.</span>time+<span style="color:#111">&amp;end</span><span style="color:#00a8c8">;
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">	quit;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">
+</span></span></span><span style="display:flex;"><span><span style="color:#00a8c8">	proc download </span>data=<span style="color:#111">&amp;outname</span> <span style="color:#00a8c8">out</span>=outdir.<span style="color:#111">&amp;outname</span><span style="color:#00a8c8">; run;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%macro</span> iterate(type, start, <span style="color:#00a8c8">end</span>);	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%let</span> i=<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%let</span> yyyymmdd=<span style="color:#111">%scan</span>(<span style="color:#111">&amp;datesValsM</span>,<span style="color:#111">&amp;i</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%do</span> <span style="color:#111">%while</span>(<span style="color:#d88200">&#34;</span><span style="color:#111">&amp;yyyymmdd</span><span style="color:#d88200">&#34;</span> ~= <span style="color:#d88200">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#75af00">%getdict</span>(<span style="color:#111">&amp;yyyymmdd</span>, <span style="color:#111">&amp;type</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#111">%if</span> <span style="color:#111">%sysfunc</span>(<span style="color:#111">exist(</span><span style="color:#111">&amp;dataset</span>)) <span style="color:#111">%then</span> <span style="color:#75af00">%getdaily</span>(<span style="color:#111">&amp;yyyymmdd</span>, <span style="color:#111">&amp;dataset</span>, <span style="color:#111">&amp;outname</span>, <span style="color:#111">&amp;start</span>, <span style="color:#111">&amp;end</span>) ;
+</span></span><span style="display:flex;"><span>	   	<span style="color:#111">%let</span> i = <span style="color:#111">%eval</span>(<span style="color:#111">&amp;i</span> + <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#111">%let</span> yyyymmdd=<span style="color:#111">%scan</span>(<span style="color:#111">&amp;datesValsM</span>,<span style="color:#111">&amp;i</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#111">%end</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">%mend</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75af00">%iterate</span>(ct, <span style="color:#ae81ff">900</span>, <span style="color:#ae81ff">900</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>endrsubmit;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="main-references">Main References</h2>
+<p>Ahmed, A. S., Li, Y., Xu, N. (2020). Tick size and financial reporting quality in small‐cap firms: Evidence from a natural experiment. Journal of Accounting Research, 58(4), 869-914.</p>
+<p>Bhattacharya, N., Chakrabarty, B., Wang, X. F. (2020). High-frequency traders and price informativeness during earnings announcements. Review of Accounting Studies, 25(3), 1156-1199.</p>
+<p>Breckenfelder, J. (2019). Competition among high-frequency traders, and market quality.</p>
+<p>Charles M. C. Lee, Edward M. Watts; Tick Size Tolls: Can a Trading Slowdown Improve Earnings News Discovery?. The Accounting Review 1 May 2021; 96 (3): 373–401.</p>
+<p>Chordia, T., Miao, B. (2020). Market efficiency in real time: Evidence from low latency activity around earnings announcements. Journal of Accounting and Economics, 70(2-3), 101335.</p>
+<p>Rogers, J. L., Skinner, D. J., Zechman, S. L. (2016). The role of the media in disseminating insider-trading news. <em>Review of Accounting Studies</em>, <em>21</em>(3), 711-739.</p>
+<p>Rogers, J. L., Skinner, D. J., Zechman, S. L. (2017). Run EDGAR run: SEC dissemination in a high‐frequency world. <em>Journal of Accounting Research</em>, <em>55</em>(2), 459-505.</p>
+<p>SEC (2010). Concept release on equity market structure. concept release 34-61358, FileNo, 17 CFR Part 242 RIN 3235–AK47.</p>
+<p><a href="https://wrds-www.wharton.upenn.edu/documents/774/Daily_TAQ_Client_Spec_v2.2a.pdf">https://wrds-www.wharton.upenn.edu/documents/774/Daily_TAQ_Client_Spec_v2.2a.pdf</a></p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/door-to-twitter-analysis-i/" data-toggle="tooltip" data-placement="top" title="Twitter API: Door To Social Media Analysis I">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/utilize-google-search/" data-toggle="tooltip" data-placement="top" title="Utilize Google Search as an Integrated Data Source">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

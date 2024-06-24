@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/ssh/</link>
+    <description>Recent content in SSH on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploit WRDS Cloud via Python</title>
+      <link>https://xumj2021.github.io/post/connect-to-wrds-via-python/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/connect-to-wrds-via-python/</guid>
+      <description>Motivation The WRDS-SAS Studio seems to be suspended soon. As a big fan of this cloud platform, I have to find something alternative to make my data extraction from WRDS replicable. Compiled from a series of WRDS guidances (you can find them in the Reference part), this blog will introduce how to exploit WRDS cloud via Python.&#xA;The biggest advantage of WRDS Cloud is that you don&amp;rsquo;t have to download everything to your computer but just deal with the massive data using the computing source of WRDS Cloud.</description>
+    </item>
+  </channel>
+</rss>

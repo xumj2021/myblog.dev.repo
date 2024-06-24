@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/space-communications-satellite-earth-featured.jpeg">
+    <meta property="twitter:image" content="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/space-communications-satellite-earth-featured.jpeg" />
+    
+
+    
+    <meta name="title" content="From NOAA ISD Dataset to Panel Data" />
+    <meta property="og:title" content="From NOAA ISD Dataset to Panel Data" />
+    <meta property="twitter:title" content="From NOAA ISD Dataset to Panel Data" />
+    
+
+    
+    <meta name="description" content="China stations as an example">
+    <meta property="og:description" content="China stations as an example" />
+    <meta property="twitter:description" content="China stations as an example" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/noaa/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/space-communications-satellite-earth-featured.jpeg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/noaa" title="NOAA">
+                            NOAA
+                        </a>
+                        
+                        <a class="tag" href="/tags/geo-economics" title="Geo-Economics">
+                            Geo-Economics
+                        </a>
+                        
+                    </div>
+                    <h1>From NOAA ISD Dataset to Panel Data</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Tuesday, June 15, 2021
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>The motivation to clean this dataset is from <a href="https://www.sciencedirect.com/science/article/pii/S0304405X21000921">Mukherjee et al. (2021, JFE)</a>. In this paper, the authors documented that one can get ahead-of-announcement estimation about the storage hubs for crude oil in the US from satellite images and trade on it. This will decrease the market reaction around the release of official figures because the oil storage information has been partially revealed during the traders&rsquo; arbitrage before announcement due to traders&rsquo; use of satellite images. To establish the causality between traders&rsquo; satellite image use and the lower market reaction around official figure release, this paper adopted cloudiness in the storage sites as Instrument Variable because the satellite images will be more obscure and thus less useful when the weather is cloudy. It turns out that the lowered market reaction is indeed less prominent during cloudy weeks.</p>
+<p>In this article, I tried to construct a high-frequency cloudiness variable following the Mukherjee paper.</p>
+<h2 id="data-source">Data Source</h2>
+<p>The original data source is <a href="https://www.ncdc.noaa.gov/isd">National Oceanic and Atmospheric Administration</a> and I downloaded the Integrated Surface Database (ISD) dataset from its <a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/">FTP server</a>.</p>
+<h3 id="brief-introduction-to-isd-dataset">Brief Introduction to ISD dataset</h3>
+<blockquote>
+<p>The Integrated Surface Database (ISD) consists of global hourly and synoptic observations compiled from numerous sources into a single common ASCII format and common data model.</p>
+<br>
+<p>The database includes over 35,000 stations worldwide, with some having data as far back as 1901, though the data show a substantial increase in volume in the 1940s and again in the early 1970s. Currently, there are over 14,000 &ldquo;active&rdquo; stations updated daily in the database.</p>
+<center><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Integrated-Surface-Database-Stations-Over-Time-Chart.jpeg"/><br>Station Number</center>
+</blockquote>
+<h3 id="subsample-used-in-this-article">Subsample Used In This Article</h3>
+<ul>
+<li>Period: 2000 - 2020</li>
+<li>Station Range: 2168 Stations located in China (Range from 50136 to 59951)</li>
+<li>Freqency: Every 3 hours</li>
+</ul>
+<h3 id="original-data-structure">Original Data Structure</h3>
+<ul>
+<li>
+<p>The folders are named by year</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-16%20%E4%B8%8B%E5%8D%881.18.12.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 1: NOAA Folder List</div>
+</center>
+</li>
+<li>
+<p>For each year, there is individual file for each station</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-16%20%E4%B8%8B%E5%8D%881.24.28.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 2: NOAA ISD File List</div>
+</center>
+</li>
+<li>
+<p>For each file in a given year, the naming format is &ldquo;Station ID-NCDC WBAN Number-Year&rdquo;</p>
+</li>
+<li>
+<p>For each file (with a relative station id and year), there are 12 columns</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-16%20%E4%B8%8B%E5%8D%881.39.34.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 3: Sample ISD File</div>
+</center>
+</li>
+<li>
+<p>Variable Definitions</p>
+<blockquote>
+<p>Integrated Surface Data - Lite
+<br>Format Documentation
+<br><br>
+<br>June 20, 2006
+<br>
+<br>Introduction
+<br><br>The ISD-Lite data contain a fixed-width formatted subset of the complete Integrated Surface Data (ISD) for a select number of observational elements.  The data are typically stored in a single file corresponding to the ISD data, i.e. one file per station per year.  For more information on the ISD-Lite format, consult the ISD-Lite technical document.
+<br><br>Data Format
+<br><br>Field 1: Pos 1-4, Length 4: Observation Year
+<br>Year of observation, rounded to nearest whole hour
+<br><br>Field 2: Pos 6-7, Length 2: Observation Month
+<br>Month of observation, rounded to nearest whole hour
+<br><br>Field 3: Pos 9-11, Length 2: Observation Day
+<br>Day of observation, rounded to nearest whole hour
+<br><br>Field 4: Pos 12-13, Length 2: Observation Hour
+<br>Hour of observation, rounded to nearest whole hour
+<br><br>Field 5: Pos 14-19, Length 6:  Air Temperature
+<br>The temperature of the air
+<br>UNITS:  Degrees Celsius
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><br>Field 6: Pos 20-24, Length 6: Dew Point Temperature
+<br>The temperature to which a given parcel of air must be cooled at constant pressure and water vapor content in order for saturation to occur.
+<br>UNITS: Degrees Celsius
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><br>Field 7: Pos 26-31, Length 6: Sea Level Pressure
+<br>The air pressure relative to Mean Sea Level (MSL).
+<br>UNITS:  Hectopascals
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><br>Field 8: Pos 32-37, Length 6: Wind Direction
+<br>The angle, measured in a clockwise direction, between true north and the direction from which the wind is blowing.
+<br>UNITS: Angular Degrees
+<br>SCALING FACTOR: 1
+<br>MISSING VALUE: -9999
+<br>*NOTE:  Wind direction for calm winds is coded as 0.
+<br><br>
+<br>Field 9: Pos 38-43, Length 6: Wind Speed Rate
+<br>The rate of horizontal travel of air past a fixed point.
+<br>UNITS: meters per second
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><br>Field 10: Pos 44-49, Length 6: Sky Condition Total Coverage Code
+<br>The code that denotes the fraction of the total celestial dome covered by clouds or other obscuring phenomena.
+<br>MISSING VALUE: -9999
+<br>DOMAIN:
+<br>0: None, SKC or CLR
+<br>1: One okta - 1/10 or less but not zero
+<br>2: Two oktas - 2/10 - 3/10, or FEW
+<br>3: Three oktas - 4/10
+<br>4: Four oktas - 5/10, or SCT
+<br>5: Five oktas - 6/10
+<br>6: Six oktas - 7/10 - 8/10
+<br>7: Seven oktas - 9/10 or more but not 10/10, or BKN
+<br>8: Eight oktas - 10/10, or OVC
+<br>9: Sky obscured, or cloud amount cannot be estimated
+<br>10: Partial obscuration
+<br>11: Thin scattered
+<br>12: Scattered
+<br>13: Dark scattered
+<br>14: Thin broken
+<br>15: Broken
+<br>16: Dark broken
+<br>17: Thin overcast
+<br>18: Overcast
+<br>19: Dark overcast
+<br><br>Field 11: Pos 50-55, Length 6: Liquid Precipitation Depth Dimension - One Hour Duration
+<br>The depth of liquid precipitation that is measured over a one hour accumulation period.
+<br>UNITS: millimeters
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><em>NOTE</em>:  Trace precipitation is coded as -1
+<br><br>Field 12: Pos 56-61, Length 6: Liquid Precipitation Depth Dimension - Six Hour Duration
+<br>The depth of liquid precipitation that is measured over a six hour accumulation period.
+<br>UNITS: millimeters
+<br>SCALING FACTOR: 10
+<br>MISSING VALUE: -9999
+<br><em>NOTE</em>:  Trace precipitation is coded as -1</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="processing-data">Processing Data</h2>
+<h3 id="step-1-extract-data-from-ftp-server">Step 1: Extract Data From FTP Server</h3>
+<p>Suppose we already have a pre-specified station list and need to extract data files only for those stations from the <a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/">FTP server</a>.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-17%20%E4%B8%8B%E5%8D%881.10.31.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 4: Prespecified Station List/Linktable</div>
+</center>
+<p>To complete this work, you need to</p>
+<ul>
+<li>Find out the file names in the <a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/">FTP server</a> for each station respectively
+<ul>
+<li>For example,  data in year 2019 for station 58015 has name <code>580150-99999-2019.gz</code></li>
+<li>We could infer the names in <a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/">FTP server</a> contains three parts
+<ul>
+<li>Station ID (5 digits) followed by a &ldquo;0&rdquo;</li>
+<li>NCDC WBAN Number (typically <code>99999</code> for Chinese stations)</li>
+<li>Record year</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Filter out the data files in the <a href="ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-lite/">FTP server</a> which belongs to the pre-specified station id list</li>
+<li>Copy the selected data files to your local folder</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-34">34</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">shutil</span> <span style="color:#f92672">import</span> <span style="color:#111">copyfile</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">sys</span> <span style="color:#f92672">import</span> <span style="color:#111">exit</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># import pre-specified station id list</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">stations</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#39;linktable.csv&#39;</span><span style="color:#111">,</span> <span style="color:#111">header</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># find out all the FTP server data file names for the stations you need</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">getchinalist</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">china_list</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#34;</span><span style="color:#d88200">%s</span><span style="color:#d88200">0-99999-</span><span style="color:#d88200">%s</span><span style="color:#d88200">.gz&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">i</span><span style="color:#111">,</span> <span style="color:#111">year</span><span style="color:#111">)</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">stations</span><span style="color:#111">[</span><span style="color:#d88200">&#39;station&#39;</span><span style="color:#111">][</span><span style="color:#ae81ff">1</span><span style="color:#111">:]]</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">file_list</span> <span style="color:#f92672">=</span> <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">listdir</span><span style="color:#111">(</span><span style="color:#d88200">&#34;/Volumes/isd-lite/</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span><span style="color:#f92672">%</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">return</span><span style="color:#111">([</span><span style="color:#111">china_list</span><span style="color:#111">,</span> <span style="color:#111">file_list</span><span style="color:#111">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the files from FTP server to your local folder</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">copy</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">source</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;/Volumes/isd-lite/</span><span style="color:#d88200">%s</span><span style="color:#d88200">/</span><span style="color:#d88200">%s</span><span style="color:#d88200">&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">target</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;/Users/mengjiexu/Dropbox/NOAA/isd</span><span style="color:#d88200">%s</span><span style="color:#d88200">/</span><span style="color:#d88200">%s</span><span style="color:#d88200">&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">copyfile</span><span style="color:#111">(</span><span style="color:#111">source</span><span style="color:#111">,</span> <span style="color:#111">target</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Open a csv file to record the data you&#39;ve copied</span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#d88200">&#39;chinastations.csv&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">f</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">g</span> <span style="color:#f92672">=</span> <span style="color:#111">csv</span><span style="color:#f92672">.</span><span style="color:#111">writer</span><span style="color:#111">(</span><span style="color:#111">f</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Iterate through the year from 1950 to 1999</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a8c8">for</span> <span style="color:#111">year</span> <span style="color:#f92672">in</span> <span style="color:#111">range</span><span style="color:#111">(</span><span style="color:#ae81ff">1950</span><span style="color:#111">,</span> <span style="color:#ae81ff">2000</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">[</span><span style="color:#111">china_list</span><span style="color:#111">,</span> <span style="color:#111">file_list</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">getchinalist</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">for</span> <span style="color:#111">file</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">file_list</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#00a8c8">if</span> <span style="color:#111">file</span> <span style="color:#f92672">in</span> <span style="color:#111">china_list</span><span style="color:#111">:</span>			
+</span></span><span style="display:flex;"><span>				<span style="color:#111">g</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">([</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">])</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#00a8c8">if</span> <span style="color:#f92672">not</span> <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">path</span><span style="color:#f92672">.</span><span style="color:#111">exists</span><span style="color:#111">(</span><span style="color:#d88200">&#34;/../NOAA/isd</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span><span style="color:#f92672">%</span><span style="color:#111">year</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">makedirs</span><span style="color:#111">(</span><span style="color:#d88200">&#34;/../NOAA/isd</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span><span style="color:#f92672">%</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#111">copy</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-2-prepare-data">Step 2: Prepare Data</h3>
+<p>As the number of ISD files is too big, it will create too many redundent <code>dta</code> files when writing those datasets into <code>Stata</code>. Here I wrote all the ISD files recording data for the same first two-digit station ids in a same year into a new file, named by the first two-digit of station ids and store it into the folder &ldquo;china_isd_lite_&rdquo; + the respect year. This procedure is implemented in <code>Python</code>. All the following steps are implemented in <code>Stata</code>.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-43">43</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">dir</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;/.../Data/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># save address for isd files</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">headline</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;year&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;mon&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;day&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;hour&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;air_temperature&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;dew_point_temperature&#39;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#d88200">&#39;sea_level_pressure&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;wind_direction&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;wind_speed&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;cloud_cover&#39;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#d88200">&#39;precipitation_depth_one_hour&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;precipitation_depth_six_hour&#39;</span><span style="color:#111">,</span><span style="color:#d88200">&#39;station&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># headline</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">transisd2csv</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">g</span> <span style="color:#f92672">=</span> <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">walk</span><span style="color:#111">(</span><span style="color:#111">dir</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;china_isd_lite_</span><span style="color:#d88200">%s</span><span style="color:#d88200">&#34;</span><span style="color:#f92672">%</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># iterate all isd files of a given year</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">isExists</span> <span style="color:#f92672">=</span> <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">path</span><span style="color:#f92672">.</span><span style="color:#111">exists</span><span style="color:#111">(</span><span style="color:#111">dir</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;Aggregate</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span> <span style="color:#f92672">%</span> <span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">if</span> <span style="color:#f92672">not</span> <span style="color:#111">isExists</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">makedirs</span><span style="color:#111">(</span><span style="color:#111">dir</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;Aggregate</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span> <span style="color:#f92672">%</span> <span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If thre is no folder named by &#34;Aggregate&#34; + year, then create one</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">for</span> <span style="color:#111">path</span><span style="color:#111">,</span> <span style="color:#111">dir_list</span><span style="color:#111">,</span> <span style="color:#111">file_list</span> <span style="color:#f92672">in</span> <span style="color:#111">g</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">file_name</span> <span style="color:#f92672">in</span> <span style="color:#111">file_list</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">if</span> <span style="color:#111">file_name</span><span style="color:#f92672">!=</span><span style="color:#d88200">&#34;.DS_Store&#34;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">station</span> <span style="color:#f92672">=</span> <span style="color:#111">file_name</span><span style="color:#f92672">.</span><span style="color:#111">split</span><span style="color:#111">(</span><span style="color:#d88200">&#34;-&#34;</span><span style="color:#111">)[</span><span style="color:#ae81ff">0</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Extract station id from each isd file name</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">csvFile</span> <span style="color:#f92672">=</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#111">dir</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;Aggregate</span><span style="color:#d88200">%s</span><span style="color:#d88200">/r</span><span style="color:#d88200">%s</span><span style="color:#d88200">.csv&#34;</span> <span style="color:#f92672">%</span> <span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">station</span><span style="color:#111">[:</span><span style="color:#ae81ff">2</span><span style="color:#111">]),</span> <span style="color:#d88200">&#34;a&#34;</span><span style="color:#111">,</span> <span style="color:#111">newline</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;&#39;</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf-8&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># For each year, create a csv file named by the first two digit of station id</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">writer</span> <span style="color:#f92672">=</span> <span style="color:#111">csv</span><span style="color:#f92672">.</span><span style="color:#111">writer</span><span style="color:#111">(</span><span style="color:#111">csvFile</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">writer</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">(</span><span style="color:#111">headline</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Write headline row</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">f</span> <span style="color:#f92672">=</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#111">dir</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;china_isd_lite_</span><span style="color:#d88200">%s</span><span style="color:#d88200">/&#34;</span> <span style="color:#f92672">%</span> <span style="color:#111">year</span> <span style="color:#f92672">+</span> <span style="color:#111">file_name</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;r&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># iterate each isd file</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#00a8c8">for</span> <span style="color:#111">line</span> <span style="color:#f92672">in</span> <span style="color:#111">f</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                  	<span style="color:#75715e"># Read each row for each ISD file</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">csvRow</span> <span style="color:#f92672">=</span> <span style="color:#111">line</span><span style="color:#f92672">.</span><span style="color:#111">split</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># For each row, split the text by space and get a list</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">csvRow</span><span style="color:#f92672">.</span><span style="color:#111">append</span><span style="color:#111">(</span><span style="color:#111">station</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Add the station id in each row</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">writer</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">(</span><span style="color:#111">csvRow</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Write each row into the previously created csv file named by the first two digit of station id</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">for</span> <span style="color:#111">year</span> <span style="color:#f92672">in</span> <span style="color:#111">range</span><span style="color:#111">(</span><span style="color:#ae81ff">2000</span><span style="color:#111">,</span><span style="color:#ae81ff">2021</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">transisd2csv</span><span style="color:#111">(</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">print</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Year </span><span style="color:#d88200">%s</span><span style="color:#d88200"> completed&#34;</span><span style="color:#f92672">%</span><span style="color:#111">year</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After this procedure, we should get folders for each year named by &ldquo;Aggregate&rdquo; + year.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-17%20%E4%B8%8B%E5%8D%881.00.59.png" width=800 height=400>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 5: Preparing Data - 1</div>
+</center>
+<p>In each folder, there should be a list of csv files named by the first two digits of station id.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-17%20%E4%B8%8B%E5%8D%881.03.55.png" width=800 height=300>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 6: Preparing Data - 2</div>
+</center>
+<h3 id="step-3-write-all-isd-data-in-a-given-year-into-a-same-dta-file">Step 3: Write All ISD data in a Given Year Into A Same dta file</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-33">33</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#111">forvalues</span> <span style="color:#111">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2020</span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Iterate</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">local</span> <span style="color:#111">add</span><span style="color:#f92672">=</span> <span style="color:#d88200">&#34;/.../Data/Aggregate&#34;</span><span style="color:#f92672">+</span><span style="color:#d88200">&#34;`i&#39;/&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">cd</span> <span style="color:#d88200">&#34;`add&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Change</span> <span style="color:#111">work</span> <span style="color:#111">dictionary</span> <span style="color:#111">to</span> <span style="color:#111">the</span> <span style="color:#111">Aggregate</span> <span style="color:#111">folder</span> <span style="color:#111">of</span> <span style="color:#111">the</span> <span style="color:#111">specified</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">local</span> <span style="color:#111">ff</span> <span style="color:#111">:</span> <span style="color:#111">dir</span> <span style="color:#f92672">.</span> <span style="color:#111">files</span> <span style="color:#d88200">&#34;*.csv&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">foreach</span> <span style="color:#111">f</span> <span style="color:#111">of</span> <span style="color:#111">local</span> <span style="color:#111">ff</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">clear</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">dis</span> <span style="color:#d88200">&#34;`f&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">local</span> <span style="color:#111">filename</span> <span style="color:#f92672">=</span> <span style="color:#111">substr</span><span style="color:#111">(</span><span style="color:#d88200">&#34;`f&#39;&#34;</span><span style="color:#111">,</span><span style="color:#ae81ff">1</span><span style="color:#111">,</span><span style="color:#111">ustrrpos</span><span style="color:#111">(</span><span style="color:#d88200">&#34;`f&#39;&#34;</span><span style="color:#111">,</span><span style="color:#d88200">&#34;.&#34;</span><span style="color:#111">)</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#00a8c8">if</span> <span style="color:#d88200">&#34;`filename&#39;&#34;</span><span style="color:#f92672">!=</span><span style="color:#d88200">&#34;&#34;</span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#111">dis</span> <span style="color:#d88200">&#34;`filename&#39;&#34;</span> 
+</span></span><span style="display:flex;"><span>			<span style="color:#111">import</span> <span style="color:#111">delimited</span> <span style="color:#d88200">&#34;`f&#39;&#34;</span><span style="color:#111">,</span> <span style="color:#111">delimiter</span><span style="color:#111">(</span><span style="color:#111">comma</span><span style="color:#111">)</span> <span style="color:#111">varnames</span><span style="color:#111">(</span><span style="color:#ae81ff">1</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#111">save</span> <span style="color:#d88200">&#34;`filename&#39;&#34;</span><span style="color:#111">,</span> <span style="color:#111">replace</span> <span style="color:#111">emptyok</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Transfer</span> <span style="color:#111">the</span> <span style="color:#111">pre</span><span style="color:#f92672">-</span><span style="color:#111">cleaned</span> <span style="color:#111">csv</span> <span style="color:#111">files</span> <span style="color:#111">into</span> <span style="color:#111">the</span> <span style="color:#111">respect</span> <span style="color:#111">dta</span> <span style="color:#111">files</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">use</span> <span style="color:#111">r45</span><span style="color:#111">,</span><span style="color:#111">replace</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">local</span> <span style="color:#111">ff</span> <span style="color:#111">:</span> <span style="color:#111">dir</span> <span style="color:#f92672">.</span> <span style="color:#111">files</span> <span style="color:#d88200">&#34;*.dta&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">foreach</span> <span style="color:#111">f</span> <span style="color:#111">of</span> <span style="color:#111">local</span> <span style="color:#111">ff</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">append</span> <span style="color:#111">using</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">f</span><span style="color:#d88200">&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Merge</span> <span style="color:#111">all</span> <span style="color:#111">dta</span> <span style="color:#111">files</span> <span style="color:#f92672">in</span> <span style="color:#111">a</span> <span style="color:#111">given</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">local</span> <span style="color:#111">saveadd</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;/.../Data/Aggregate2000-2020/chinaclimate&#34;</span><span style="color:#f92672">+</span><span style="color:#d88200">&#34;`i&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">dis</span> <span style="color:#d88200">&#34;`saveadd&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">save</span> <span style="color:#d88200">&#34;`saveadd&#39;&#34;</span><span style="color:#111">,</span> <span style="color:#111">replace</span> <span style="color:#111">emptyok</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Save</span> <span style="color:#111">the</span> <span style="color:#111">dta</span> <span style="color:#111">which</span> <span style="color:#111">contains</span> <span style="color:#111">all</span> <span style="color:#111">the</span> <span style="color:#111">isd</span> <span style="color:#111">data</span> <span style="color:#111">rows</span> <span style="color:#f92672">in</span> <span style="color:#111">a</span> <span style="color:#111">given</span> <span style="color:#111">year</span><span style="color:#111">,</span> <span style="color:#111">named</span> <span style="color:#111">as</span> <span style="color:#d88200">&#34;chinaclimate&#34;</span> <span style="color:#f92672">+</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This step produces a series of dta files named as &ldquo;chinaclimate&rdquo; + year, which contains all isd data rows in a given year.</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E6%88%AA%E5%B1%8F2021-06-17%20%E4%B8%8B%E5%8D%881.25.42.png" width=800 height=500>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 7: ISD Data By Year</div>
+</center>
+<h3 id="step-4-import-linktable-in-order-to-map-station-id-into-province">Step 4: Import Linktable in Order to Map Station Id into Province</h3>
+<p>The linktable is exactly the same as the station list we used in step 1. Suppose you name the imported linktable as <code>linktable.dta</code></p>
+<h3 id="step-5-iterate-pre-cleaned-csv-files-and-average-each-variable-in-each-year">Step 5: Iterate Pre-cleaned Csv Files and Average Each Variable in Each Year</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-54">54</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#111">forvalues</span> <span style="color:#111">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2020</span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">use</span> <span style="color:#111">chinaclimate</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">i</span><span style="color:#d88200">&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Iterate</span> <span style="color:#111">dta</span> <span style="color:#111">file</span> <span style="color:#111">obatined</span> <span style="color:#f92672">in</span> <span style="color:#111">Step</span> <span style="color:#ae81ff">2</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">drop</span> <span style="color:#00a8c8">if</span> <span style="color:#111">year</span><span style="color:#f92672">==</span><span style="color:#d88200">&#34;year&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Delete</span> <span style="color:#111">redundant</span> <span style="color:#111">headlines</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">replace</span> <span style="color:#111">station</span><span style="color:#f92672">=</span><span style="color:#111">substr</span><span style="color:#111">(</span><span style="color:#111">station</span><span style="color:#111">,</span> <span style="color:#ae81ff">1</span><span style="color:#111">,</span> <span style="color:#ae81ff">5</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Keep</span> <span style="color:#111">the</span> <span style="color:#111">first</span> <span style="color:#111">five</span> <span style="color:#111">digits</span> <span style="color:#111">of</span> <span style="color:#111">station</span> <span style="color:#111">id</span> <span style="color:#111">to</span> <span style="color:#111">accommodate</span> <span style="color:#111">the</span> <span style="color:#111">id</span> <span style="color:#111">format</span> <span style="color:#f92672">in</span> <span style="color:#111">linktable</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">sort</span> <span style="color:#111">station</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">merge</span> <span style="color:#111">station</span> <span style="color:#111">using</span> <span style="color:#111">linktable</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">keep</span> <span style="color:#00a8c8">if</span> <span style="color:#111">_merge</span><span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">drop</span> <span style="color:#111">_merge</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Merge</span> <span style="color:#111">with</span> <span style="color:#111">linktable</span> <span style="color:#111">to</span> <span style="color:#111">get</span> <span style="color:#111">the</span> <span style="color:#111">respect</span> <span style="color:#111">province</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">station</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">rename</span> <span style="color:#111">precipitation_depth_one_hour</span> <span style="color:#111">precipitation_one_hour</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">rename</span> <span style="color:#111">precipitation_depth_six_hour</span> <span style="color:#111">precipitation_six_hour</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">sort</span> <span style="color:#111">year</span> <span style="color:#111">mon</span> <span style="color:#111">day</span> <span style="color:#111">station</span> <span style="color:#111">hour</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">local</span> <span style="color:#111">vars</span> <span style="color:#111">air_temperature</span><span style="color:#f92672">-</span><span style="color:#111">precipitation_six_hour</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">destring</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">vars</span><span style="color:#d88200">&#39;,replace</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">global</span> <span style="color:#111">vars</span> <span style="color:#111">air_temperature</span> <span style="color:#111">dew_point_temperature</span> <span style="color:#111">sea_level_pressure</span> <span style="color:#111">wind_direction</span> <span style="color:#111">wind_speed</span> <span style="color:#111">cloud_cover</span> <span style="color:#111">precipitation_one_hour</span> <span style="color:#111">precipitation_six_hour</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">foreach</span> <span style="color:#111">v</span> <span style="color:#111">of</span> <span style="color:#111">global</span> <span style="color:#111">vars</span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">replace</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">v</span><span style="color:#d88200">&#39;=. if `v&#39;</span><span style="color:#f92672">==-</span><span style="color:#ae81ff">9999</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span> <span style="color:#111">For</span> <span style="color:#111">each</span> <span style="color:#111">variable</span><span style="color:#111">,</span> <span style="color:#111">tag</span> <span style="color:#111">the</span> <span style="color:#111">observation</span> <span style="color:#111">as</span> <span style="color:#111">mising</span> <span style="color:#00a8c8">if</span> <span style="color:#111">it</span> <span style="color:#111">equals</span> <span style="color:#111">to</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">9999</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#111">by</span> <span style="color:#111">year</span> <span style="color:#111">mon</span> <span style="color:#111">day</span> <span style="color:#111">station</span><span style="color:#111">:</span> <span style="color:#111">egen</span> <span style="color:#111">dayave_</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">v</span><span style="color:#d88200">&#39;=mean(`v&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span> <span style="color:#111">Get</span> <span style="color:#111">daily</span> <span style="color:#111">average</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">station</span> <span style="color:#111">on</span> <span style="color:#111">each</span> <span style="color:#111">observation</span> <span style="color:#111">date</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#111">drop</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">v</span><span style="color:#d88200">&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span> <span style="color:#111">Only</span> <span style="color:#111">keep</span> <span style="color:#111">averaged</span> <span style="color:#111">variables</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">drop</span> <span style="color:#111">hour</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">duplicates</span> <span style="color:#111">drop</span> <span style="color:#111">year</span> <span style="color:#111">mon</span> <span style="color:#111">day</span> <span style="color:#111">station</span><span style="color:#111">,</span><span style="color:#111">force</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Keep</span> <span style="color:#111">one</span> <span style="color:#111">unique</span> <span style="color:#111">observation</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">station</span> <span style="color:#111">on</span> <span style="color:#111">each</span> <span style="color:#111">observation</span> <span style="color:#111">day</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">foreach</span> <span style="color:#111">v</span> <span style="color:#111">of</span> <span style="color:#111">global</span> <span style="color:#111">vars</span><span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">bys</span> <span style="color:#111">year</span> <span style="color:#111">province</span><span style="color:#111">:</span> <span style="color:#111">egen</span> <span style="color:#111">yearave_</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">v</span><span style="color:#d88200">&#39;=mean(dayave_`v&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span> <span style="color:#111">Get</span> <span style="color:#111">year</span><span style="color:#f92672">-</span><span style="color:#111">level</span> <span style="color:#111">average</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">province</span> <span style="color:#f92672">in</span> <span style="color:#111">each</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#111">drop</span> <span style="color:#111">dayave_</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">v</span><span style="color:#d88200">&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span> <span style="color:#111">Only</span> <span style="color:#111">keep</span> <span style="color:#111">year</span><span style="color:#f92672">-</span><span style="color:#111">level</span> <span style="color:#111">variables</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">keep</span> <span style="color:#111">year</span> <span style="color:#111">province</span> <span style="color:#111">clouday</span> <span style="color:#111">yearave</span><span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#111">duplicates</span> <span style="color:#111">drop</span> <span style="color:#111">year</span> <span style="color:#111">province</span><span style="color:#111">,</span><span style="color:#111">force</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Keep</span> <span style="color:#111">one</span> <span style="color:#111">unique</span> <span style="color:#111">observation</span> <span style="color:#00a8c8">for</span> <span style="color:#111">each</span> <span style="color:#111">station</span> <span style="color:#f92672">in</span> <span style="color:#111">each</span> <span style="color:#111">observation</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#111">save</span> <span style="color:#111">yearclimate</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#111">i</span><span style="color:#d88200">&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">*</span> <span style="color:#111">Save</span> <span style="color:#111">province</span><span style="color:#f92672">-</span><span style="color:#111">year</span> <span style="color:#111">average</span> <span style="color:#111">data</span> <span style="color:#f92672">in</span> <span style="color:#111">dta</span> <span style="color:#111">named</span> <span style="color:#111">by</span> <span style="color:#111">the</span> <span style="color:#111">respective</span> <span style="color:#111">year</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="step-6-append-all-province-year-level-average-dta-files">Step 6: Append All Province-Year Level Average Dta Files</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>clear
+</span></span><span style="display:flex;"><span>set obs 0
+</span></span><span style="display:flex;"><span>save yearclimate2000-2020, emptyok
+</span></span><span style="display:flex;"><span>local ff : dir . files &#34;*.dta&#34;
+</span></span><span style="display:flex;"><span>	foreach f of local ff {
+</span></span><span style="display:flex;"><span>		local tag = (substr(&#34;`f&#39;&#34;,1,11)==&#34;yearclimate&#34;)
+</span></span><span style="display:flex;"><span>			dis `tag&#39;
+</span></span><span style="display:flex;"><span>			if `tag&#39;==1{
+</span></span><span style="display:flex;"><span>				append using `f&#39;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	* Identify all dta files with names starting by &#34;yearclimate&#34; and append them all
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>save yearclimate2000-2020, replace
+</span></span><span style="display:flex;"><span>* Save the year-province level panel data into dta file named by &#34;yearclimate2000-2020&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sample-outcome">Sample Outcome</h2>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/noaa.png" width=800 height=550>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Figure 8: Sample Outcome: Province-Year Panel Data</div>
+</center>
+<h2 id="references">References</h2>
+<p>Mukherjee, Abhiroop, George Panayotov, and Janghoon Shon. 2021. “Eye in the Sky: Private Satellites and Government Macro Data.” Journal of Financial Economics, March. <a href="https://doi.org/10.1016/j.jfineco.2021.03.002">- PDF -</a></p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/post/parse-wsj-archive/" data-toggle="tooltip" data-placement="top" title="Obtain Searched Results From WSJ Website">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

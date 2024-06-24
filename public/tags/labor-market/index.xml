@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labor Market on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/labor-market/</link>
+    <description>Recent content in Labor Market on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/labor-market/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get Insights into Workplace Environment Through the Lens of Glassdoor</title>
+      <link>https://xumj2021.github.io/post/get-insights-into-labor-market-with-glassdoor/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/get-insights-into-labor-market-with-glassdoor/</guid>
+      <description>Motivation Recently, at the request of my colleagues, I have been working on parsing the comprehensive Glassdoor dataset for 2,219 firms and gathering insights from employees residing in various states across the United States. In this blog post, I will share the detailed techniques and algorithms to fulfill this task. For readers who want to access the codes directly, please jump to this section.&#xA;Why Glassdoor Glassdoor has been offering rich insights for practitioners, stakeholders, and researchers and seems to continue to do so in the foreseeable future.</description>
+    </item>
+  </channel>
+</rss>

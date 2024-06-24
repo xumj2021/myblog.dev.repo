@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crawler on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/categories/crawler/</link>
+    <description>Recent content in Crawler on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/categories/crawler/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Obtain Searched Results From WSJ Website</title>
+      <link>https://xumj2021.github.io/post/parse-wsj-archive/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/parse-wsj-archive/</guid>
+      <description>Motivation From my experience of reading papers and listening to seminars, I found anecodotes are crucial for people to establish their &amp;ldquo;first impression&amp;rdquo; about the credibility of the story. With proper anecdotes, the speaker is less likely to be asked many clarification questions or be questioned the necessity of conducting their following analysis. In addition, anecodes can help the author to know better about the institutional background and propose more reasonable research design.</description>
+    </item>
+  </channel>
+</rss>

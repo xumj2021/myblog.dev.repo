@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-309KENXF47"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-309KENXF47');
+    </script>
+
+    
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Democratize Data For Insights">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://assets.bbhub.io/professional/sites/10/Pillar2_Frame1.png">
+    <meta property="twitter:image" content="https://assets.bbhub.io/professional/sites/10/Pillar2_Frame1.png" />
+    
+
+    
+    <meta name="title" content="Gain Insights From Organized Retail Investors in Reddit Wallstreetbets" />
+    <meta property="og:title" content="Gain Insights From Organized Retail Investors in Reddit Wallstreetbets" />
+    <meta property="twitter:title" content="Gain Insights From Organized Retail Investors in Reddit Wallstreetbets" />
+    
+
+    
+    <meta name="description" content="A systematic approach for analyzing Reddit Wallstreetbets comments">
+    <meta property="og:description" content="A systematic approach for analyzing Reddit Wallstreetbets comments" />
+    <meta property="twitter:description" content="A systematic approach for analyzing Reddit Wallstreetbets comments" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Mengjie, Xu, Python, Stata, SAS, Econometrics, Accounting, Crawling">
+    <link rel="shortcut icon" href="/img/favicon.png.ico">
+
+    <title>Mengjie Xu | Democratize Data For Insights</title>
+
+    <link rel="canonical" href="/post/deal-reedit/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/anecdotes/">anecdotes</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/crawler/">crawler</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/data/">data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/theory/">theory</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="//"></a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://assets.bbhub.io/professional/sites/10/Pillar2_Frame1.png')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/reddit" title="Reddit">
+                            Reddit
+                        </a>
+                        
+                        <a class="tag" href="/tags/wallstreetbets" title="Wallstreetbets">
+                            Wallstreetbets
+                        </a>
+                        
+                        <a class="tag" href="/tags/retail-investors" title="Retail Investors">
+                            Retail Investors
+                        </a>
+                        
+                    </div>
+                    <h1>Gain Insights From Organized Retail Investors in Reddit Wallstreetbets</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Mengjie Xu
+                             
+                            on 
+                            Sunday, July 2, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="motivation">Motivation</h2>
+<p>In January 2021, a group of retail investors noticed that several hedge funds had taken large short positions on GameStop&rsquo;s stock, essentially betting that its price would decline. Retail investors, many of whom were part of the Reddit community <a href="https://www.reddit.com/r/wallstreetbets/">Wall Street Bets</a> (hereafter, WSB), saw an opportunity to drive up the stock&rsquo;s price and squeeze the short sellers. They began buying GameStop shares <em>en masse</em>, causing the stock price to skyrocket. Noticeably, according to a <a href="https://www.wsj.com/articles/keith-gill-drove-the-gamestop-reddit-mania-he-talked-to-the-journal-11611931696">Wall Street Journal article published on Jan. 29, 2019</a>, many online investors say advocacy from <a href="https://en.wikipedia.org/wiki/Keith_Gill_(investor)">Keith Gill</a>, a 34-year-old marketing professional and Chartered Financial Analyst (CFA) known by the Reddit username <em>DeepFuckingValue</em>,  <em>&ldquo;helped turn them into a force powerful enough&rdquo;</em>.</p>
+<p>My take-away from the GameStop frenzy is that a few sophisticated individuals in trading forums like WSB (e.g., Keith Gill in this case) can efficiently organize retailers (though not necessarily intentionally), and these organized retail investors could potentially gain significant market-moving power.</p>
+<center>
+      <img style="border-radius: 0.3125em;
+      box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+      src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/wsbnumcomments.png" width=800 height=500>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+      display: inline-block;
+      color: #999;
+      padding: 2px;">Figure 1: Number of Comments in Wallstreetbets Daily Discussion Threads</div>
+  </center>
+<p>These patterns make analyzing WSB discussions (and also other trading forums) meaningful enough. The user booming after Gamestop frenzy makes it even more appealing. An immediate application would be to figure out what the potentially market-moving investor group, most of which are armchair investors,  is discussing there, and optimize your own trading strategy upon it. For example, some hedge funds earned millions by mimicking the bet made by the Reddit renegades in Gamestop frenzy (Jakab, 2022 WSJ). The logic is old but simple: Successful investors always anticipate (or manage to know) what others perceive as success (Keynes, 1936).</p>
+<p>For researchers, WSB discussions offer a granular and dynamic perspective on the motives behind retail trading. Bradley et al. (2021, WP) find that a subset of Reddit WallStreetBets posts, &ldquo;Due Diligence,&rdquo; positively predict returns during their sample period. Eaton et al. (2022, JFE) discover that despite being brief, WallStreetBets forum posts strongly predict future trading by Robinhood investors, whose herding could be detrimental to market quality. Bryzgalova et al. (2023, JF forthcoming) demonstrate that WSB comments are not only responsive to retail equity trading but also reflective of their option choices.</p>
+<p>In this blog, I will provide a systematic approach to accessing the entire archival dataset of WSB comments and conducting analytical research with this dataset. Specifically, I will demonstrate how to:</p>
+<ol>
+<li>Filter comments based on submission titles.</li>
+<li>Count the daily mentions of all CRSP tickers in WSB.</li>
+<li>Implement (high-frequency) event study on WSB comments.</li>
+</ol>
+<h2 id="download-the-dump-files-as-the-data-source">Download the Dump Files as the Data Source</h2>
+<p>Just two months ago, accessing and filtering Reddit archival data is a breeze with the <a href="https://github.com/pushshift/api">PushShift API</a>. This ingenious RESTful API provides comprehensive functionality for searching Reddit data and offers powerful data aggregation capabilities.</p>
+<p>Reddit revoked Pushshift&rsquo;s access to its Data API on May 19th, 2023, <a href="https://www.reddit.com/r/modnews/comments/134tjpe/reddit_data_api_update_changes_to_pushshift_access/">citing a violation of their Data API Terms</a>. While access to the PushShift API was partially restored for a select group of moderators in late June, most researchers were not included. The most recent emergence of <a href="https://www.reddit.com/r/pushshift/comments/14n0cji/pullpush_api_freely_accessible_clone_of_pushshift/">PullPush</a>, a replica of Pushshift, has provided some hope, but it is currently only a demo and its sustainability remains uncertain.</p>
+<p>Another option for accessing Reddit data is through praw, a Python wrapper for the Reddit API. However, retrieving comments using praw can be time-consuming due to Reddit&rsquo;s strict parent-children layer structure. Unpacking each layer takes time, and extracting comments from a single submission, especially on subreddits like Wallstreetbets with deep comment threads, could take up to 20 minutes or longer. Overall, praw&rsquo;s iterative process of navigating through comment layers, which inherits from Reddit API, makes it barely suitable for extracting comments from WSB threads.</p>
+<p>So I gave up the APIs or their wrappers, and decided to create my own WSB full-archive database based on the dump files shared by <a href="https://www.reddit.com/user/Watchful1/">Watchful</a>, an active data contributor and moderator in Reddit, at <a href="https://academictorrents.com/details/098cbcf9712a8747b89f7e235dae41431fd57f7e">academictorrents.com</a>.</p>
+<p>Watchful posted torrents for Reddit comments and submissions data at  academictorrents.com in February 2023. The torrent for Reddit dumps spanning from 2005-06 to 2022-12 can be accessed <a href="https://academictorrents.com/details/7c0645c94321311bb05bd879ddee4d0eba08aaee/tech&amp;filelist=1">here</a>, and the torrent for dumps of individual subreddits are available <a href="https://academictorrents.com/details/c398a571976c78d346c325bd75c47b82edf6124e/tech&amp;filelist=1">here</a>. A pleasant surprise is that Watchful separately posted the torrent for dumps of Wallstreetbets at <a href="https://academictorrents.com/details/098cbcf9712a8747b89f7e235dae41431fd57f7e">this link</a>. That means we could directly access Wallstreetbets data without unpacking the whole Reddit universe (I was not aware of this separate torrent when handling Reddit data and wasted a lot of time on this step).</p>
+<p>To download torrent files, you need a BitTorrent client software that can handle the downloading and uploading of files using the BitTorrent protocol. Suppose that you have successfully downloaded the zst files in the Wallstreetbets torrent link, we will proceed to handle these files in the next step.</p>
+<h2 id="make-the-dump-files-more-accessible">Make The Dump Files More Accessible</h2>
+<p>The Reddit archival dataset was compressed into ZST (Zstandard) files due to their high compression ratios and fast decompression speeds. I converted the ZST file to CSV format for the sake of flexibility in my subsequent manipulations, even though Python can handle the ZST file directly. I will mainly introduce how to decompress WSB comment ZST file, and you can follow the same method to decompress the WSB submission ZST file.</p>
+<h3 id="step-1-decompress-zst-files">Step 1: Decompress ZST Files</h3>
+<p>Since the ZST file for WSB comments is very large (4.84 GB), using code for decompressing is a more practical approach as most decompressing software cannot handle files of this size.</p>
+<p>I modified <a href="https://github.com/Watchful1/PushshiftDumps/blob/master/scripts/to_csv.py">Watchful&rsquo;s codes from his GitHub repository</a> to convert the ZST file to CSV format. The codes were already well-written, but I made revisions to ensure that the unpacking process continues even if errors occur. This is necessary for obtaining the complete archive of WSB comments.</p>
+<p>Before converting, we need to specify three parameters.</p>
+<ul>
+<li>
+<p>Input_file_put: the path where your ZST file is.</p>
+</li>
+<li>
+<p>Out_file_put: the path where your csv file would be.</p>
+</li>
+<li>
+<p>fields: the fields you want to extract for each comment.</p>
+<ul>
+<li>
+<p>I specify the following variables in the <code>fields</code>.</p>
+<ul>
+<li>author: commenter&rsquo;s Reddit ID, e.g., secondhandsondek</li>
+<li>parent_id: what the comment is responding to, e.g., t3_s4jw1, t1_c4b3hli, etc.
+<ul>
+<li>t3_ for submission id, t_1 for comment id</li>
+</ul>
+</li>
+<li>link_id: which submission the comment is responding in, e.g., t3_s4jw1</li>
+<li>score: number of upvotes</li>
+<li>created_utc: the epoch time the comment was created, e.g., 1334162803 for 2012-04-11 16:46:43 GMT</li>
+<li>body: the comment content: e.g., Looks like both my shorts panned out!</li>
+<li>id: the identifier for the comment, e.g., cv20j35</li>
+</ul>
+</li>
+<li>
+<p>Over 50 variables are available for each Reddit comment. Below is a list of the majority of them. To provide readers with a better understanding of the structure of Reddit comment data and the potentially accessible variables, I shared a sample dataset at <a href="https://www.dropbox.com/s/dpc2zqisuec01ay/samplefields.csv?dl=0">this link</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Reddit  Comments Variables</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all_awardings</td>
+<td>author_flair_type</td>
+<td>created_utc</td>
+<td>parent_id</td>
+<td>subreddit_name_prefixed</td>
+</tr>
+<tr>
+<td>associated_award</td>
+<td>author_fullname</td>
+<td>distinguished</td>
+<td>permalink</td>
+<td>subreddit_type</td>
+</tr>
+<tr>
+<td>author</td>
+<td>author_patreon_flair</td>
+<td>edited</td>
+<td>quarantined</td>
+<td>total_awards_received</td>
+</tr>
+<tr>
+<td>author_created_utc</td>
+<td>awarders</td>
+<td>gilded</td>
+<td>removal_reason</td>
+<td>retrieved_utc</td>
+</tr>
+<tr>
+<td>author_flair_background_color</td>
+<td>body</td>
+<td>gildings</td>
+<td>score</td>
+<td>updated_utc</td>
+</tr>
+<tr>
+<td>author_flair_css_class</td>
+<td>can_gild</td>
+<td>id</td>
+<td>send_replies</td>
+<td>body_sha1</td>
+</tr>
+<tr>
+<td>author_flair_richtext</td>
+<td>can_mod_post</td>
+<td>is_submitter</td>
+<td>steward_reports</td>
+<td>nest_level</td>
+</tr>
+<tr>
+<td>author_flair_template_id</td>
+<td>collapsed</td>
+<td>link_id</td>
+<td>stickied</td>
+<td>utc_datetime_str</td>
+</tr>
+<tr>
+<td>author_flair_text</td>
+<td>collapsed_reason</td>
+<td>locked</td>
+<td>subreddit</td>
+<td>edited_on</td>
+</tr>
+<tr>
+<td>author_flair_text_color</td>
+<td>controversiality</td>
+<td>no_follow</td>
+<td>subreddit_id</td>
+<td>author_cakeday</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>To avoid code interruption, it is recommended to select only those variables that are likely to be available for every comment in WSB since 2012. This approach accounts for changes in available variables over time.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="codes-for-decompressing-zst-files">Codes for Decompressing ZST files</h4>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-54">54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-55">55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-56">56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-57">57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-58">58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-59">59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-60">60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-61">61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-62">62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-63">63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-64">64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-65">65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-66">66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-67">67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-68">68</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-69">69</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-70">70</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-71">71</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-72">72</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-73">73</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-74">74</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-75">75</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-76">76</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-77">77</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-78">78</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-79">79</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">zstandard</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">json</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">sys</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">datetime</span> <span style="color:#f92672">import</span> <span style="color:#111">datetime</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">logging.handlers</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">log</span> <span style="color:#f92672">=</span> <span style="color:#111">logging</span><span style="color:#f92672">.</span><span style="color:#111">getLogger</span><span style="color:#111">(</span><span style="color:#d88200">&#34;bot&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">log</span><span style="color:#f92672">.</span><span style="color:#111">setLevel</span><span style="color:#111">(</span><span style="color:#111">logging</span><span style="color:#f92672">.</span><span style="color:#111">DEBUG</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">log</span><span style="color:#f92672">.</span><span style="color:#111">addHandler</span><span style="color:#111">(</span><span style="color:#111">logging</span><span style="color:#f92672">.</span><span style="color:#111">StreamHandler</span><span style="color:#111">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">read_and_decode</span><span style="color:#111">(</span><span style="color:#111">reader</span><span style="color:#111">,</span> <span style="color:#111">chunk_size</span><span style="color:#111">,</span> <span style="color:#111">max_window_size</span><span style="color:#111">,</span> <span style="color:#111">previous_chunk</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">,</span> <span style="color:#111">bytes_read</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">chunk</span> <span style="color:#f92672">=</span> <span style="color:#111">reader</span><span style="color:#f92672">.</span><span style="color:#111">read</span><span style="color:#111">(</span><span style="color:#111">chunk_size</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">bytes_read</span> <span style="color:#f92672">+=</span> <span style="color:#111">chunk_size</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">if</span> <span style="color:#111">previous_chunk</span> <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#00a8c8">None</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">chunk</span> <span style="color:#f92672">=</span> <span style="color:#111">previous_chunk</span> <span style="color:#f92672">+</span> <span style="color:#111">chunk</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">return</span> <span style="color:#111">chunk</span><span style="color:#f92672">.</span><span style="color:#111">decode</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">except</span> <span style="color:#75af00">UnicodeDecodeError</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">if</span> <span style="color:#111">bytes_read</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">max_window_size</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">raise</span> <span style="color:#75af00">UnicodeError</span><span style="color:#111">(</span><span style="color:#d88200">f</span><span style="color:#d88200">&#34;Unable to decode frame after reading </span><span style="color:#d88200">{</span><span style="color:#111">bytes_read</span><span style="color:#d88200">:</span><span style="color:#d88200">,</span><span style="color:#d88200">}</span><span style="color:#d88200"> bytes&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">return</span> <span style="color:#111">read_and_decode</span><span style="color:#111">(</span><span style="color:#111">reader</span><span style="color:#111">,</span> <span style="color:#111">chunk_size</span><span style="color:#111">,</span> <span style="color:#111">max_window_size</span><span style="color:#111">,</span> <span style="color:#111">chunk</span><span style="color:#111">,</span> <span style="color:#111">bytes_read</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">read_lines_zst</span><span style="color:#111">(</span><span style="color:#111">file_name</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#111">file_name</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;rb&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">file_handle</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">buffer</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">reader</span> <span style="color:#f92672">=</span> <span style="color:#111">zstandard</span><span style="color:#f92672">.</span><span style="color:#111">ZstdDecompressor</span><span style="color:#111">(</span><span style="color:#111">max_window_size</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">**</span><span style="color:#ae81ff">31</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">stream_reader</span><span style="color:#111">(</span><span style="color:#111">file_handle</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">while</span> <span style="color:#00a8c8">True</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">#chunk = read_and_decode(reader, 2**27, (2**29) * 2)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">chunk</span> <span style="color:#f92672">=</span> <span style="color:#111">read_and_decode</span><span style="color:#111">(</span><span style="color:#111">reader</span><span style="color:#111">,</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span><span style="color:#ae81ff">27</span><span style="color:#111">,</span> <span style="color:#111">(</span><span style="color:#ae81ff">2</span><span style="color:#f92672">**</span><span style="color:#ae81ff">29</span><span style="color:#111">)</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#00a8c8">if</span> <span style="color:#f92672">not</span> <span style="color:#111">chunk</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#00a8c8">break</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">lines</span> <span style="color:#f92672">=</span> <span style="color:#111">(</span><span style="color:#111">buffer</span> <span style="color:#f92672">+</span> <span style="color:#111">chunk</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">split</span><span style="color:#111">(</span><span style="color:#d88200">&#34;</span><span style="color:#8045ff">\n</span><span style="color:#d88200">&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#00a8c8">for</span> <span style="color:#111">line</span> <span style="color:#f92672">in</span> <span style="color:#111">lines</span><span style="color:#111">[:</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#111">]:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#00a8c8">yield</span> <span style="color:#111">line</span><span style="color:#111">,</span> <span style="color:#111">file_handle</span><span style="color:#f92672">.</span><span style="color:#111">tell</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">buffer</span> <span style="color:#f92672">=</span> <span style="color:#111">lines</span><span style="color:#111">[</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">except</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#34;__main__&#34;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">input_file_path</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">wallstreetbets_comments.zst&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">output_file_path</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">wallstreetbets_comments.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">fields</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;author&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;parent_id&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">,</span>  <span style="color:#d88200">&#39;distinguished&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;score&#39;</span><span style="color:#111">,</span> 
+</span></span><span style="display:flex;"><span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;body&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;edited&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;subreddit&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;id&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">file_size</span> <span style="color:#f92672">=</span> <span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">stat</span><span style="color:#111">(</span><span style="color:#111">input_file_path</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">st_size</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">file_lines</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">file_bytes_processed</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">line</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">created</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">bad_lines</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">output_file</span> <span style="color:#f92672">=</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#111">output_file_path</span><span style="color:#111">,</span> <span style="color:#d88200">&#34;w&#34;</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf-8&#39;</span><span style="color:#111">,</span> <span style="color:#111">newline</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">writer</span> <span style="color:#f92672">=</span> <span style="color:#111">csv</span><span style="color:#f92672">.</span><span style="color:#111">writer</span><span style="color:#111">(</span><span style="color:#111">output_file</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">writer</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">(</span><span style="color:#111">fields</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">line</span><span style="color:#111">,</span> <span style="color:#111">file_bytes_processed</span> <span style="color:#f92672">in</span> <span style="color:#111">read_lines_zst</span><span style="color:#111">(</span><span style="color:#111">input_file_path</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">obj</span> <span style="color:#f92672">=</span> <span style="color:#111">json</span><span style="color:#f92672">.</span><span style="color:#111">loads</span><span style="color:#111">(</span><span style="color:#111">line</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">output_obj</span> <span style="color:#f92672">=</span> <span style="color:#111">[]</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#00a8c8">for</span> <span style="color:#111">field</span> <span style="color:#f92672">in</span> <span style="color:#111">fields</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">output_obj</span><span style="color:#f92672">.</span><span style="color:#111">append</span><span style="color:#111">(</span><span style="color:#111">str</span><span style="color:#111">(</span><span style="color:#111">obj</span><span style="color:#111">[</span><span style="color:#111">field</span><span style="color:#111">])</span><span style="color:#f92672">.</span><span style="color:#111">encode</span><span style="color:#111">(</span><span style="color:#d88200">&#34;utf-8&#34;</span><span style="color:#111">,</span> <span style="color:#111">errors</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;replace&#39;</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">decode</span><span style="color:#111">())</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">writer</span><span style="color:#f92672">.</span><span style="color:#111">writerow</span><span style="color:#111">(</span><span style="color:#111">output_obj</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">created</span> <span style="color:#f92672">=</span> <span style="color:#111">datetime</span><span style="color:#f92672">.</span><span style="color:#111">utcfromtimestamp</span><span style="color:#111">(</span><span style="color:#111">int</span><span style="color:#111">(</span><span style="color:#111">obj</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">]))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">except</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">bad_lines</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">file_lines</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">if</span> <span style="color:#111">file_lines</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">100000</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">log</span><span style="color:#f92672">.</span><span style="color:#111">info</span><span style="color:#111">(</span><span style="color:#d88200">f</span><span style="color:#d88200">&#34;</span><span style="color:#d88200">{</span><span style="color:#111">created</span><span style="color:#f92672">.</span><span style="color:#111">strftime</span><span style="color:#111">(</span><span style="color:#d88200">&#39;%Y-%m-</span><span style="color:#d88200">%d</span><span style="color:#d88200"> %H:%M:%S&#39;</span><span style="color:#111">)</span><span style="color:#d88200">}</span><span style="color:#d88200"> : </span><span style="color:#d88200">{</span><span style="color:#111">file_lines</span><span style="color:#d88200">:</span><span style="color:#d88200">,</span><span style="color:#d88200">}</span><span style="color:#d88200"> : </span><span style="color:#d88200">{</span><span style="color:#111">bad_lines</span><span style="color:#d88200">:</span><span style="color:#d88200">,</span><span style="color:#d88200">}</span><span style="color:#d88200"> : </span><span style="color:#d88200">{</span><span style="color:#111">(</span><span style="color:#111">file_bytes_processed</span> <span style="color:#f92672">/</span> <span style="color:#111">file_size</span><span style="color:#111">)</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span><span style="color:#d88200">:</span><span style="color:#d88200">.0f</span><span style="color:#d88200">}</span><span style="color:#d88200">%&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">except</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="output">Output</h4>
+<p>The log of the unpacking progress is as follows. There are four parameters printed in the log.</p>
+<ul>
+<li>The latest timestamp of all processed comments.</li>
+<li>The number of processed comments.</li>
+<li>The number of bad lines (this might not be precise for my revision).</li>
+<li>The percentage of processed file size.</li>
+</ul>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>2015-08-17 00:53:51 : 100,000 : 0 : 0%
+</span></span><span style="display:flex;"><span>2015-12-28 20:01:26 : 200,000 : 0 : 0%
+</span></span><span style="display:flex;"><span>2016-04-04 18:18:56 : 300,000 : 0 : 1%
+</span></span><span style="display:flex;"><span>2016-06-15 23:14:02 : 400,000 : 0 : 1%
+</span></span><span style="display:flex;"><span>2016-08-10 21:02:19 : 500,000 : 0 : 1%
+</span></span><span style="display:flex;"><span>2016-10-05 02:56:21 : 600,000 : 0 : 1%
+</span></span><span style="display:flex;"><span>2016-12-06 18:40:11 : 700,000 : 0 : 1%
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>2022-12-04 18:50:13 : 68,800,000 : 0 : 99%
+</span></span><span style="display:flex;"><span>2022-12-07 20:59:42 : 68,900,000 : 0 : 99%
+</span></span><span style="display:flex;"><span>2022-12-11 14:15:36 : 69,000,000 : 0 : 99%
+</span></span><span style="display:flex;"><span>2022-12-14 06:38:59 : 69,100,000 : 0 : 99%
+</span></span><span style="display:flex;"><span>2022-12-16 17:18:19 : 69,200,000 : 0 : 99%
+</span></span><span style="display:flex;"><span>2022-12-20 14:44:53 : 69,300,000 : 0 : 100%
+</span></span><span style="display:flex;"><span>2022-12-23 00:39:29 : 69,400,000 : 0 : 100%
+</span></span><span style="display:flex;"><span>2022-12-27 17:55:01 : 69,500,000 : 0 : 100%
+</span></span><span style="display:flex;"><span>2022-12-30 18:53:51 : 69,600,000 : 0 : 100%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Assuming the codes run smoothly, you will obtain a CSV-formatted file containing all WSB comments posted between 2012-04-11 16:46:43 GMT and 2022-12-30 18:53:51 GMT.</p>
+<p>Use the same code to decompress the WSB submission file as the comments file, but remember to re-specify the three parameters.</p>
+<ul>
+<li>
+<p>Input_file_put: the path where your submission ZST file is.</p>
+</li>
+<li>
+<p>Out_file_put: the path where your submission csv file would be.</p>
+</li>
+<li>
+<p>fields: the fields you want to extract for each submission. I would choose the follows.</p>
+<ul>
+<li>[&rsquo;title&rsquo;, &rsquo;link_flair_text&rsquo;, &lsquo;score&rsquo;, &lsquo;created_utc&rsquo;, &lsquo;id&rsquo;, &lsquo;author&rsquo;, &rsquo;num_comments&rsquo;, &lsquo;permalink&rsquo;]</li>
+</ul>
+</li>
+</ul>
+<p>Assuming the codes run smoothly, you will obtain a CSV-formatted file containing all WSB submissions posted between 2012-04-11 and 2023-01-01.</p>
+<h3 id="step-2-slice-the-wsb-comment-csv-file">Step 2: Slice the WSB Comment CSV File</h3>
+<p>To improve the accessibility of WSB comments, I divided the large dump file into 94 smaller sub-files, each containing 1,000,000 lines. This slicing allows for easier and faster reading of the data compared to dealing with a single 4 GB CSV file, which can be time-consuming and CPU-intensive. The choice of 1,000,000 lines per sub-file is arbitrary and can be adjusted according to your preference.</p>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">itertools</span> <span style="color:#f92672">import</span> <span style="color:#111">zip_longest</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">grouper</span><span style="color:#111">(</span><span style="color:#111">n</span><span style="color:#111">,</span> <span style="color:#111">iterable</span><span style="color:#111">,</span> <span style="color:#111">fillvalue</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">args</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">iter</span><span style="color:#111">(</span><span style="color:#111">iterable</span><span style="color:#111">)]</span> <span style="color:#f92672">*</span> <span style="color:#111">n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">zip_longest</span><span style="color:#111">(</span><span style="color:#111">fillvalue</span><span style="color:#f92672">=</span><span style="color:#111">fillvalue</span><span style="color:#111">,</span> <span style="color:#f92672">*</span><span style="color:#111">args</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">getsmaller</span><span style="color:#111">(</span><span style="color:#111">n</span><span style="color:#111">,</span> <span style="color:#111">file</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#111">file</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;r&#39;</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf8&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">f</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">i</span><span style="color:#111">,</span> <span style="color:#111">g</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">enumerate</span><span style="color:#111">(</span><span style="color:#111">grouper</span><span style="color:#111">(</span><span style="color:#111">n</span><span style="color:#111">,</span> <span style="color:#111">f</span><span style="color:#111">,</span> <span style="color:#111">fillvalue</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;&#39;</span><span style="color:#111">),</span> <span style="color:#ae81ff">1</span><span style="color:#111">)):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">with</span> <span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#d88200">&#39;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSB_comments_part_</span><span style="color:#d88200">%s</span><span style="color:#d88200">.csv&#39;</span><span style="color:#f92672">%</span><span style="color:#111">i</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;w&#39;</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf8&#39;</span><span style="color:#111">)</span> <span style="color:#00a8c8">as</span> <span style="color:#111">fout</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">fout</span><span style="color:#f92672">.</span><span style="color:#111">writelines</span><span style="color:#111">(</span><span style="color:#111">g</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">getsmaller</span><span style="color:#111">(</span><span style="color:#ae81ff">1000000</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">wallstreetbets_comments.csv&#39;</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After this step, you will obtain 94 sub-files of WSB comments in CSV format, each comprising 1,000,000 lines. It is important to note that, except for the first sub-file, the sliced sub-files do not have a header and may have a few improperly formatted lines due to delimiter issues in the beginning of the file. While this is not a significant problem, it may require skipping the initial lines, say first 50, to ensure smooth reading of the CSV file in Python.</p>
+<h2 id="task-1-filter-comments-by-submission-titles">Task 1: Filter Comments By Submission Titles</h2>
+<p>So far, we have acquired accessible WSB comments and submissions. Our first task is to extract comments from submissions that have specific submission titles. In certain cases, it is unnecessary to analyze the entire WSB universe; rather, focusing on representative and active submissions, such as &ldquo;Due Diligence&rdquo; mentioned in Bradley et al. (2021, WP) and &ldquo;Daily Discussion&rdquo; (they also include &ldquo;What Are Your Moves Tomorrow&rdquo; in their online appendix) utilized by Bryzgalova et al. (2023, JF forthcoming), can serve our purpose. This approach not only reduces the data size that needs to be processed but also ensures consistency and facilitates comparisons across different days.</p>
+<p>I will show how to retrieve all the WSB comments in submissions with &ldquo;Daily Discussion&rdquo; in their title. In WSB, &ldquo;Daily Discussion&rdquo; refers to a recurring thread where users can engage in general discussions about the stock market, trading strategies, and other related topics. It is a designated space for members of the WSB community to share their thoughts, ask questions, and exchange ideas on a daily basis.</p>
+<p>To implement this, we need first filter within the WSB submission universe, where the titles and the <code>base36</code> ids of all the submissions are available. Let&rsquo;s assume we designate the resulting dataframe as <code>postdf</code>. To facilitate the subsequent merging, we need to rename the variable for submission id from <code>id</code> to <code>link_id</code>.</p>
+<p>With the <code>base36</code> IDs of the targeted submissions, we can perform a merge operation between <code>postdf</code> and the WSB comments universe, which is spread across 94 separate files. We gather all the successfully merged results when merging them one by one.</p>
+<p>As the merging process involves iterating over all the sliced comment files, we can simultaneously clean these slices. I would recommend making four modifications in this regard.</p>
+<ol>
+<li>Add a header to all sub-files to facilitate filtering comments by column names.</li>
+<li>Retrieve the <code>base36</code> submission ID from the <code>link_id</code> of each comment. Currently, they are like <code>t3_s4jw1</code>, we only need the part after the underscore character.</li>
+<li>Extract the date from the UTC timestamp of each comment, enabling filtering based on specific dates.</li>
+<li>Add the start and end dates for each sliced file to its filename for better reference.</li>
+</ol>
+<p>As the filtered results are not as big, I write them into a single CSV file <code>WSB_DD.csv</code>. In case it&rsquo;s too big, you can definitely following the aforementioned method to slice it.</p>
+<h3 id="codes-for-picking-out-comments-in-specified-submissions">Codes for Picking Out Comments in Specified Submissions</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-37">37</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span><span style="color:#f92672">,</span> <span style="color:#111">csv</span><span style="color:#f92672">,</span> <span style="color:#111">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">datetime</span> <span style="color:#f92672">import</span> <span style="color:#111">datetime</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">getposts</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#111">submission_file_path</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;title&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">notna</span><span style="color:#111">()]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">postdf</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;title&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">str</span><span style="color:#f92672">.</span><span style="color:#111">contains</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Daily Discussion&#34;</span><span style="color:#111">)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">postdf</span> <span style="color:#f92672">=</span> <span style="color:#111">postdf</span><span style="color:#f92672">.</span><span style="color:#111">rename</span><span style="color:#111">(</span><span style="color:#111">columns</span><span style="color:#f92672">=</span><span style="color:#111">{</span><span style="color:#d88200">&#39;id&#39;</span><span style="color:#111">:</span> <span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">})</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">postdf</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">cleanslice</span><span style="color:#111">(</span><span style="color:#111">file</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">try</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">df</span><span style="color:#f92672">=</span><span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#111">indir</span><span style="color:#f92672">+</span><span style="color:#111">file</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf-8&#39;</span><span style="color:#111">,</span> <span style="color:#111">dtype</span><span style="color:#f92672">=</span><span style="color:#111">str</span><span style="color:#111">,</span>  <span style="color:#111">engine</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;python&#39;</span><span style="color:#111">,</span> <span style="color:#111">on_bad_lines</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;skip&#39;</span><span style="color:#111">)</span>      
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">except</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">df</span><span style="color:#f92672">=</span><span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#111">indir</span><span style="color:#f92672">+</span><span style="color:#111">file</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">,</span> <span style="color:#111">encoding</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;utf-8&#39;</span><span style="color:#111">,</span> <span style="color:#111">dtype</span><span style="color:#f92672">=</span><span style="color:#111">str</span><span style="color:#111">,</span> <span style="color:#111">skiprows</span><span style="color:#f92672">=</span><span style="color:#111">range</span><span style="color:#111">(</span><span style="color:#ae81ff">50</span><span style="color:#111">),</span> <span style="color:#111">engine</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;python&#39;</span><span style="color:#111">,</span> <span style="color:#111">on_bad_lines</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;skip&#39;</span><span style="color:#111">)</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">columns</span> <span style="color:#f92672">=</span> <span style="color:#111">fields</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">to_numeric</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">],</span> <span style="color:#111">errors</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;coerce&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;date&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">apply</span><span style="color:#111">(</span><span style="color:#00a8c8">lambda</span> <span style="color:#111">x</span><span style="color:#111">:</span> <span style="color:#111">datetime</span><span style="color:#f92672">.</span><span style="color:#111">fromtimestamp</span><span style="color:#111">(</span><span style="color:#111">x</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">date</span><span style="color:#111">())</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">apply</span><span style="color:#111">(</span><span style="color:#00a8c8">lambda</span> <span style="color:#111">x</span><span style="color:#111">:</span> <span style="color:#111">x</span><span style="color:#f92672">.</span><span style="color:#111">split</span><span style="color:#111">(</span><span style="color:#d88200">&#34;_&#34;</span><span style="color:#111">)[</span><span style="color:#ae81ff">1</span><span style="color:#111">])</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">[</span><span style="color:#111">mint</span><span style="color:#111">,</span> <span style="color:#111">maxt</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;date&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">min</span><span style="color:#111">(),</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;date&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">max</span><span style="color:#111">()]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">cleandir</span><span style="color:#f92672">+</span><span style="color:#d88200">&#34;</span><span style="color:#d88200">%s</span><span style="color:#d88200">_</span><span style="color:#d88200">%s</span><span style="color:#d88200">_</span><span style="color:#d88200">%s</span><span style="color:#d88200">.csv&#34;</span><span style="color:#f92672">%</span><span style="color:#111">(</span><span style="color:#111">file</span><span style="color:#111">[:</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#111">],</span> <span style="color:#111">mint</span><span style="color:#111">,</span> <span style="color:#111">maxt</span><span style="color:#111">),</span> <span style="color:#111">index</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">df</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">indir</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">cleandir</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">submission_file_path</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">wallstreetbets_submissions.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">out_file_path</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;E:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSBDailyDiscussion</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSB_DD.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">postdf</span> <span style="color:#f92672">=</span> <span style="color:#111">getposts</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">fields</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#d88200">&#39;author&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;parent_id&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">,</span>  <span style="color:#d88200">&#39;distinguished&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;score&#39;</span><span style="color:#111">,</span> 
+</span></span><span style="display:flex;"><span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;body&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;edited&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;subreddit&#39;</span><span style="color:#111">,</span> <span style="color:#d88200">&#39;id&#39;</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">for</span> <span style="color:#111">file</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">os</span><span style="color:#f92672">.</span><span style="color:#111">listdir</span><span style="color:#111">(</span><span style="color:#111">indir</span><span style="color:#111">)):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">cleanslice</span><span style="color:#111">(</span><span style="color:#111">file</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">outdf</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">merge</span><span style="color:#111">(</span><span style="color:#111">postdf</span><span style="color:#111">,</span> <span style="color:#111">how</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;inner&#39;</span><span style="color:#111">,</span> <span style="color:#111">on</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">outdf</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">out_file_path</span><span style="color:#111">,</span> <span style="color:#111">index</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="task-2-count-the-daily-mentions-of-all-crsp-tickers">Task 2: Count the daily mentions of all CRSP tickers</h2>
+<p>Despite the potential for higher granularity offered by WSB comments, researchers opt to use the daily counts of firms&rsquo; tickers to ensure the comparability with other retail attention measures, such as Google search trends and page clicks of firm&rsquo;s  wiki profile. Our second task is thus to count the WSB mentioning times for each CRSP tickers. Following Bryzgalova et al. (2023, JF forthcoming), I only count the capitalized tickers in WSB comments.</p>
+<p>To implement this, we need first obtain all the CRSP symbols from WRDS, which is available at <a href="https://wrds-www.wharton.upenn.edu/pages/get-data/center-research-security-prices-crsp/annual-update/stock-security-files/stock-header-info/">WRDS CRSP Stock Header Information</a>. Note that any symbol list should work, the point is to get a symbol list you want to count the mentioning times by WSB comments.</p>
+<p>The algorithm of implementing this are as follows.</p>
+<ol>
+<li>Load all the CRSP tickers to a dataframe</li>
+<li>Load all the WSB comments in &ldquo;Daily Discussion&rdquo; thread, which we have obtained in Task 1</li>
+<li>Group the dataframe for WSB comments by comment date</li>
+<li>For each comment date, gather all the comment text into a single string, within this string
+<ul>
+<li>Use regular expressions to figure out all the capitalized words in this string</li>
+<li>Count the mentioned times for each capitalized word mentioned by this string</li>
+<li>Pick out CRSP tickers from capitalized words mentioned by this string and their mentioned times</li>
+<li>Save the CRSP tickers and their mentioned times to the output file</li>
+</ul>
+</li>
+<li>Iterate over the comments dates</li>
+</ol>
+<h3 id="codes-for-counting-daily-mentions-of-all-crsp-tickers">Codes for Counting Daily Mentions of all CRSP Tickers</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-32">32</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span><span style="color:#f92672">,</span> <span style="color:#111">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">collections</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">calendar</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">time</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">datetime</span> <span style="color:#f92672">import</span> <span style="color:#111">datetime</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">countcrsp</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">for</span> <span style="color:#111">idx</span><span style="color:#111">,</span> <span style="color:#111">wsb</span> <span style="color:#f92672">in</span> <span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">groupby</span><span style="color:#111">(</span><span style="color:#d88200">&#39;date&#39;</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">comments</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;,&#34;</span><span style="color:#f92672">.</span><span style="color:#111">join</span><span style="color:#111">([</span><span style="color:#111">str</span><span style="color:#111">(</span><span style="color:#111">i</span><span style="color:#111">)</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">wsb</span><span style="color:#111">[</span><span style="color:#d88200">&#39;body&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">tolist</span><span style="color:#111">()])</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">upperwords</span> <span style="color:#f92672">=</span> <span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">findall</span><span style="color:#111">(</span><span style="color:#d88200">&#34; [A-Z]+ &#34;</span><span style="color:#111">,</span> <span style="color:#111">comments</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">upperwords</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">i</span><span style="color:#f92672">.</span><span style="color:#111">strip</span><span style="color:#111">()</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">upperwords</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">counter</span> <span style="color:#f92672">=</span> <span style="color:#111">collections</span><span style="color:#f92672">.</span><span style="color:#111">Counter</span><span style="color:#111">(</span><span style="color:#111">upperwords</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">res</span> <span style="color:#f92672">=</span> <span style="color:#111">list</span><span style="color:#111">(</span><span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">symbolpool</span><span style="color:#111">)</span><span style="color:#f92672">&amp;</span><span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">upperwords</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">resdict</span> <span style="color:#f92672">=</span> <span style="color:#111">{</span><span style="color:#111">key</span><span style="color:#111">:</span> <span style="color:#111">counter</span><span style="color:#111">[</span><span style="color:#111">key</span><span style="color:#111">]</span> <span style="color:#00a8c8">for</span> <span style="color:#111">key</span> <span style="color:#f92672">in</span> <span style="color:#111">res</span><span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">resdf</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">DataFrame</span><span style="color:#111">([</span><span style="color:#111">resdict</span><span style="color:#111">])</span><span style="color:#f92672">.</span><span style="color:#111">T</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">resdf</span><span style="color:#111">[</span><span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">postid</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">resdf</span><span style="color:#111">[</span><span style="color:#d88200">&#39;commentdate&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">idx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">resdf</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">outfile</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">loadcrsp</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">crspsymbolpool.csv&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">symbolpool</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;HTICK&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">drop_duplicates</span><span style="color:#111">()</span><span style="color:#f92672">.</span><span style="color:#111">to_list</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">symbolpool</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">in_file_path</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSB_DD.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">outfile</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSBCRSPCount_202306.csv&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">symbolpool</span> <span style="color:#f92672">=</span> <span style="color:#111">loadcrsp</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#111">file</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">countcrsp</span><span style="color:#111">(</span><span style="color:#111">in_file_path</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="task-3-implement-event-study-on-wsb-comments">Task 3: Implement Event Study on WSB Comments</h2>
+<p>WSB has the potential to provide granularity beyond daily frequency, allowing for analysis at an hourly, minute, or even second level, depending on researchers&rsquo; needs. The logic to implement higher frequency event study is as similar to what we did with daily frequency.</p>
+<p>Take the hourly event study as an example. First you need a timestamp when your event happens. Then you calculate the time difference between the event timestamp and the comment timestamps, determining the hourly difference between them. At the same time, you narrow down the dataset to the desired time range, say [-12, +12] hours relative to your event. Next, you group the dataset based on the hourly gap relative to the event occurrence and apply the CRSP ticker count program, as outlined in the function <code>countcrsp(df)</code> in Task 2, for each hour gap.</p>
+<h3 id="codes-for-implementing-event-study-on-wsb-comments">Codes for Implementing Event Study on WSB Comments</h3>
+<div class="highlight"><div style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-40">40</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">os</span><span style="color:#f92672">,</span> <span style="color:#111">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">pandas</span> <span style="color:#00a8c8">as</span> <span style="color:#111">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">tqdm</span> <span style="color:#f92672">import</span> <span style="color:#111">tqdm</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">collections</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">calendar</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">time</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#111">csv</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">datetime</span> <span style="color:#f92672">import</span> <span style="color:#111">datetime</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">dateutil</span> <span style="color:#f92672">import</span> <span style="color:#111">parser</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> <span style="color:#111">math</span> <span style="color:#f92672">import</span> <span style="color:#111">ceil</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">counttime</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;date&#39;</span><span style="color:#111">]</span><span style="color:#f92672">==</span> <span style="color:#111">eventdate</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;hourgap&#39;</span><span style="color:#111">]</span><span style="color:#f92672">=</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;created_utc&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">apply</span><span style="color:#111">(</span><span style="color:#00a8c8">lambda</span> <span style="color:#111">x</span><span style="color:#111">:</span><span style="color:#111">ceil</span><span style="color:#111">((</span><span style="color:#111">int</span><span style="color:#111">(</span><span style="color:#111">x</span><span style="color:#111">)</span><span style="color:#f92672">-</span><span style="color:#111">pubtime</span><span style="color:#111">)</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3600</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;hourgap&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">between</span><span style="color:#111">(</span><span style="color:#f92672">-</span><span style="color:#ae81ff">12</span><span style="color:#111">,</span> <span style="color:#f92672">+</span><span style="color:#ae81ff">12</span><span style="color:#111">,</span> <span style="color:#111">inclusive</span><span style="color:#f92672">=</span><span style="color:#d88200">&#34;both&#34;</span><span style="color:#111">)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">if</span> <span style="color:#f92672">not</span> <span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">empty</span><span style="color:#111">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">idx</span><span style="color:#111">,</span> <span style="color:#111">hourdf</span> <span style="color:#f92672">in</span> <span style="color:#111">tqdm</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#f92672">.</span><span style="color:#111">groupby</span><span style="color:#111">([</span><span style="color:#d88200">&#39;hourgap&#39;</span><span style="color:#111">])):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">comments</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;,&#34;</span><span style="color:#f92672">.</span><span style="color:#111">join</span><span style="color:#111">([</span><span style="color:#111">str</span><span style="color:#111">(</span><span style="color:#111">i</span><span style="color:#111">)</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">wsb</span><span style="color:#111">[</span><span style="color:#d88200">&#39;body&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">tolist</span><span style="color:#111">()])</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">upperwords</span> <span style="color:#f92672">=</span> <span style="color:#111">re</span><span style="color:#f92672">.</span><span style="color:#111">findall</span><span style="color:#111">(</span><span style="color:#d88200">&#34; [A-Z]+ &#34;</span><span style="color:#111">,</span> <span style="color:#111">comments</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">upperwords</span> <span style="color:#f92672">=</span> <span style="color:#111">[</span><span style="color:#111">i</span><span style="color:#f92672">.</span><span style="color:#111">strip</span><span style="color:#111">()</span> <span style="color:#00a8c8">for</span> <span style="color:#111">i</span> <span style="color:#f92672">in</span> <span style="color:#111">upperwords</span><span style="color:#111">]</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">counter</span> <span style="color:#f92672">=</span> <span style="color:#111">collections</span><span style="color:#f92672">.</span><span style="color:#111">Counter</span><span style="color:#111">(</span><span style="color:#111">upperwords</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">res</span> <span style="color:#f92672">=</span> <span style="color:#111">list</span><span style="color:#111">(</span><span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">symbolpool</span><span style="color:#111">)</span><span style="color:#f92672">&amp;</span><span style="color:#111">set</span><span style="color:#111">(</span><span style="color:#111">upperwords</span><span style="color:#111">))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">resdict</span> <span style="color:#f92672">=</span> <span style="color:#111">{</span><span style="color:#111">key</span><span style="color:#111">:</span> <span style="color:#111">counter</span><span style="color:#111">[</span><span style="color:#111">key</span><span style="color:#111">]</span> <span style="color:#00a8c8">for</span> <span style="color:#111">key</span> <span style="color:#f92672">in</span> <span style="color:#111">res</span><span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">resdf</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">DataFrame</span><span style="color:#111">([</span><span style="color:#111">resdict</span><span style="color:#111">])</span><span style="color:#f92672">.</span><span style="color:#111">T</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">resdf</span><span style="color:#111">[</span><span style="color:#d88200">&#39;link_id&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">postid</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">resdf</span><span style="color:#111">[</span><span style="color:#d88200">&#39;commentdate&#39;</span><span style="color:#111">]</span> <span style="color:#f92672">=</span> <span style="color:#111">idx</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">resdf</span><span style="color:#f92672">.</span><span style="color:#111">to_csv</span><span style="color:#111">(</span><span style="color:#111">outfile</span><span style="color:#111">,</span> <span style="color:#111">mode</span><span style="color:#f92672">=</span><span style="color:#d88200">&#39;a&#39;</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#00a8c8">None</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">def</span> <span style="color:#75af00">loadcrsp</span><span style="color:#111">():</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#34;E:</span><span style="color:#8045ff">\\</span><span style="color:#d88200">20230327forBryce</span><span style="color:#8045ff">\\</span><span style="color:#d88200">crspsymbolpool.csv&#34;</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">crspsymbolpool</span> <span style="color:#f92672">=</span> <span style="color:#111">df</span><span style="color:#111">[</span><span style="color:#d88200">&#39;symbol&#39;</span><span style="color:#111">]</span><span style="color:#f92672">.</span><span style="color:#111">to_list</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">return</span> <span style="color:#111">crspsymbolpool</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">if</span> <span style="color:#111">__name__</span> <span style="color:#f92672">==</span> <span style="color:#d88200">&#39;__main__&#39;</span><span style="color:#111">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">eventtime</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;2021-01-20 18:48:52 GMT&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">pubtime</span> <span style="color:#f92672">=</span> <span style="color:#111">parser</span><span style="color:#f92672">.</span><span style="color:#111">parse</span><span style="color:#111">(</span><span style="color:#111">eventtime</span><span style="color:#111">)</span><span style="color:#f92672">.</span><span style="color:#111">timestamp</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">crspsymbolpool</span> <span style="color:#f92672">=</span> <span style="color:#111">loadcrsp</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">outfile</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#39;xx\xx.csv&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">df</span> <span style="color:#f92672">=</span> <span style="color:#111">pd</span><span style="color:#f92672">.</span><span style="color:#111">read_csv</span><span style="color:#111">(</span><span style="color:#d88200">&#34;xx</span><span style="color:#8045ff">\\</span><span style="color:#d88200">WSB_DD.csv&#34;</span><span style="color:#111">,</span> <span style="color:#111">header</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">counttime</span><span style="color:#111">(</span><span style="color:#111">df</span><span style="color:#111">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="summary">Summary</h2>
+<p>In this blog, I present a systematic approach to accessing and analyzing comments on Reddit Wallstreetbets, which offers dynamic and granular views of retail traders when making trading decisions. Apart from studying retail attention, researchers may find it intriguing to investigate the organization and coordination among retailers, such as the roles of sophisticated leaders in the forum and the patterns of collaboration within the community.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Bradley, Daniel, et al. &ldquo;Place your bets? The market consequences of investment research on Reddit&rsquo;s Wallstreetbets.&rdquo; <em>The Market Consequences of Investment Research on Reddit&rsquo;s Wallstreetbets (March 15, 2021)</em> (2021).</li>
+<li>Bryzgalova, Svetlana, Anna Pavlova, and Taisiya Sikorskaya. &ldquo;Retail trading in options and the rise of the big three wholesalers.&rdquo; <em>Journal of Finance forthcoming</em> (2022).</li>
+<li>Eaton, Gregory W., et al. &ldquo;Retail trader sophistication and stock market quality: Evidence from brokerage outages.&rdquo; <em>Journal of Financial Economics</em> 146.2 (2022): 502-528.</li>
+<li>Jakab, Spencer. <em>Who Really Got Rich From the GameStop Revolution?</em>. Wall Street Journal, 2022.</li>
+<li>Keynes, John Maynard. &ldquo;The general theory of employment.&rdquo; <em>The quarterly journal of economics</em> 51, no. 2 (1937): 209-223.</li>
+</ol>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/replicate-brogaard-stock-volatility-decomposition/" data-toggle="tooltip" data-placement="top" title="Replicate Brogaard Stock Volatility Decomposition">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/deal-edgar-logs/" data-toggle="tooltip" data-placement="top" title="Tracing The Origins of EDGAR Downloads">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:m.xu@fs.de">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    <li>
+                        <a href="https://twitter.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xumj2021">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/mengjie-xu-37410712b/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Democratize Data For Insights" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Mengjie Xu 2024
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

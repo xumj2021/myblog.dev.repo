@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Social Media on Democratize Data For Insights</title>
+    <link>https://xumj2021.github.io/tags/social-media/</link>
+    <description>Recent content in Social Media on Democratize Data For Insights</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://xumj2021.github.io/tags/social-media/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Twitter API: Door To Social Media Analysis I</title>
+      <link>https://xumj2021.github.io/post/door-to-twitter-analysis-i/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/door-to-twitter-analysis-i/</guid>
+      <description>Motivation In the last few decades, a series of papers published in top accounting journals have repeatedly proved that Twitter data could empower very fascinating research ideas. To give readers an intuition about the potential of Twitter data, I would roughly show three directions and their relative examples which I have deepest impression through my limited personal reading experience.&#xA;Wisdom of crowds&#xA;Bartov, Faurel, and Mohanram (2018, TAR) found opinions of individuals tweeted just prior to a firm’s earnings announcement can predict its earnings and announcement returns.</description>
+    </item>
+    <item>
+      <title>Twitter API: Door To Social Media Analysis II</title>
+      <link>https://xumj2021.github.io/post/door-to-twitter-analysis-ii/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://xumj2021.github.io/post/door-to-twitter-analysis-ii/</guid>
+      <description>Introduction Please see the background information about Twitter API v2 in my last blogpost Twitter API: Door To Social Media Analysis I. In this blogpost, I will replicate the Tweets extraction porcess of Bartov, Faurel, and Mohanram (2018, TAR), which found that opinions of individuals tweeted just prior to a firm’s earnings announcement can predict its earnings and announcement returns.&#xA;From a perspective of implementation, we need to get all the tweets which mentioned a given firm in a specified time range.</description>
+    </item>
+  </channel>
+</rss>
